@@ -5,12 +5,6 @@ import 'package:mafqood/core/app_router/app_router.dart';
 import 'package:mafqood/core/app_router/screens_name.dart';
 import 'package:mafqood/core/cache_manager/shared_preferences.dart';
 import 'package:mafqood/core/network/dio_helper.dart';
-import 'package:mafqood/presentation/screens/auth_screens/change_forget_password.dart';
-import 'package:mafqood/presentation/screens/auth_screens/forget_password_screen.dart';
-import 'package:mafqood/presentation/screens/auth_screens/login_screen.dart';
-import 'package:mafqood/presentation/screens/auth_screens/otp_verification_number_screen.dart';
-import 'package:mafqood/presentation/screens/auth_screens/register_screen.dart';
-
 import 'core/global/theme/app_colors_light_theme.dart';
 
 void main() async{
@@ -41,9 +35,9 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: createMaterialColor(AppColorsLightTheme.primaryColor),
           ),
-          // onGenerateRoute: AppRouter.generateRoute,
-          // initialRoute: ScreenName.splashscreen,
-          home:  ChangeForgottenPassword(),
+          onGenerateRoute: AppRouter.generateRoute,
+          initialRoute: ScreenName.splashscreen,
+          // home:  ChangeForgottenPassword(),
         );
       },
     );

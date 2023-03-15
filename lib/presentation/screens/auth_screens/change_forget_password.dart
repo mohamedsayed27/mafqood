@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../core/app_router/screens_name.dart';
 import '../../../core/global/assets_path/fonts_path.dart';
 import '../../../core/global/theme/app_colors_light_theme.dart';
 import '../../widgets_and_components/auth_widgets/auth_text_form_field.dart';
@@ -25,6 +26,7 @@ class _ChangeForgottenPasswordState extends State<ChangeForgottenPassword> {
       child: Scaffold(
         backgroundColor: AppColorsLightTheme.whitColor,
         body: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.w),
             child: Column(
@@ -122,9 +124,14 @@ class _ChangeForgottenPasswordState extends State<ChangeForgottenPassword> {
                   height: 30.h,
                 ),
                 CustomButton(
-                  buttonTitle: 'اسنرجاع',
-                  isTapped: () {},
+                  buttonTitle: 'تغيير',
+                  isTapped: () {
+                    Navigator.pushNamedAndRemoveUntil(context, ScreenName.loginScreen,(route) => false);
+                  },
                   width: double.infinity,),
+                SizedBox(
+                  height: 30.h,
+                ),
               ],
             ),
           ),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mafqood/core/app_router/screens_name.dart';
 import 'package:mafqood/presentation/widgets_and_components/shred_widgets/custom_button.dart';
 
 import '../../../core/global/assets_path/fonts_path.dart';
 import '../../../core/global/theme/app_colors_light_theme.dart';
 import '../../widgets_and_components/auth_widgets/auth_text_form_field.dart';
-import '../../widgets_and_components/intro_screens_widgets/boarding_button.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -28,6 +28,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       child: Scaffold(
         backgroundColor: AppColorsLightTheme.whitColor,
         body: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
           child: Padding(
             padding:  EdgeInsets.symmetric(horizontal: 24.w),
             child: Column(
@@ -46,7 +47,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
                 SizedBox(height: 15.h,),
-                Icon(Icons.arrow_back,color: Colors.grey,size: 35.r,),
+                IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.arrow_back,color: Colors.grey,size: 35.r,),),
                 SizedBox(height: 15.h,),
                 Text(
                   'إنشاء حساب',
@@ -88,7 +89,42 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   isPassword: true,
                 ),
                 SizedBox(height: 26.h,),
-                CustomButton(buttonTitle: 'انشاء خساب', isTapped: (){}, width: double.infinity)
+                CustomButton(buttonTitle: 'انشاء خساب', isTapped: (){
+                  Navigator.pushNamed(context, ScreenName.otpVerificationNumberScreen);
+                }, width: double.infinity),
+                SizedBox(
+                  height: 30.h,
+                ),
+                Center(
+                  child: TextButton(
+                    onPressed: (){
+                      Navigator.pushNamedAndRemoveUntil(context, ScreenName.loginScreen,(route) => false);
+                    },
+                    child: RichText(
+                      text: TextSpan(
+                        text: 'هل لديك حساب؟  ',
+                        children: [
+                          TextSpan(
+                            text: 'تسجيل الدخول',
+                            style: TextStyle(
+                              color: AppColorsLightTheme.blueTextColor,
+                              fontFamily: FontsPath.sukarBold,
+                              fontSize: 16.sp,
+                            ),
+                          )
+                        ],
+                        style: TextStyle(
+                          color: AppColorsLightTheme.greyTextColor,
+                          fontFamily: FontsPath.sukarBlack,
+                          fontSize: 12.sp,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 30.h,
+                ),
               ],
             ),
           ),

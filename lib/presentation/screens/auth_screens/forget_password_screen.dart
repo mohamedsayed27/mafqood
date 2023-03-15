@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mafqood/core/app_router/screens_name.dart';
 
 import '../../../core/global/assets_path/fonts_path.dart';
 import '../../../core/global/theme/app_colors_light_theme.dart';
@@ -21,6 +22,8 @@ class _ForgetPasswordState extends State<ForgetPassword> {
       child: Scaffold(
         backgroundColor: AppColorsLightTheme.whitColor,
         body: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.w),
             child: Column(
@@ -101,7 +104,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 ),
                 CustomButton(
                     buttonTitle: 'اسنرجاع',
-                    isTapped: () {},
+                    isTapped: () {
+                      Navigator.pushNamed(context, ScreenName.changeForgetPasswordScreen);
+                    },
                     width: double.infinity,),
               ],
             ),
