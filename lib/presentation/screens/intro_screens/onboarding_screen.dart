@@ -86,12 +86,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             bottom: 100.h,
             // left: !isLast?157.w:112.w,
             right: !isLast ? 175.w : 135.w,
-            child: CustomButton(
+            child: CustomBoardingButton(
               isLast: isLast,
               isLastTap: () {
                 // CacheHelper.saveData(key: CacheKeys.onboarding, value: true).whenComplete((){
                 //
                 // });
+                // print("object");
               },
               isTapped: () {
                 pageViewController.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.fastOutSlowIn);

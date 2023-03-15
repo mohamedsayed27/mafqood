@@ -4,12 +4,12 @@ import 'package:mafqood/core/global/theme/app_colors_light_theme.dart';
 
 import '../../../core/global/assets_path/fonts_path.dart';
 
-class CustomButton extends StatelessWidget {
+class CustomBoardingButton extends StatelessWidget {
   final bool isLast;
   final Function isLastTap;
   final Function isTapped;
 
-  const CustomButton({
+  const CustomBoardingButton({
     Key? key,
     required this.isLast,
     required this.isLastTap,
