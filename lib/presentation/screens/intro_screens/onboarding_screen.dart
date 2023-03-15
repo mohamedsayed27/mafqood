@@ -3,8 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../core/app_router/screens_name.dart';
-import '../../../core/cache_manager/cache_keys.dart';
-import '../../../core/cache_manager/shared_preferences.dart';
 import '../../../core/global/assets_path/images_path.dart';
 import '../../../core/global/theme/app_colors_light_theme.dart';
 import '../../widgets_and_components/intro_screens_widgets/boarding_button.dart';
@@ -86,12 +84,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             bottom: 100.h,
             // left: !isLast?157.w:112.w,
             right: !isLast ? 175.w : 135.w,
-            child: CustomButton(
+            child: CustomBoardingButton(
               isLast: isLast,
               isLastTap: () {
+                Navigator.pushNamedAndRemoveUntil(context, ScreenName.loginScreen, (route) => false);
                 // CacheHelper.saveData(key: CacheKeys.onboarding, value: true).whenComplete((){
                 //
                 // });
+                // print("object");
               },
               isTapped: () {
                 pageViewController.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.fastOutSlowIn);

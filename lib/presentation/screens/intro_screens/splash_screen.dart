@@ -42,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen>
     bool? onboarding = CacheHelper.getData(key: CacheKeys.onboarding);
     token = CacheHelper.getData(key: CacheKeys.token);
     Timer(
-      const Duration(seconds: 3),
+      const Duration(seconds: 4),
       () {
         if (onboarding == null) {
           Navigator.pushReplacementNamed(context, ScreenName.onboardingScreen);
@@ -68,7 +68,7 @@ class _SplashScreenState extends State<SplashScreen>
       backgroundColor: AppColorsLightTheme.primaryColor,
       body: Center(
         child: SizedBox(
-          height: 370.h,
+          height: 400.h,
           child: AlignTransition(
             alignment: scaleAnimation!,
             child: SizedBox(
