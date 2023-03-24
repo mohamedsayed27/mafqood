@@ -42,6 +42,8 @@ class DioHelper {
       'Accept': 'text/plain',
     };
     return await dio.post(url, queryParameters: query, data: data);
+
+    // return ;
   }
 
   static Future<Response> deleteData({
