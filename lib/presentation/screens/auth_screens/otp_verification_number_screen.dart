@@ -95,6 +95,7 @@ class _OtpVerificationNumberScreenState
                 AuthTextFormField(
                   hintText: 'رقم الهاتف',
                   controller: phoneController,
+                  keyboardType: TextInputType.phone,
                   prefix: const Icon(
                     Icons.phone,
                     color: AppColorsLightTheme.primaryColor,

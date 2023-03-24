@@ -91,6 +91,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 AuthTextFormField(
                   hintText: 'رقم الهاتف',
                   controller: phoneController,
+                  keyboardType: TextInputType.phone,
                   prefix: const Icon(
                     Icons.phone,
                     color: AppColorsLightTheme.primaryColor,

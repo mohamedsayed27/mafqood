@@ -71,6 +71,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 AuthTextFormField(
                   hintText: 'رقم الهاتف',
                   controller: phoneController,
+                  keyboardType: TextInputType.phone,
                   prefix: const Icon(
                     Icons.phone,
                     color: AppColorsLightTheme.primaryColor,
@@ -80,12 +81,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 AuthTextFormField(
                   hintText: 'كلمة المرور',
                   controller: passwordController,
+                  keyboardType: TextInputType.visiblePassword,
                   isPassword: true,
                 ),
                 SizedBox(height: 24.h,),
                 AuthTextFormField(
                   hintText: 'تأكيد كلمة المرور',
                   controller: confirmPasswordController,
+                  keyboardType: TextInputType.visiblePassword,
                   isPassword: true,
                 ),
                 SizedBox(height: 26.h,),

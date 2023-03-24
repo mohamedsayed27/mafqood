@@ -55,6 +55,9 @@ dependencies:
   rename: ^2.1.1
   equatable: ^2.0.5
   jiffy: ^5.0.0
+  dartz: ^0.10.1
+  get_it: ^7.2.0
+
 
 dev_dependencies:
   flutter_test:

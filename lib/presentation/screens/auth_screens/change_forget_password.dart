@@ -94,6 +94,7 @@ class _ChangeForgottenPasswordState extends State<ChangeForgottenPassword> {
                 AuthTextFormField(
                   hintText: 'رقم الهاتف',
                   controller: phoneController,
+                  keyboardType: TextInputType.phone,
                   prefix: const Icon(
                     Icons.phone,
                     color: AppColorsLightTheme.primaryColor,
@@ -102,12 +103,14 @@ class _ChangeForgottenPasswordState extends State<ChangeForgottenPassword> {
                 SizedBox(height: 20.h,),
                 AuthTextFormField(
                   hintText: 'كلمة المرور',
+                  keyboardType: TextInputType.visiblePassword,
                   controller: passwordController,
                   isPassword: true,
                 ),
                 SizedBox(height: 20.h,),
                 AuthTextFormField(
                   hintText: 'تأكيد كلمة المرور',
+                  keyboardType: TextInputType.visiblePassword,
                   controller: confirmPasswordController,
                   isPassword: true,
                 ),

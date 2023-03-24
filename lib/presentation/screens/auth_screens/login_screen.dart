@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mafqood/core/app_router/screens_name.dart';
+import 'package:mafqood/presentation/controllers/user_cubit/user_cubit.dart';
+import 'package:mafqood/presentation/controllers/user_cubit/user_state.dart';
 
 import '../../../core/global/assets_path/fonts_path.dart';
 import '../../../core/global/theme/app_colors_light_theme.dart';
@@ -21,128 +24,155 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        backgroundColor: AppColorsLightTheme.whitColor,
-        body: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.w),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 50.h,
-                ),
-                Center(
-                  child: Text(
-                    'مفقود',
-                    style: TextStyle(
-                      color: AppColorsLightTheme.blueTextColor,
-                      fontFamily: FontsPath.sukarBold,
-                      fontSize: 64.sp,
+      child: BlocConsumer<UserCubit, UserState>(
+        buildWhen: (previous, current){
+          if(previous!=current){
+            return true;
+          }
+          else if(current is LoginError || current is LoginSuccess|| current is LoginLoading){
+            return true;
+          }
+          else {
+            return false;
+          }
+        },
+        listener: (context, state) {
+          if(state is LoginError){
+            // print(state.authErrorException.authErrorModel.message);
+          }
+        },
+        builder: (context, state) {
+          var cubit = UserCubit.get(context);
+          return Scaffold(
+            backgroundColor: AppColorsLightTheme.whitColor,
+            body: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 50.h,
                     ),
-                  ),
-                ),
-                SizedBox(
-                  height: 25.h,
-                ),
-                Text(
-                  'تسجيل دخول',
-                  style: TextStyle(
-                    color: AppColorsLightTheme.blueTextColor,
-                    fontFamily: FontsPath.sukarBlack,
-                    fontSize: 24.sp,
-                  ),
-                ),
-                SizedBox(
-                  height: 24.h,
-                ),
-                AuthTextFormField(
-                  hintText: 'رقم الهاتف',
-                  controller: phoneController,
-                  prefix: const Icon(
-                    Icons.phone,
-                    color: AppColorsLightTheme.primaryColor,
-                  ),
-                ),
-                SizedBox(
-                  height: 24.h,
-                ),
-                AuthTextFormField(
-                  hintText: 'كلمة المرور',
-                  controller: passwordController,
-                  isPassword: true,
-                ),
-                SizedBox(
-                  height: 26.h,
-                ),
-                TextButton(
-                  onPressed: (){
-                    Navigator.pushNamed(context, ScreenName.forgetPasswordScreen);
-                  },
-                  child: RichText(
-                    text: TextSpan(
-                      text: 'هل نسيت كلمة المرور؟  ',
-                      children: [
-                        TextSpan(
-                          text: 'استرجاع',
-                          style: TextStyle(
-                            color: AppColorsLightTheme.blueTextColor,
-                            fontFamily: FontsPath.sukarBold,
-                            fontSize: 16.sp,
-                          ),
-                        )
-                      ],
-                      style: TextStyle(
-                        color: AppColorsLightTheme.greyTextColor,
-                        fontFamily: FontsPath.sukarBlack,
-                        fontSize: 12.sp,
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 30.h,
-                ),
-                CustomButton(
-                    buttonTitle: 'نسجيل الدخول',
-                    isTapped: () {},
-                    width: double.infinity),
-                SizedBox(
-                  height: 30.h,
-                ),
-                Center(
-                  child: TextButton(
-                    onPressed: (){
-                      Navigator.pushNamed(context, ScreenName.registerScreen);
-                    },
-                    child: RichText(
-                      text: TextSpan(
-                        text: 'ليس لديك حساب؟  ',
-                        children: [
-                          TextSpan(
-                            text: 'انشاء حساب',
-                            style: TextStyle(
-                              color: AppColorsLightTheme.blueTextColor,
-                              fontFamily: FontsPath.sukarBold,
-                              fontSize: 16.sp,
-                            ),
-                          )
-                        ],
+                    Center(
+                      child: Text(
+                        'مفقود',
                         style: TextStyle(
-                          color: AppColorsLightTheme.greyTextColor,
-                          fontFamily: FontsPath.sukarBlack,
-                          fontSize: 12.sp,
+                          color: AppColorsLightTheme.blueTextColor,
+                          fontFamily: FontsPath.sukarBold,
+                          fontSize: 64.sp,
                         ),
                       ),
                     ),
-                  ),
+                    SizedBox(
+                      height: 25.h,
+                    ),
+                    Text(
+                      'تسجيل دخول',
+                      style: TextStyle(
+                        color: AppColorsLightTheme.blueTextColor,
+                        fontFamily: FontsPath.sukarBlack,
+                        fontSize: 24.sp,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 24.h,
+                    ),
+                    AuthTextFormField(
+                      hintText: 'رقم الهاتف',
+                      controller: phoneController,
+                      keyboardType: TextInputType.phone,
+                      prefix: const Icon(
+                        Icons.phone,
+                        color: AppColorsLightTheme.primaryColor,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 24.h,
+                    ),
+                    AuthTextFormField(
+                      hintText: 'كلمة المرور',
+                      controller: passwordController,
+                      keyboardType: TextInputType.visiblePassword,
+                      isPassword: true,
+                    ),
+                    SizedBox(
+                      height: 26.h,
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, ScreenName
+                            .forgetPasswordScreen);
+                      },
+                      child: RichText(
+                        text: TextSpan(
+                          text: 'هل نسيت كلمة المرور؟  ',
+                          children: [
+                            TextSpan(
+                              text: 'استرجاع',
+                              style: TextStyle(
+                                color: AppColorsLightTheme.blueTextColor,
+                                fontFamily: FontsPath.sukarBold,
+                                fontSize: 16.sp,
+                              ),
+                            )
+                          ],
+                          style: TextStyle(
+                            color: AppColorsLightTheme.greyTextColor,
+                            fontFamily: FontsPath.sukarBlack,
+                            fontSize: 12.sp,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30.h,
+                    ),
+                    CustomButton(
+                        buttonTitle: 'نسجيل الدخول',
+                        isTapped: () {
+                          cubit.login(password: 'String@123', phone: "01124376092");
+                        },
+                        width: double.infinity),
+                    SizedBox(
+                      height: 30.h,
+                    ),
+                    Center(
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, ScreenName.registerScreen);
+                        },
+                        child: RichText(
+                          text: TextSpan(
+                            text: 'ليس لديك حساب؟  ',
+                            children: [
+                              TextSpan(
+                                text: 'انشاء حساب',
+                                style: TextStyle(
+                                  color: AppColorsLightTheme.blueTextColor,
+                                  fontFamily: FontsPath.sukarBold,
+                                  fontSize: 16.sp,
+                                ),
+                              )
+                            ],
+                            style: TextStyle(
+                              color: AppColorsLightTheme.greyTextColor,
+                              fontFamily: FontsPath.sukarBlack,
+                              fontSize: 12.sp,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }
