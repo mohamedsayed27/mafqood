@@ -13,8 +13,10 @@ class UserCubit extends Cubit<UserState> {
     emit(LoginLoading());
     final response = await loginUsecase.execute(password: password, phone: phone);
     response.fold((l) {
+      print(l);
       emit(LoginError(authErrorException: l));
     }, (r) {
+      print(r);
       emit(LoginSuccess(authenticationEntity: r));
     });
   }

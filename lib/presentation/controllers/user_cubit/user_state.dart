@@ -15,6 +15,5 @@ class LoginSuccess extends UserState {
 }
 class LoginError extends UserState {
   final AuthErrorException authErrorException;
-
   LoginError({required this.authErrorException});
 }
