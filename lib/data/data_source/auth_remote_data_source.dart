@@ -63,20 +63,20 @@ class AuthenticationRemoteDataSource extends BaseAuthenticationRemoteDataSource 
     required String firstName,
     required String lastName,
   }) async {
-    final response = await DioHelper.postData(
-      url: EndPoints.register,
-      data: {
-        'phoneNumber': phone,
-        'password': password,
-        "firstName": firstName,
-        "lastName": lastName,
-      },
-    );
+    try{
+      final response = await DioHelper.postData(
+        url: EndPoints.register,
+        data: {
+          'phoneNumber': phone,
+          'password': password,
+          "firstName": firstName,
+          "lastName": lastName,
+        },
+      );
 
-    if (response.statusCode == 200) {
       return AuthenticationModel.fromJson(response.data);
-    } else {
-      throw AuthErrorException(AuthErrorModel.fromJson(response.data));
+    }on DioError catch(error){
+      throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
   }
 
@@ -85,50 +85,53 @@ class AuthenticationRemoteDataSource extends BaseAuthenticationRemoteDataSource 
     required String code,
     required String phone,
   }) async {
-    final response = await DioHelper.postData(
-      url: EndPoints.verifyPhone,
-      data: {
-        'phoneNumber': phone,
-        "code": code,
-      },
-    );
 
-    if (response.statusCode == 200) {
+    try {
+      final response = await DioHelper.postData(
+        url: EndPoints.verifyPhone,
+        data: {
+          'phoneNumber': phone,
+          "code": code,
+        },
+      );
       return AuthenticationModel.fromJson(response.data);
-    } else {
-      throw AuthErrorException(AuthErrorModel.fromJson(response.data));
+    }on DioError catch(error){
+      throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
+
   }
 
   @override
   Future<AuthenticationModel> forgetPassword({required String phone}) async{
-    final response = await DioHelper.postData(
-      url: EndPoints.forgetPassword,
-      data: {
-        'phoneNumber': phone,
-      },
-    );
-    if (response.statusCode == 200) {
+    try {
+      final response = await DioHelper.postData(
+        url: EndPoints.forgetPassword,
+        data: {
+          'phoneNumber': phone,
+        },
+      );
       return AuthenticationModel.fromJson(response.data);
-    } else {
-      throw AuthErrorException(AuthErrorModel.fromJson(response.data));
+
+    } on DioError catch(error){
+      throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
+
   }
 
   @override
   Future<AuthenticationModel> resetPassword({required String phone, required String password, required String code}) async{
-    final response = await DioHelper.postData(
-      url: EndPoints.resetPassword,
-      data: {
-        "phoneNumber": phone,
-        "password": password,
-        "code": code
-      },
-    );
-    if (response.statusCode == 200) {
+    try {
+      final response = await DioHelper.postData(
+        url: EndPoints.resetPassword,
+        data: {
+          "phoneNumber": phone,
+          "password": password,
+          "code": code
+        },
+      );
       return AuthenticationModel.fromJson(response.data);
-    } else {
-      throw AuthErrorException(AuthErrorModel.fromJson(response.data));
+    }on DioError catch(error){
+      throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
   }
 }

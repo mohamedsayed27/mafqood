@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mafqood/core/app_router/screens_name.dart';
 
+import '../../../core/constants/reg_exp.dart';
 import '../../../core/global/assets_path/fonts_path.dart';
 import '../../../core/global/theme/app_colors_light_theme.dart';
 import '../../widgets_and_components/auth_widgets/auth_text_form_field.dart';
@@ -92,6 +93,14 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   hintText: 'رقم الهاتف',
                   controller: phoneController,
                   keyboardType: TextInputType.phone,
+                  validate: (value) {
+                    if (value!.isEmpty) {
+                      return "يجب ادخال الهاتف";
+                    } else if (!RegularExp.egyptPhoneRegex.hasMatch(value)) {
+                      return "صيغة الهاتف غير صحيحة";
+                    }
+                    return null;
+                  },
                   prefix: const Icon(
                     Icons.phone,
                     color: AppColorsLightTheme.primaryColor,

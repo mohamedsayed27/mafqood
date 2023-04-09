@@ -36,13 +36,14 @@ class AuthenticationRepository extends AuthenticationBaseRepository {
     required String firstName,
     required String lastName,
   }) async {
-    final response = await baseAuthenticationRemoteDataSource.register(
-      password: password,
-      phone: phone,
-      firstName: firstName,
-      lastName: lastName,
-    );
+
     try {
+      final response = await baseAuthenticationRemoteDataSource.register(
+        password: password,
+        phone: phone,
+        firstName: firstName,
+        lastName: lastName,
+      );
       return Right(response);
     } on AuthErrorException catch (error) {
       return Left(AuthErrorException(
@@ -56,9 +57,10 @@ class AuthenticationRepository extends AuthenticationBaseRepository {
     required String code,
     required String phone,
   }) async {
-    final response = await baseAuthenticationRemoteDataSource.verifyPhone(
-        code: code, phone: phone);
+
     try {
+      final response = await baseAuthenticationRemoteDataSource.verifyPhone(
+          code: code, phone: phone);
       return Right(response);
     } on AuthErrorException catch (error) {
       return Left(AuthErrorException(
@@ -69,8 +71,9 @@ class AuthenticationRepository extends AuthenticationBaseRepository {
 
   @override
   Future<Either<AuthErrorException, AuthenticationEntity>> forgetPassword({required String phone}) async{
-    final response = await baseAuthenticationRemoteDataSource.forgetPassword(phone: phone);
+
     try {
+      final response = await baseAuthenticationRemoteDataSource.forgetPassword(phone: phone);
       return Right(response);
     } on AuthErrorException catch (error) {
       return Left(AuthErrorException(
@@ -81,8 +84,9 @@ class AuthenticationRepository extends AuthenticationBaseRepository {
 
   @override
   Future<Either<AuthErrorException, AuthenticationEntity>> resetPassword({required String password, required String phone, required String code}) async{
-    final response = await baseAuthenticationRemoteDataSource.resetPassword(phone: phone, password: password, code: code);
+
     try {
+      final response = await baseAuthenticationRemoteDataSource.resetPassword(phone: phone, password: password, code: code);
       return Right(response);
     } on AuthErrorException catch (error) {
       return Left(AuthErrorException(

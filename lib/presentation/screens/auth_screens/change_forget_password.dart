@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/app_router/screens_name.dart';
+import '../../../core/constants/reg_exp.dart';
 import '../../../core/global/assets_path/fonts_path.dart';
 import '../../../core/global/theme/app_colors_light_theme.dart';
 import '../../widgets_and_components/auth_widgets/auth_text_form_field.dart';
@@ -105,13 +106,29 @@ class _ChangeForgottenPasswordState extends State<ChangeForgottenPassword> {
                   hintText: 'كلمة المرور',
                   keyboardType: TextInputType.visiblePassword,
                   controller: passwordController,
+                  prefix: const Icon(
+                    Icons.lock,
+                    color: AppColorsLightTheme.primaryColor,
+                  ),
                   isPassword: true,
                 ),
                 SizedBox(height: 20.h,),
                 AuthTextFormField(
                   hintText: 'تأكيد كلمة المرور',
+                  prefix: const Icon(
+                    Icons.lock,
+                    color: AppColorsLightTheme.primaryColor,
+                  ),
                   keyboardType: TextInputType.visiblePassword,
                   controller: confirmPasswordController,
+                  validate: (value) {
+                    if (value!.isEmpty) {
+                      return "يجب ادخال الهاتف";
+                    } else if (!RegularExp.egyptPhoneRegex.hasMatch(value)) {
+                      return "صيغة الهاتف غير صحيحة";
+                    }
+                    return null;
+                  },
                   isPassword: true,
                 ),
                 SizedBox(
