@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../cache_manager/cache_keys.dart';
 import '../cache_manager/shared_preferences.dart';
@@ -17,7 +18,15 @@ void showProgressIndicator(BuildContext context){
       child: CircularProgressIndicator.adaptive(),
     ),
   );
-  showDialog(context: context, builder: (context)=>alertDialog,barrierDismissible: false,);
+  showDialog(context: context, builder: (context)=>WillPopScope(child: alertDialog, onWillPop: ()async{return true;}),barrierDismissible: false);
+}
+
+void showToast({required int errorType, required String message}){
+  if(errorType == 0){
+    Fluttertoast.showToast(msg: message,backgroundColor: Colors.green,textColor: Colors.white,gravity: ToastGravity.SNACKBAR,);
+  }else{
+    Fluttertoast.showToast(msg: message,backgroundColor: Colors.red,textColor: Colors.white,gravity: ToastGravity.SNACKBAR);
+  }
 }
 String? token = CacheHelper.getData(key: CacheKeys.token);
 String? userId = CacheHelper.getData(key: CacheKeys.userId);

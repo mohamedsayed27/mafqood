@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:mafqood/core/network/dio_helper.dart';
 import 'package:mafqood/data/data_source/auth_remote_data_source.dart';
 import 'package:mafqood/data/repositories/auth_repository.dart';
 import 'package:mafqood/domain/usecases/register_usecase.dart';
@@ -30,5 +31,8 @@ class ServicesLocator{
 
     ///DATA SOURCE
     sl.registerLazySingleton<BaseAuthenticationRemoteDataSource>(() => AuthenticationRemoteDataSource());
+
+    /// DioHelper
+    sl.registerLazySingleton(() => DioHelper());
   }
 }

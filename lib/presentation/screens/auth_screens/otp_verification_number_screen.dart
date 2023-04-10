@@ -93,6 +93,7 @@ class _OtpVerificationNumberScreenState
                   height: 24.h,
                 ),
                 AuthTextFormField(
+                  isEnable: false,
                   hintText: 'رقم الهاتف',
                   controller: phoneController,
                   keyboardType: TextInputType.phone,
