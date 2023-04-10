@@ -162,6 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             errorType: 0,
                             message: state.authenticationEntity.message!);
                         print(state.authenticationEntity);
+                        Navigator.pushNamedAndRemoveUntil(context, ScreenName.mainLayoutScreen, (route) => false);
                       } else if (state is LoginError) {
                         Navigator.pop(context);
                         showToast(

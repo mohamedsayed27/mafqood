@@ -7,6 +7,7 @@ import '../../../core/global/theme/app_colors_light_theme.dart';
 class AuthTextFormField extends StatelessWidget {
   final String hintText;
   final String? Function(String?)? validate;
+  final void Function()? onTap;
   final Widget? suffix;
   final Widget? prefix;
   final bool isPassword;
@@ -24,7 +25,7 @@ class AuthTextFormField extends StatelessWidget {
     this.keyboardType = TextInputType.text,
     this.maxLength = 100,
     this.prefix,
-    this.isPassword = false, this.isEnable,
+    this.isPassword = false, this.isEnable, this.onTap,
   }) : super(key: key);
 
   @override
@@ -32,6 +33,7 @@ class AuthTextFormField extends StatelessWidget {
     return TextFormField(
       enabled: isEnable,
       maxLength: maxLength,
+      onTap: onTap,
       keyboardType: keyboardType,
       controller: controller,
       validator: validate,

@@ -18,7 +18,7 @@ void showProgressIndicator(BuildContext context){
       child: CircularProgressIndicator.adaptive(),
     ),
   );
-  showDialog(context: context, builder: (context)=>WillPopScope(child: alertDialog, onWillPop: ()async{return false;}),barrierDismissible: false);
+  showDialog(context: context, builder: (context)=>WillPopScope(child: alertDialog, onWillPop: ()async{return true;}),barrierDismissible: false);
 }
 
 void showToast({required int errorType, required String message}){

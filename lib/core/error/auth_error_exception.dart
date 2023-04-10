@@ -13,3 +13,14 @@ class AuthErrorException extends Equatable implements Exception {
     authErrorModel,
   ];
 }
+class RegisterErrorException extends Equatable implements Exception {
+  final String error;
+
+  const RegisterErrorException(this.error);
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [
+    error,
+  ];
+}

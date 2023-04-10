@@ -73,9 +73,9 @@ class AuthenticationRemoteDataSource extends BaseAuthenticationRemoteDataSource 
           "lastName": lastName,
         },
       );
-
       return AuthenticationModel.fromJson(response.data);
     }on DioError catch(error){
+      print(error.response!.data);
       throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
   }

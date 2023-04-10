@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mafqood/core/app_router/screens_name.dart';
 import 'package:mafqood/presentation/screens/auth_screens/login_screen.dart';
 import 'package:mafqood/presentation/screens/auth_screens/register_screen.dart';
+import 'package:mafqood/presentation/screens/main_layout_screens/main_layout.dart';
 
 import '../../presentation/screens/auth_screens/change_forget_password.dart';
 import '../../presentation/screens/auth_screens/forget_password_screen.dart';
@@ -29,6 +30,8 @@ class AppRouter {
           return _animateRouteBuilder(const ForgetPassword());
         case ScreenName.changeForgetPasswordScreen:
           return _animateRouteBuilder(const ChangeForgottenPassword());
+        case ScreenName.mainLayoutScreen:
+          return _animateRouteBuilder(const MainLayout());
         default:
           return _errorRoute();
       }
