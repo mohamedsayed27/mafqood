@@ -6,7 +6,9 @@ import 'package:mafqood/core/app_router/app_router.dart';
 import 'package:mafqood/core/app_router/screens_name.dart';
 import 'package:mafqood/core/cache_manager/shared_preferences.dart';
 import 'package:mafqood/core/network/dio_helper.dart';
+import 'package:mafqood/presentation/controllers/lost_people_cubit/lost_people_cubit.dart';
 import 'package:mafqood/presentation/controllers/user_cubit/user_cubit.dart';
+import 'package:mafqood/presentation/screens/main_layout_screens/main_layout.dart';
 import 'bloc_observer.dart';
 import 'core/global/theme/app_colors_light_theme.dart';
 import 'core/services/services_locator.dart';
@@ -32,6 +34,7 @@ class MyApp extends StatelessWidget {
         return MultiBlocProvider(
             providers: [
               BlocProvider(create: (context) => UserCubit()),
+              BlocProvider(create: (context) => LostPeopleCubit()),
             ],
             child: MaterialApp(
               title: 'مفقود',
@@ -48,9 +51,9 @@ class MyApp extends StatelessWidget {
                 primarySwatch:
                     createMaterialColor(AppColorsLightTheme.primaryColor),
               ),
-              onGenerateRoute: AppRouter.generateRoute,
-              initialRoute: ScreenName.splashscreen,
-              // home:  ChangeForgottenPassword(),
+              // onGenerateRoute: AppRouter.generateRoute,
+              // initialRoute: ScreenName.splashscreen,
+              home:  MainLayout(),
             ));
       },
     );

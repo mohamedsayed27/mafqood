@@ -7,6 +7,8 @@ import '../../../core/global/theme/app_colors_light_theme.dart';
 import '../../widgets_and_components/auth_widgets/auth_text_form_field.dart';
 import '../../widgets_and_components/auth_widgets/pin_field_builder.dart';
 import '../../widgets_and_components/shred_widgets/custom_button.dart';
+import '../../widgets_and_components/shred_widgets/logo_text.dart';
+import '../../widgets_and_components/shred_widgets/phone_form_field.dart';
 
 class OtpVerificationNumberScreen extends StatefulWidget {
   const OtpVerificationNumberScreen({Key? key}) : super(key: key);
@@ -37,16 +39,7 @@ class _OtpVerificationNumberScreenState
                 SizedBox(
                   height: 50.h,
                 ),
-                Center(
-                  child: Text(
-                    'مفقود',
-                    style: TextStyle(
-                      color: AppColorsLightTheme.blueTextColor,
-                      fontFamily: FontsPath.sukarBold,
-                      fontSize: 64.sp,
-                    ),
-                  ),
-                ),
+                const LogoText(),
                 SizedBox(
                   height: 25.h,
                 ),
@@ -92,16 +85,7 @@ class _OtpVerificationNumberScreenState
                 SizedBox(
                   height: 24.h,
                 ),
-                AuthTextFormField(
-                  isEnable: false,
-                  hintText: 'رقم الهاتف',
-                  controller: phoneController,
-                  keyboardType: TextInputType.phone,
-                  prefix: const Icon(
-                    Icons.phone,
-                    color: AppColorsLightTheme.primaryColor,
-                  ),
-                ),
+                PhoneFormField(hintText: 'رقم الهاتف',isEnable: false, controller: phoneController,),
                 SizedBox(
                   height: 24.h,
                 ),

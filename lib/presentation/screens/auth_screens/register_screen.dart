@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mafqood/core/app_router/screens_name.dart';
+import 'package:mafqood/domain/usecases/auth_usecases/register_usecase.dart';
 import 'package:mafqood/presentation/widgets_and_components/shred_widgets/custom_button.dart';
 
 import '../../../core/constants/constants.dart';
-import '../../../core/constants/reg_exp.dart';
 import '../../../core/global/assets_path/fonts_path.dart';
 import '../../../core/global/theme/app_colors_light_theme.dart';
 import '../../controllers/user_cubit/user_cubit.dart';
 import '../../controllers/user_cubit/user_state.dart';
-import '../../widgets_and_components/auth_widgets/auth_text_form_field.dart';
+import '../../widgets_and_components/shred_widgets/auth_text_button.dart';
+import '../../widgets_and_components/shred_widgets/logo_text.dart';
+import '../../widgets_and_components/shred_widgets/name_form_field.dart';
+import '../../widgets_and_components/shred_widgets/password_form_field.dart';
+import '../../widgets_and_components/shred_widgets/phone_form_field.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -24,8 +28,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController secondNameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
   var formKey = GlobalKey<FormState>();
 
   @override
@@ -56,16 +59,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   SizedBox(
                     height: 50.h,
                   ),
-                  Center(
-                    child: Text(
-                      'مفقود',
-                      style: TextStyle(
-                        color: AppColorsLightTheme.blueTextColor,
-                        fontFamily: FontsPath.sukarBold,
-                        fontSize: 64.sp,
-                      ),
-                    ),
-                  ),
+                  const LogoText(),
                   SizedBox(
                     height: 15.h,
                   ),
@@ -93,77 +87,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   SizedBox(
                     height: 24.h,
                   ),
-                  AuthTextFormField(
-                    hintText: 'الاسم الاول',
-                    controller: firstNameController,
-                    prefix: const Icon(
-                      Icons.person,
-                      color: AppColorsLightTheme.primaryColor,
-                    ),
-                    validate: (value) {
-                      if (value!.isEmpty) {
-                        return "يجب ادخال الاسم";
-                      }
-                      return null;
-                    },
-                  ),
+                  NameFormField(
+                    hintText: 'الاسم الاول', controller: firstNameController,),
                   SizedBox(
                     height: 24.h,
                   ),
-                  AuthTextFormField(
-                    hintText: 'الاسم الثاني',
-                    controller: secondNameController,
-                    prefix: const Icon(
-                      Icons.person,
-                      color: AppColorsLightTheme.primaryColor,
-                    ),
-                    validate: (value) {
-                      if (value!.isEmpty) {
-                        return "يجب ادخال الاسم";
-                      }
-                      return null;
-                    },
-                  ),
+                  NameFormField(hintText: 'الاسم الثاني',
+                    controller: secondNameController,),
                   SizedBox(
                     height: 24.h,
                   ),
-                  AuthTextFormField(
+                  PhoneFormField(
                     hintText: 'رقم الهاتف',
                     controller: phoneController,
-                    validate: (value) {
-                      if (value!.isEmpty) {
-                        return "يجب ادخال الهاتف";
-                      } else if (!RegularExp.egyptPhoneRegex.hasMatch(value)) {
-                        return "صيغة الهاتف غير صحيحة";
-                      }
-                      return null;
-                    },
-                    keyboardType: TextInputType.phone,
-                    prefix: const Icon(
-                      Icons.phone,
-                      color: AppColorsLightTheme.primaryColor,
-                    ),
                   ),
                   SizedBox(
                     height: 24.h,
                   ),
-                  AuthTextFormField(
+                  PasswordFormField(
                     hintText: 'كلمة المرور',
                     controller: passwordController,
-                    keyboardType: TextInputType.visiblePassword,
-                    prefix: const Icon(
-                      Icons.lock,
-                      color: AppColorsLightTheme.primaryColor,
-                    ),
-                    validate: (value) {
-                      if (value!.isEmpty) {
-                        return "يجب ادخال كلمة المرور";
-                      } else if (!RegularExp.passwordRegex.hasMatch(value)) {
-                        return "كلمة المرور ضعيفة";
-                      }
-                      return null;
-                    },
-                    isPassword: true,
                   ),
                   SizedBox(
                     height: 5.h,
@@ -179,32 +122,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   SizedBox(
                     height: 24.h,
                   ),
-                  AuthTextFormField(
-                    hintText: 'تأكيد كلمة المرور',
+                  PasswordFormField(
+                    hintText: 'كلمة المرور',
                     controller: confirmPasswordController,
-                    keyboardType: TextInputType.visiblePassword,
-                    validate: (value) {
-                      if (confirmPasswordController.text !=
-                          passwordController.text) {
-                        return "كلمة المرور غير متطابقة";
-                      }
-                      return null;
-                    },
-                    isPassword: true,
+                    isConfirmPassword: true,
+                    confirmController: passwordController,
                   ),
                   SizedBox(
                     height: 26.h,
                   ),
                   BlocConsumer<UserCubit, UserState>(
                     buildWhen: (previous, current) {
-                      // if (previous != current &&
-                      //     current is RegisterError ||
-                      //     current is RegisterSuccess ||
-                      //     current is RegisterLoading ) {
-                      //   return true;
-                      // } else {
-                        return false;
-                      // }
+                      return false;
                     },
                     listener: (context, state) {
                       if (state is RegisterLoading) {
@@ -233,10 +162,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           FocusManager.instance.primaryFocus?.unfocus();
                           if (formKey.currentState!.validate()) {
                             cubit.register(
-                              password: passwordController.text,
-                              phone: phoneController.text,
-                              firstName: firstNameController.text,
-                              lastName: secondNameController.text,
+                                RegisterParameter(
+                                  password: passwordController.text,
+                                  phone: phoneController.text,
+                                  firstName: firstNameController.text,
+                                  lastName: secondNameController.text,
+                                )
                             );
                           }
                         },
@@ -247,32 +178,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   SizedBox(
                     height: 30.h,
                   ),
+
                   Center(
-                    child: TextButton(
+                    child: AuthTextButton(
+                      firstTitle: 'هل لديك حساب؟',
+                      secondTitle: 'تسجيل الدخول',
                       onPressed: () {
                         Navigator.pushNamedAndRemoveUntil(
                             context, ScreenName.loginScreen, (route) => false);
                       },
-                      child: RichText(
-                        text: TextSpan(
-                          text: 'هل لديك حساب؟  ',
-                          children: [
-                            TextSpan(
-                              text: 'تسجيل الدخول',
-                              style: TextStyle(
-                                color: AppColorsLightTheme.blueTextColor,
-                                fontFamily: FontsPath.sukarBold,
-                                fontSize: 16.sp,
-                              ),
-                            )
-                          ],
-                          style: TextStyle(
-                            color: AppColorsLightTheme.greyTextColor,
-                            fontFamily: FontsPath.sukarBlack,
-                            fontSize: 12.sp,
-                          ),
-                        ),
-                      ),
                     ),
                   ),
                   SizedBox(

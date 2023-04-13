@@ -7,6 +7,7 @@ import '../../../core/global/assets_path/fonts_path.dart';
 import '../../../core/global/theme/app_colors_light_theme.dart';
 import '../../widgets_and_components/auth_widgets/auth_text_form_field.dart';
 import '../../widgets_and_components/shred_widgets/custom_button.dart';
+import '../../widgets_and_components/shred_widgets/logo_text.dart';
 
 class ForgetPassword extends StatefulWidget {
   const ForgetPassword({Key? key}) : super(key: key);
@@ -34,16 +35,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 SizedBox(
                   height: 50.h,
                 ),
-                Center(
-                  child: Text(
-                    'مفقود',
-                    style: TextStyle(
-                      color: AppColorsLightTheme.blueTextColor,
-                      fontFamily: FontsPath.sukarBold,
-                      fontSize: 64.sp,
-                    ),
-                  ),
-                ),
+                const LogoText(),
                 SizedBox(
                   height: 25.h,
                 ),
