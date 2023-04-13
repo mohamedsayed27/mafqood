@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/app_router/screens_name.dart';
-import '../../../core/constants/reg_exp.dart';
 import '../../../core/global/assets_path/fonts_path.dart';
 import '../../../core/global/theme/app_colors_light_theme.dart';
-import '../../widgets_and_components/auth_widgets/auth_text_form_field.dart';
 import '../../widgets_and_components/auth_widgets/pin_field_builder.dart';
 import '../../widgets_and_components/shred_widgets/custom_button.dart';
+import '../../widgets_and_components/shred_widgets/logo_text.dart';
+import '../../widgets_and_components/shred_widgets/password_form_field.dart';
+import '../../widgets_and_components/shred_widgets/phone_form_field.dart';
 
 class ChangeForgottenPassword extends StatefulWidget {
   const ChangeForgottenPassword({Key? key}) : super(key: key);
@@ -37,16 +38,7 @@ class _ChangeForgottenPasswordState extends State<ChangeForgottenPassword> {
                 SizedBox(
                   height: 50.h,
                 ),
-                Center(
-                  child: Text(
-                    'مفقود',
-                    style: TextStyle(
-                      color: AppColorsLightTheme.blueTextColor,
-                      fontFamily: FontsPath.sukarBold,
-                      fontSize: 64.sp,
-                    ),
-                  ),
-                ),
+                const LogoText(),
                 SizedBox(
                   height: 25.h,
                 ),
@@ -92,45 +84,11 @@ class _ChangeForgottenPasswordState extends State<ChangeForgottenPassword> {
                 SizedBox(
                   height: 25.h,
                 ),
-                AuthTextFormField(
-                  hintText: 'رقم الهاتف',
-                  controller: phoneController,
-                  keyboardType: TextInputType.phone,
-                  prefix: const Icon(
-                    Icons.phone,
-                    color: AppColorsLightTheme.primaryColor,
-                  ),
-                ),
+                PhoneFormField(hintText: 'رقم الهاتف', controller: phoneController,),
                 SizedBox(height: 20.h,),
-                AuthTextFormField(
-                  hintText: 'كلمة المرور',
-                  keyboardType: TextInputType.visiblePassword,
-                  controller: passwordController,
-                  prefix: const Icon(
-                    Icons.lock,
-                    color: AppColorsLightTheme.primaryColor,
-                  ),
-                  isPassword: true,
-                ),
+                PasswordFormField(hintText: 'كلمة المرور', controller: passwordController,),
                 SizedBox(height: 20.h,),
-                AuthTextFormField(
-                  hintText: 'تأكيد كلمة المرور',
-                  prefix: const Icon(
-                    Icons.lock,
-                    color: AppColorsLightTheme.primaryColor,
-                  ),
-                  keyboardType: TextInputType.visiblePassword,
-                  controller: confirmPasswordController,
-                  validate: (value) {
-                    if (value!.isEmpty) {
-                      return "يجب ادخال الهاتف";
-                    } else if (!RegularExp.egyptPhoneRegex.hasMatch(value)) {
-                      return "صيغة الهاتف غير صحيحة";
-                    }
-                    return null;
-                  },
-                  isPassword: true,
-                ),
+                PasswordFormField(hintText: 'تأكيد كلمة المرور', controller: confirmPasswordController,isConfirmPassword: true,confirmController: passwordController),
                 SizedBox(
                   height: 24.h,
                 ),

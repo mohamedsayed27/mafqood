@@ -3,7 +3,8 @@ import 'package:mafqood/data/data_source/auth_remote_data_source.dart';
 import 'package:mafqood/domain/entities/auth_entity.dart';
 
 import '../../core/error/auth_error_exception.dart';
-import '../../domain/repository/auth_base_repository.dart';
+import '../../domain/repository/auth_base_repository/auth_base_repository.dart';
+import '../../domain/usecases/auth_usecases/register_usecase.dart';
 
 class AuthenticationRepository extends AuthenticationBaseRepository {
   final BaseAuthenticationRemoteDataSource baseAuthenticationRemoteDataSource;
@@ -30,19 +31,11 @@ class AuthenticationRepository extends AuthenticationBaseRepository {
   }
 
   @override
-  Future<Either<AuthErrorException, AuthenticationEntity>> register({
-    required String password,
-    required String phone,
-    required String firstName,
-    required String lastName,
-  }) async {
+  Future<Either<AuthErrorException, AuthenticationEntity>> register(RegisterParameter registerParameter) async {
 
     try {
       final response = await baseAuthenticationRemoteDataSource.register(
-        password: password,
-        phone: phone,
-        firstName: firstName,
-        lastName: lastName,
+          registerParameter
       );
       return Right(response);
     } on AuthErrorException catch (error) {

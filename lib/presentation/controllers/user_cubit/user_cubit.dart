@@ -1,18 +1,17 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mafqood/domain/usecases/forget_password_usecase.dart';
-import 'package:mafqood/domain/usecases/login_usecase.dart';
-import 'package:mafqood/domain/usecases/reset_password_usecase.dart';
+import 'package:mafqood/domain/usecases/auth_usecases/forget_password_usecase.dart';
+import 'package:mafqood/domain/usecases/auth_usecases/login_usecase.dart';
+import 'package:mafqood/domain/usecases/auth_usecases/reset_password_usecase.dart';
 import '../../../core/services/services_locator.dart';
-import '../../../domain/usecases/register_usecase.dart';
-import '../../../domain/usecases/verify_phone.dart';
+import '../../../domain/usecases/auth_usecases/register_usecase.dart';
+import '../../../domain/usecases/auth_usecases/verify_phone.dart';
 import 'user_state.dart';
 
 class UserCubit extends Cubit<UserState> {
   UserCubit() : super(UserInitial());
 
   static UserCubit get(context) => BlocProvider.of(context);
-  LoginUsecase loginUsecase =
-      LoginUsecase(authenticationBaseRepository: sl());
+  LoginUsecase loginUsecase = LoginUsecase(authenticationBaseRepository: sl());
   RegisterUsecase registerUsecase =
       RegisterUsecase(authenticationBaseRepository: sl());
   VerifyPhoneUsecase verifyPhoneUsecase =
@@ -28,7 +27,7 @@ class UserCubit extends Cubit<UserState> {
   }) async {
     emit(LoginLoading());
     final response =
-        await loginUsecase.execute(password: password, phone: phone);
+        await loginUsecase(LoginParameter(password: password, phone: phone));
     response.fold((l) {
       print(l);
       emit(LoginError(authErrorException: l));
@@ -38,18 +37,9 @@ class UserCubit extends Cubit<UserState> {
     });
   }
 
-  void register({
-    required String password,
-    required String phone,
-    required String firstName,
-    required String lastName,
-  }) async {
+  void register(RegisterParameter registerParameter) async {
     emit(RegisterLoading());
-    final response = await registerUsecase.execute(
-        password: password,
-        phone: phone,
-        firstName: firstName,
-        lastName: lastName);
+    final response = await registerUsecase(registerParameter);
     response.fold((l) {
       print(l);
       emit(RegisterError(authErrorException: l));
@@ -95,7 +85,7 @@ class UserCubit extends Cubit<UserState> {
     required String phone,
   }) async {
     emit(ForgetPasswordLoading());
-    final response = await forgetPasswordUsecase.execute(phone: phone);
+    final response = await forgetPasswordUsecase(phone);
     response.fold((l) {
       print(l);
       emit(ForgetPasswordError(authErrorException: l));

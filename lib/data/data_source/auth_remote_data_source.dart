@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:mafqood/core/network/api_end_points.dart';
 import 'package:mafqood/data/models/auth_model.dart';
+import 'package:mafqood/domain/usecases/auth_usecases/register_usecase.dart';
 
 import '../../core/error/auth_error_exception.dart';
 import '../../core/network/dio_helper.dart';
@@ -12,12 +13,7 @@ abstract class BaseAuthenticationRemoteDataSource {
     required String phone,
   });
 
-  Future<AuthenticationModel> register({
-    required String password,
-    required String phone,
-    required String firstName,
-    required String lastName,
-  });
+  Future<AuthenticationModel> register(RegisterParameter registerParameter);
 
   Future<AuthenticationModel> verifyPhone({
     required String code,
@@ -57,25 +53,19 @@ class AuthenticationRemoteDataSource extends BaseAuthenticationRemoteDataSource 
   }
 
   @override
-  Future<AuthenticationModel> register({
-    required String password,
-    required String phone,
-    required String firstName,
-    required String lastName,
-  }) async {
+  Future<AuthenticationModel> register(RegisterParameter registerParameter) async {
     try{
       final response = await DioHelper.postData(
         url: EndPoints.register,
         data: {
-          'phoneNumber': phone,
-          'password': password,
-          "firstName": firstName,
-          "lastName": lastName,
+          'phoneNumber': registerParameter.phone,
+          'password': registerParameter.password,
+          "firstName": registerParameter.firstName,
+          "lastName": registerParameter.lastName,
         },
       );
       return AuthenticationModel.fromJson(response.data);
     }on DioError catch(error){
-      print(error.response!.data);
       throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
   }

@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jiffy/jiffy.dart';
-import 'package:mafqood/core/global/assets_path/images_path.dart';
+import 'package:mafqood/domain/usecases/lost_people_usecases/add_lost_person_usecase.dart';
+import 'package:mafqood/presentation/controllers/lost_people_cubit/lost_people_cubit.dart';
+import 'package:mafqood/presentation/controllers/lost_people_cubit/lost_people_state.dart';
 import 'package:mafqood/presentation/widgets_and_components/shred_widgets/custom_button.dart';
 
 import '../../../core/global/assets_path/fonts_path.dart';
 import '../../../core/global/theme/app_colors_light_theme.dart';
-import '../../widgets_and_components/auth_widgets/auth_text_form_field.dart';
 import '../../widgets_and_components/shred_widgets/custom_drop_down_button.dart';
+import '../../widgets_and_components/shred_widgets/upload_data_component.dart';
 
 class UploadData extends StatefulWidget {
   const UploadData({Key? key}) : super(key: key);
@@ -20,41 +23,9 @@ class _UploadDataState extends State<UploadData> {
   TextEditingController name = TextEditingController();
   TextEditingController date = TextEditingController();
   TextEditingController street = TextEditingController();
+  TextEditingController phone = TextEditingController();
   DateTime? dateTime;
 
-  _selectImage(BuildContext context) async {
-    return showDialog(
-      context: context,
-      builder: (context) {
-        return SimpleDialog(
-          title: const Text("قم بأختيار صورة"),
-          children: [
-            SimpleDialogOption(
-              padding: const EdgeInsets.all(20),
-              child: const Text('التقط صوره'),
-              onPressed: () async {
-                Navigator.of(context).pop();
-              },
-            ),
-            SimpleDialogOption(
-              padding: const EdgeInsets.all(20),
-              child: const Text('قم بأختيار صورة'),
-              onPressed: () async {
-                Navigator.of(context).pop();
-              },
-            ),
-            SimpleDialogOption(
-              padding: const EdgeInsets.all(20),
-              child: const Text('الغاء'),
-              onPressed: () async {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,108 +33,119 @@ class _UploadDataState extends State<UploadData> {
       body: ListView(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         children: [
-          SizedBox(height: 30.h,),
-          InkWell(
-            onTap: (){
-              _selectImage(context);
-            },
-            child: Container(
-              width: 100.w,
-              height: 100.h,
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              decoration: const BoxDecoration(
-                color: AppColorsLightTheme.primaryColor,
-                shape: BoxShape.circle
-              ),
-              child: Center(
-                child: Icon(Icons.add_a_photo,color: Colors.white,size: 32.r,)
-              ),
-            ),
+          SizedBox(
+            height: 30.h,
           ),
-          SizedBox(height: 20.h,),
-          Text(
-            'اكتب الاسم',
-            style: TextStyle(
-              color: AppColorsLightTheme.blueTextColor,
-              fontFamily: FontsPath.sukarRegular,
-              fontSize: 16.sp,
-            ),
-          ),
-          SizedBox(height: 10.h,),
-          AuthTextFormField(
-            hintText: 'الاسم',
-            controller: name,
-            keyboardType: TextInputType.text,
-            prefix: const Icon(
-              Icons.person,
-              color: AppColorsLightTheme.primaryColor,
-            ),
-          ),
-          SizedBox(height: 20.h,),
-          Text(
-            'اختر التاريخ',
-            style: TextStyle(
-              color: AppColorsLightTheme.blueTextColor,
-              fontFamily: FontsPath.sukarRegular,
-              fontSize: 16.sp,
-            ),
-          ),
-          SizedBox(height: 10.h,),
-          AuthTextFormField(
-            hintText: 'التاريخ',
-            controller: date,
-            keyboardType: TextInputType.text,
-            onTap: () {
-              showDatePicker(
-                context: context,
-                initialDate: dateTime ?? DateTime.now(),
-                firstDate: DateTime(1950),
-                lastDate: DateTime.now(),
-                builder: (context, child) {
-                  return Theme(
-                    data: ThemeData().copyWith(
-                      colorScheme: const ColorScheme.light(
-                          primary: AppColorsLightTheme.primaryColor,
-                          secondary: Colors.white),
-                      dialogBackgroundColor: Colors.white,
+          BlocConsumer<LostPeopleCubit, LostPeopleState>(
+            buildWhen: (p, c) => (p != c && c is GetPickedImageSuccessState ||
+                c is GetPickedImageErrorState),
+            listener: (context, state) {},
+            builder: (context, state) {
+              var cubit = LostPeopleCubit.get(context);
+              return Stack(
+                alignment: Alignment.center,
+                children: [
+                  Container(
+                      width: 100.w,
+                      height: 100.h,
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      decoration: const BoxDecoration(
+                        color: AppColorsLightTheme.primaryColor,
+                        shape: BoxShape.circle,
+                      ),
+                      child: cubit.imagePicked != null
+                          ? Image.file(
+                              cubit.imagePicked!,
+                              fit: BoxFit.cover,
+                            )
+                          : null),
+                  Container(
+                    width: 100.w,
+                    height: 100.h,
+                    decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.1),
+                      shape: BoxShape.circle,
                     ),
-                    child: child!,
-                  );
-                },
-              ).then((value) {
-                setState(() {
-                  dateTime = value;
-                  date.text = Jiffy(dateTime).yMMMd.toString();
-                });
-              }).catchError((error) {
-                return;
-              });
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: IconButton(
+                      onPressed: () {
+                        cubit.selectImage(context);
+                      },
+                      iconSize: 38.r,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 0, vertical: 0),
+                      icon: Icon(
+                        Icons.add_a_photo,
+                        color: cubit.imagePicked != null
+                            ? Colors.white60
+                            : Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
+              );
             },
-            prefix: const Icon(
-              Icons.calendar_month,
-              color: AppColorsLightTheme.primaryColor,
-            ),
           ),
-          SizedBox(height: 20.h,),
-          Text(
-            'اكتب اسم الحي',
-            style: TextStyle(
-              color: AppColorsLightTheme.blueTextColor,
-              fontFamily: FontsPath.sukarRegular,
-              fontSize: 16.sp,
-            ),
+          SizedBox(
+            height: 20.h,
           ),
-          SizedBox(height: 10.h,),
-          AuthTextFormField(
-            hintText: 'اكتب الحي',
+          UploadDataWidget(
+            controller: phone,
+            fieldTitle: 'اكتب رقم الهاتف',
+            fieldHintText: 'رقم الهاتف',
+            iconPath: Icons.phone,
+            isPhone: true,
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
+          UploadDataWidget(
+            controller: name,
+            fieldTitle: 'اكتب الاسم',
+            fieldHintText: 'الاسم',
+            iconPath: Icons.person,
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
+          BlocConsumer<LostPeopleCubit, LostPeopleState>(
+            buildWhen: (p, c) =>
+                (p != c && c is GetDateTimePickedSuccessState ||
+                    c is GetDateTimePickedErrorState),
+            listener: (context, state) {
+              if (state is GetDateTimePickedSuccessState) {
+                date.text = Jiffy(state.dateTime).yMMMd;
+                FocusManager.instance.primaryFocus?.unfocus();
+              }
+            },
+            builder: (context, state) {
+              var cubit = LostPeopleCubit.get(context);
+              return UploadDataWidget(
+                controller: date,
+                fieldTitle: 'اختر التاريخ',
+                fieldHintText: 'التاريخ',
+                iconPath: Icons.calendar_month,
+                onTap: () {
+                  FocusManager.instance.primaryFocus?.unfocus();
+                  cubit.selectTDateTime(context);
+                },
+              );
+            },
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
+          UploadDataWidget(
             controller: street,
-            keyboardType: TextInputType.text,
-            prefix: const Icon(
-              Icons.add_road,
-              color: AppColorsLightTheme.primaryColor,
-            ),
+            fieldTitle: 'اكتب اسم الحي',
+            fieldHintText: 'اكتب الحي',
+            iconPath: Icons.add_road,
           ),
-          SizedBox(height: 20.h,),
+          SizedBox(
+            height: 20.h,
+          ),
           Text(
             'اختر المدينة',
             style: TextStyle(
@@ -172,9 +154,15 @@ class _UploadDataState extends State<UploadData> {
               fontSize: 16.sp,
             ),
           ),
-          SizedBox(height: 10.h,),
-          const CustomDropDown(title: 'المحافظه',),
-          SizedBox(height: 20.h,),
+          SizedBox(
+            height: 10.h,
+          ),
+          const CustomDropDown(
+            title: 'المحافظه',
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
           Text(
             'اختر المركز',
             style: TextStyle(
@@ -183,10 +171,44 @@ class _UploadDataState extends State<UploadData> {
               fontSize: 16.sp,
             ),
           ),
-          SizedBox(height: 10.h,),
-          const CustomDropDown(title: 'المركز',),
-          SizedBox(height: 30.h,),
-          CustomButton(buttonTitle: 'اضاغة', isTapped: (){}, width: double.infinity)
+          SizedBox(
+            height: 10.h,
+          ),
+          const CustomDropDown(
+            title: 'المركز',
+          ),
+          SizedBox(
+            height: 30.h,
+          ),
+          BlocConsumer<LostPeopleCubit, LostPeopleState>(
+            buildWhen: (p, c) => (p != c && c is GetPickedImageSuccessState ||
+                c is GetPickedImageErrorState),
+            listener: (context, state) {
+              // TODO: implement listener
+            },
+            builder: (context, state) {
+              var cubit = LostPeopleCubit.get(context);
+              return CustomButton(
+                buttonTitle: 'اضاغة',
+                isTapped: () {
+                  cubit.addLostPersonData(
+                    AddLostPersonDataParameters(
+                      name: name.text,
+                      street: street.text,
+                      area: "area area area",
+                      city: "city city city",
+                      phone: phone.text,
+                      image: cubit.imagePicked!,
+                      lng: 1.2,
+                      lat: 2.2,
+                      birthDate: date.text,
+                    ),
+                  );
+                },
+                width: double.infinity,
+              );
+            },
+          )
         ],
       ),
     );

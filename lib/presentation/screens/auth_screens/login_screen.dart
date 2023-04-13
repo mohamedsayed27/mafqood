@@ -6,11 +6,13 @@ import 'package:mafqood/presentation/controllers/user_cubit/user_cubit.dart';
 import 'package:mafqood/presentation/controllers/user_cubit/user_state.dart';
 
 import '../../../core/constants/constants.dart';
-import '../../../core/constants/reg_exp.dart';
 import '../../../core/global/assets_path/fonts_path.dart';
 import '../../../core/global/theme/app_colors_light_theme.dart';
-import '../../widgets_and_components/auth_widgets/auth_text_form_field.dart';
+import '../../widgets_and_components/shred_widgets/auth_text_button.dart';
 import '../../widgets_and_components/shred_widgets/custom_button.dart';
+import '../../widgets_and_components/shred_widgets/logo_text.dart';
+import '../../widgets_and_components/shred_widgets/password_form_field.dart';
+import '../../widgets_and_components/shred_widgets/phone_form_field.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -49,16 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     height: 50.h,
                   ),
-                  Center(
-                    child: Text(
-                      'مفقود',
-                      style: TextStyle(
-                        color: AppColorsLightTheme.blueTextColor,
-                        fontFamily: FontsPath.sukarBold,
-                        fontSize: 64.sp,
-                      ),
-                    ),
-                  ),
+                  const LogoText(),
                   SizedBox(
                     height: 25.h,
                   ),
@@ -73,41 +66,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     height: 24.h,
                   ),
-                  AuthTextFormField(
+                  PhoneFormField(
                     hintText: 'رقم الهاتف',
                     controller: phoneController,
-                    keyboardType: TextInputType.phone,
-                    prefix: const Icon(
-                      Icons.phone,
-                      color: AppColorsLightTheme.primaryColor,
-                    ),
-                    validate: (value) {
-                      if (value!.isEmpty) {
-                        return "يجب ادخال الهاتف";
-                      } else if (!RegularExp.egyptPhoneRegex.hasMatch(value)) {
-                        return "صيغة الهاتف غير صحيحة";
-                      }
-                      return null;
-                    },
                   ),
                   SizedBox(
                     height: 24.h,
                   ),
-                  AuthTextFormField(
+                  PasswordFormField(
                     hintText: 'كلمة المرور',
                     controller: passwordController,
-                    keyboardType: TextInputType.visiblePassword,
-                    isPassword: true,
-                    prefix: const Icon(
-                      Icons.lock,
-                      color: AppColorsLightTheme.primaryColor,
-                    ),
-                    validate: (value) {
-                      if (value!.isEmpty) {
-                        return "يجب ادخال كلمة المرور";
-                      }
-                      return null;
-                    },
                   ),
                   SizedBox(
                     height: 26.h,
@@ -143,14 +111,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   BlocConsumer<UserCubit, UserState>(
                     buildWhen: (previous, current) {
-                      // if (previous != current &&
-                      //     current is LoginError ||
-                      //         current is LoginSuccess ||
-                      //         current is LoginLoading ) {
-                      //   return true;
-                      // } else {
-                      //   return false;
-                      // }
                       return false;
                     },
                     listener: (context, state) {
@@ -162,7 +122,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             errorType: 0,
                             message: state.authenticationEntity.message!);
                         print(state.authenticationEntity);
-                        Navigator.pushNamedAndRemoveUntil(context, ScreenName.mainLayoutScreen, (route) => false);
+                        Navigator.pushNamedAndRemoveUntil(context,
+                            ScreenName.mainLayoutScreen, (route) => false);
                       } else if (state is LoginError) {
                         Navigator.pop(context);
                         showToast(
@@ -194,30 +155,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 30.h,
                   ),
                   Center(
-                    child: TextButton(
+                    child: AuthTextButton(
+                      firstTitle: 'ليس لديك حساب؟',
+                      secondTitle: 'انشاء حساب',
                       onPressed: () {
-                        Navigator.pushNamed(context, ScreenName.registerScreen);
+                        Navigator.pushNamed(
+                            context, ScreenName.registerScreen,);
                       },
-                      child: RichText(
-                        text: TextSpan(
-                          text: 'ليس لديك حساب؟  ',
-                          children: [
-                            TextSpan(
-                              text: 'انشاء حساب',
-                              style: TextStyle(
-                                color: AppColorsLightTheme.blueTextColor,
-                                fontFamily: FontsPath.sukarBold,
-                                fontSize: 16.sp,
-                              ),
-                            )
-                          ],
-                          style: TextStyle(
-                            color: AppColorsLightTheme.greyTextColor,
-                            fontFamily: FontsPath.sukarBlack,
-                            fontSize: 12.sp,
-                          ),
-                        ),
-                      ),
                     ),
                   ),
                 ],
