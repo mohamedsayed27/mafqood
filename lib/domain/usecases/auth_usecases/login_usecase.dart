@@ -13,7 +13,7 @@ class LoginUsecase extends BaseUsecase<AuthenticationEntity,LoginParameter>{
 
   @override
   Future<Either<AuthErrorException, AuthenticationEntity>> call(LoginParameter parameters) async{
-    return await authenticationBaseRepository.login(password: parameters.password, phone: parameters.phone);
+    return await authenticationBaseRepository.login(parameters);
   }
 }
 

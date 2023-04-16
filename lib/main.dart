@@ -6,8 +6,10 @@ import 'package:mafqood/core/app_router/app_router.dart';
 import 'package:mafqood/core/app_router/screens_name.dart';
 import 'package:mafqood/core/cache_manager/shared_preferences.dart';
 import 'package:mafqood/core/network/dio_helper.dart';
+import 'package:mafqood/presentation/controllers/google_maps_cubit/google_maps_cubit.dart';
 import 'package:mafqood/presentation/controllers/lost_people_cubit/lost_people_cubit.dart';
 import 'package:mafqood/presentation/controllers/user_cubit/user_cubit.dart';
+import 'package:mafqood/presentation/screens/main_layout_screens/google_mas_screen.dart';
 import 'package:mafqood/presentation/screens/main_layout_screens/main_layout.dart';
 import 'bloc_observer.dart';
 import 'core/global/theme/app_colors_light_theme.dart';
@@ -33,8 +35,9 @@ class MyApp extends StatelessWidget {
       builder: (BuildContext context, Widget? child) {
         return MultiBlocProvider(
             providers: [
-              BlocProvider(create: (context) => UserCubit()),
-              BlocProvider(create: (context) => LostPeopleCubit()),
+              BlocProvider(create: (context) => UserCubit(sl(),sl(),sl(),sl(),sl())),
+              BlocProvider(create: (context) => LostPeopleCubit(sl())),
+              BlocProvider(create: (context) => GoogleMapsCubit()..getCurrentPosition()),
             ],
             child: MaterialApp(
               title: 'مفقود',
@@ -51,9 +54,9 @@ class MyApp extends StatelessWidget {
                 primarySwatch:
                     createMaterialColor(AppColorsLightTheme.primaryColor),
               ),
-              // onGenerateRoute: AppRouter.generateRoute,
-              // initialRoute: ScreenName.splashscreen,
-              home:  MainLayout(),
+              onGenerateRoute: AppRouter.generateRoute,
+              initialRoute: ScreenName.mainLayoutScreen,
+              // home:  GoogleMapsScreen(),
             ));
       },
     );

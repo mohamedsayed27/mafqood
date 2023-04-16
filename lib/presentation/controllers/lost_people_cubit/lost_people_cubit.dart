@@ -6,11 +6,10 @@ import 'package:mafqood/domain/usecases/lost_people_usecases/add_lost_person_use
 import 'package:image_picker/image_picker.dart';
 
 import '../../../core/global/theme/app_colors_light_theme.dart';
-import '../../../core/services/services_locator.dart';
 import 'lost_people_state.dart';
 
 class LostPeopleCubit extends Cubit<LostPeopleState> {
-  LostPeopleCubit() : super(LostPeopleInitial());
+  LostPeopleCubit(this.addLostPersonDataUsecase) : super(LostPeopleInitial());
   static LostPeopleCubit get(context) => BlocProvider.of(context);
   DateTime? dateTime;
   selectImage(BuildContext context) async {
@@ -85,7 +84,7 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
       emit(GetPickedImageErrorState());
     }
   }
-  AddLostPersonDataUsecase addLostPersonDataUsecase = AddLostPersonDataUsecase(lostPeopleBaseRepository: sl());
+  final AddLostPersonDataUsecase addLostPersonDataUsecase;
   void addLostPersonData(AddLostPersonDataParameters addLostPersonDataParameters) async {
     emit(AddLostPersonDataLoading());
     final response = await addLostPersonDataUsecase(addLostPersonDataParameters);

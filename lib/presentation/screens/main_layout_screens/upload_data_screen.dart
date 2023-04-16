@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:jiffy/jiffy.dart';
-import 'package:mafqood/domain/usecases/lost_people_usecases/add_lost_person_usecase.dart';
+import 'package:mafqood/core/app_router/screens_name.dart';
+import 'package:mafqood/presentation/controllers/google_maps_cubit/google_maps_state.dart';
 import 'package:mafqood/presentation/controllers/lost_people_cubit/lost_people_cubit.dart';
 import 'package:mafqood/presentation/controllers/lost_people_cubit/lost_people_state.dart';
 import 'package:mafqood/presentation/widgets_and_components/shred_widgets/custom_button.dart';
 
 import '../../../core/global/assets_path/fonts_path.dart';
 import '../../../core/global/theme/app_colors_light_theme.dart';
+import '../../controllers/google_maps_cubit/google_maps_cubit.dart';
 import '../../widgets_and_components/shred_widgets/custom_drop_down_button.dart';
 import '../../widgets_and_components/shred_widgets/upload_data_component.dart';
+
+class Args {
+  final LatLng latLng;
+
+  Args({required this.latLng});
+}
 
 class UploadData extends StatefulWidget {
   const UploadData({Key? key}) : super(key: key);
@@ -22,10 +32,13 @@ class UploadData extends StatefulWidget {
 class _UploadDataState extends State<UploadData> {
   TextEditingController name = TextEditingController();
   TextEditingController date = TextEditingController();
+  TextEditingController locationName = TextEditingController();
   TextEditingController street = TextEditingController();
   TextEditingController phone = TextEditingController();
   DateTime? dateTime;
-
+  String loc = 'اختر موقعك';
+  double? lng;
+  double? lat;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,6 +137,7 @@ class _UploadDataState extends State<UploadData> {
               var cubit = LostPeopleCubit.get(context);
               return UploadDataWidget(
                 controller: date,
+                readOnly: true,
                 fieldTitle: 'اختر التاريخ',
                 fieldHintText: 'التاريخ',
                 iconPath: Icons.calendar_month,
@@ -178,6 +192,61 @@ class _UploadDataState extends State<UploadData> {
             title: 'المركز',
           ),
           SizedBox(
+            height: 20.h,
+          ),
+          BlocConsumer<GoogleMapsCubit, GoogleMapsState>(
+            buildWhen: (p, c) =>
+            (p != c && c is ChosenCurrentPositionName),
+            listener: (context, state) {
+
+              if (state is ChosenCurrentPositionName) {
+                loc = state.cityName;
+              }
+            },
+            builder: (context, state) {
+              var cubit = GoogleMapsCubit.get(context);
+              return InkWell(
+                onTap: (){
+                  cubit.chooseLocation(context);
+                },
+                child: Container(
+                  height: 100.h,
+                  padding: EdgeInsets.symmetric(
+                      horizontal: 10.w,
+                      vertical: 2.h
+                  ),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: AppColorsLightTheme.authTextFieldFillColor,
+                    borderRadius: BorderRadius.circular(25.r),
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.location_on_rounded,
+                        color: AppColorsLightTheme.primaryColor,
+                      ),
+                      SizedBox(width: 10.w,),
+                      Expanded(
+                        child: Text(
+                          loc,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 14.sp,
+                            fontFamily: FontsPath.sukarRegular,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+          SizedBox(
             height: 30.h,
           ),
           BlocConsumer<LostPeopleCubit, LostPeopleState>(
@@ -190,20 +259,24 @@ class _UploadDataState extends State<UploadData> {
               var cubit = LostPeopleCubit.get(context);
               return CustomButton(
                 buttonTitle: 'اضاغة',
-                isTapped: () {
-                  cubit.addLostPersonData(
-                    AddLostPersonDataParameters(
-                      name: name.text,
-                      street: street.text,
-                      area: "area area area",
-                      city: "city city city",
-                      phone: phone.text,
-                      image: cubit.imagePicked!,
-                      lng: 1.2,
-                      lat: 2.2,
-                      birthDate: date.text,
-                    ),
-                  );
+                isTapped: () async {
+                  final args = await Navigator.pushNamed(
+                      context, ScreenName.googleMapsScreen);
+                  Args arg2 = args as Args;
+                  print('${arg2.latLng}\nfffffffff');
+                  // cubit.addLostPersonData(
+                  //   AddLostPersonDataParameters(
+                  //     name: name.text,
+                  //     street: street.text,
+                  //     area: "area area area",
+                  //     city: "city city city",
+                  //     phone: phone.text,
+                  //     image: cubit.imagePicked!,
+                  //     lng: 1.2,
+                  //     lat: 2.2,
+                  //     birthDate: date.text,
+                  //   ),
+                  // );
                 },
                 width: double.infinity,
               );

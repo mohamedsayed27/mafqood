@@ -6,4 +6,5 @@ static const verifyPhone ='/Auth/VerifyPhone';
 static const forgetPassword ='/Auth/ForgetPassword';
 static const resetPassword ='/Auth/RessetPassword';
 static const sendLostData ='/LostPeoples/Search';
+static const helpLostPerson ='/LostPeoples/HelpByPhoto';
 }
