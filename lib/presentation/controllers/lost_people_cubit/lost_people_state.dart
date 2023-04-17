@@ -23,6 +23,8 @@ class GetPickedImageSuccessState extends LostPeopleState {
 
 }
 class GetPickedImageErrorState extends LostPeopleState {}
+class GetLostPersonPickedImageSuccessState extends LostPeopleState {}
+class GetLostPersonPickedImageErrorState extends LostPeopleState {}
 class GetDateTimePickedSuccessState extends LostPeopleState {
   final DateTime? dateTime;
 

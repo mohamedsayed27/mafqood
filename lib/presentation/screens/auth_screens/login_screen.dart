@@ -129,7 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         showToast(
                           errorType: 1,
                           message:
-                              state.authErrorException.authErrorModel.message,
+                              state.authErrorException.authErrorModel.errors[0],
                         );
                         print(state.authErrorException.authErrorModel);
                       }

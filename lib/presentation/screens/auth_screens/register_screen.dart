@@ -28,7 +28,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController secondNameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
   var formKey = GlobalKey<FormState>();
 
   @override
@@ -88,12 +89,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     height: 24.h,
                   ),
                   NameFormField(
-                    hintText: 'الاسم الاول', controller: firstNameController,),
+                    hintText: 'الاسم الاول',
+                    controller: firstNameController,
+                  ),
                   SizedBox(
                     height: 24.h,
                   ),
-                  NameFormField(hintText: 'الاسم الثاني',
-                    controller: secondNameController,),
+                  NameFormField(
+                    hintText: 'الاسم الثاني',
+                    controller: secondNameController,
+                  ),
                   SizedBox(
                     height: 24.h,
                   ),
@@ -143,6 +148,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         showToast(
                             errorType: 0,
                             message: state.authenticationEntity.message!);
+                        Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            ScreenName.otpVerificationNumberScreen,
+                            (route) => false,
+                            arguments: phoneController.text);
                         print(state.authenticationEntity);
                       } else if (state is RegisterError) {
                         Navigator.pop(context);
@@ -161,14 +171,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         isTapped: () {
                           FocusManager.instance.primaryFocus?.unfocus();
                           if (formKey.currentState!.validate()) {
-                            cubit.register(
-                                RegisterParameter(
-                                  password: passwordController.text,
-                                  phone: phoneController.text,
-                                  firstName: firstNameController.text,
-                                  lastName: secondNameController.text,
-                                )
-                            );
+                            cubit.register(RegisterParameter(
+                              password: passwordController.text,
+                              phone: phoneController.text,
+                              firstName: firstNameController.text,
+                              lastName: secondNameController.text,
+                            ));
                           }
                         },
                         width: double.infinity,
@@ -178,7 +186,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   SizedBox(
                     height: 30.h,
                   ),
-
                   Center(
                     child: AuthTextButton(
                       firstTitle: 'هل لديك حساب؟',

@@ -18,6 +18,8 @@ abstract class BaseLostPeopleRemoteDataSource {
 class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
   @override
   Future<LostPeopleModel> addLostPersonData(AddLostPersonDataParameters parameters) async {
+   print(parameters.lng);
+   print(parameters.lng);
    try{
     final response = await DioHelper.postData(
      url: EndPoints.sendLostData,

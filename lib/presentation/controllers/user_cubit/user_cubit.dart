@@ -22,8 +22,7 @@ class UserCubit extends Cubit<UserState> {
     required String phone,
   }) async {
     emit(LoginLoading());
-    final response =
-        await loginUsecase(LoginParameter(password: password, phone: phone));
+    final response = await loginUsecase(LoginParameter(password: password, phone: phone));
     response.fold((l) {
       print(l);
       emit(LoginError(authErrorException: l));

@@ -28,11 +28,13 @@ class AppRouter {
         case ScreenName.googleMapsScreen:
           return _animateRouteBuilder(const GoogleMapsScreen());
         case ScreenName.otpVerificationNumberScreen:
-          return _animateRouteBuilder(const OtpVerificationNumberScreen());
+          final phone = settings.arguments as String;
+          return _animateRouteBuilder(OtpVerificationNumberScreen(phone: phone,));
         case ScreenName.forgetPasswordScreen:
           return _animateRouteBuilder(const ForgetPassword());
         case ScreenName.changeForgetPasswordScreen:
-          return _animateRouteBuilder(const ChangeForgottenPassword());
+          final phone = settings.arguments as String;
+          return _animateRouteBuilder(ChangeForgottenPassword(phone: phone,));
         case ScreenName.mainLayoutScreen:
           return _animateRouteBuilder(const MainLayout());
         default:

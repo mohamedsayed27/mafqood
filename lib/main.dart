@@ -9,8 +9,7 @@ import 'package:mafqood/core/network/dio_helper.dart';
 import 'package:mafqood/presentation/controllers/google_maps_cubit/google_maps_cubit.dart';
 import 'package:mafqood/presentation/controllers/lost_people_cubit/lost_people_cubit.dart';
 import 'package:mafqood/presentation/controllers/user_cubit/user_cubit.dart';
-import 'package:mafqood/presentation/screens/main_layout_screens/google_mas_screen.dart';
-import 'package:mafqood/presentation/screens/main_layout_screens/main_layout.dart';
+import 'package:mafqood/presentation/screens/auth_screens/otp_verification_number_screen.dart';
 import 'bloc_observer.dart';
 import 'core/global/theme/app_colors_light_theme.dart';
 import 'core/services/services_locator.dart';
@@ -47,16 +46,15 @@ class MyApp extends StatelessWidget {
                 GlobalWidgetsLocalizations.delegate,
               ],
               supportedLocales: const [
-                Locale(
-                    "ar", "AE"), // OR Locale('ar', 'AE') OR Other RTL locales
+                Locale("ar", "AE"),
               ],
               theme: ThemeData(
                 primarySwatch:
                     createMaterialColor(AppColorsLightTheme.primaryColor),
               ),
               onGenerateRoute: AppRouter.generateRoute,
-              initialRoute: ScreenName.mainLayoutScreen,
-              // home:  GoogleMapsScreen(),
+              initialRoute: ScreenName.splashscreen,
+              // home:  OtpVerificationNumberScreen(phone: '01124276092',),
             ));
       },
     );

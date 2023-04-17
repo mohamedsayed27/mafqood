@@ -49,6 +49,7 @@ class AuthenticationRepository extends AuthenticationBaseRepository {
       final response = await baseAuthenticationRemoteDataSource.verifyPhone(parameter);
       return Right(response);
     } on AuthErrorException catch (error) {
+      print(error);
       return Left(AuthErrorException(
         error.authErrorModel,
       ));

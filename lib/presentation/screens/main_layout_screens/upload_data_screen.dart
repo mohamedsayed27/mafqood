@@ -12,7 +12,9 @@ import 'package:mafqood/presentation/widgets_and_components/shred_widgets/custom
 
 import '../../../core/global/assets_path/fonts_path.dart';
 import '../../../core/global/theme/app_colors_light_theme.dart';
+import '../../../domain/usecases/lost_people_usecases/add_lost_person_usecase.dart';
 import '../../controllers/google_maps_cubit/google_maps_cubit.dart';
+import '../../widgets_and_components/google_maps_widgets/choose_location_type_alert_dialog.dart';
 import '../../widgets_and_components/shred_widgets/custom_drop_down_button.dart';
 import '../../widgets_and_components/shred_widgets/upload_data_component.dart';
 
@@ -198,16 +200,24 @@ class _UploadDataState extends State<UploadData> {
             buildWhen: (p, c) =>
             (p != c && c is ChosenCurrentPositionName),
             listener: (context, state) {
-
+              var cubit = GoogleMapsCubit.get(context);
               if (state is ChosenCurrentPositionName) {
                 loc = state.cityName;
+                lat = cubit.latLng!.latitude;
+                lng = cubit.latLng!.longitude;
+                print(lat);
+                print(lng);
               }
             },
             builder: (context, state) {
-              var cubit = GoogleMapsCubit.get(context);
               return InkWell(
-                onTap: (){
-                  cubit.chooseLocation(context);
+                onTap: () async{
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return const ChooseLocationAlertDialog();
+                    },
+                  );
                 },
                 child: Container(
                   height: 100.h,
@@ -260,23 +270,19 @@ class _UploadDataState extends State<UploadData> {
               return CustomButton(
                 buttonTitle: 'اضاغة',
                 isTapped: () async {
-                  final args = await Navigator.pushNamed(
-                      context, ScreenName.googleMapsScreen);
-                  Args arg2 = args as Args;
-                  print('${arg2.latLng}\nfffffffff');
-                  // cubit.addLostPersonData(
-                  //   AddLostPersonDataParameters(
-                  //     name: name.text,
-                  //     street: street.text,
-                  //     area: "area area area",
-                  //     city: "city city city",
-                  //     phone: phone.text,
-                  //     image: cubit.imagePicked!,
-                  //     lng: 1.2,
-                  //     lat: 2.2,
-                  //     birthDate: date.text,
-                  //   ),
-                  // );
+                  cubit.addLostPersonData(
+                    AddLostPersonDataParameters(
+                      name: name.text,
+                      street: street.text,
+                      area: "area area area",
+                      city: "city city city",
+                      phone: phone.text,
+                      image: cubit.imagePicked!,
+                      lng: lng!,
+                      lat: lat!,
+                      birthDate: date.text,
+                    ),
+                  );
                 },
                 width: double.infinity,
               );

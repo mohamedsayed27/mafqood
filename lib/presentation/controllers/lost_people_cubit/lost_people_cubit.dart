@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mafqood/domain/usecases/lost_people_usecases/add_lost_person_usecase.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -73,7 +74,7 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
     });
   }
   File? imagePicked;
-
+  File? lostPersonImage;
   var picker = ImagePicker();
   Future<void> getImagePick(int source) async {
     final pickedFile = await picker.pickImage(source: source == 1?ImageSource.gallery:ImageSource.camera);
@@ -82,6 +83,15 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
       emit(GetPickedImageSuccessState());
     } else {
       emit(GetPickedImageErrorState());
+    }
+  }
+  Future<void> getLostPersonImagePicked(int source) async {
+    final pickedFile = await picker.pickImage(source: source == 1?ImageSource.gallery:ImageSource.camera);
+    if (pickedFile != null) {
+      lostPersonImage = File(pickedFile.path);
+      emit(GetLostPersonPickedImageSuccessState());
+    } else {
+      emit(GetLostPersonPickedImageErrorState());
     }
   }
   final AddLostPersonDataUsecase addLostPersonDataUsecase;

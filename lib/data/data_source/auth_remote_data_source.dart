@@ -62,7 +62,6 @@ class AuthenticationRemoteDataSource extends BaseAuthenticationRemoteDataSource 
 
   @override
   Future<AuthenticationModel> verifyPhone(VerifyPhoneParameter parameter) async {
-
     try {
       final response = await DioHelper.postData(
         url: EndPoints.verifyPhone,
@@ -73,6 +72,8 @@ class AuthenticationRemoteDataSource extends BaseAuthenticationRemoteDataSource 
       );
       return AuthenticationModel.fromJson(response.data);
     }on DioError catch(error){
+      print(error.message);
+      print(error.response!.data);
       throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
 
