@@ -27,7 +27,7 @@ class ServicesLocator{
     ///---------------BLoC---------------
 
     sl.registerFactory(() => UserCubit(sl(),sl(),sl(),sl(),sl()));
-    sl.registerFactory(() => LostPeopleCubit(sl()));
+    sl.registerFactory(() => LostPeopleCubit(sl(), sl()));
     sl.registerFactory(() => GoogleMapsCubit());
 
 

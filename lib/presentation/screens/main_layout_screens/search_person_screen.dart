@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mafqood/core/constants/constants.dart';
+import 'package:mafqood/domain/usecases/lost_people_usecases/help_lost_person.dart';
 
 import '../../../core/global/assets_path/fonts_path.dart';
 import '../../../core/global/theme/app_colors_light_theme.dart';
@@ -38,7 +40,7 @@ class _SearchPersonState extends State<SearchPerson> {
               var cubit = LostPeopleCubit.get(context);
               return InkWell(
                 onTap: () {
-                  cubit.getLostPersonImagePicked(0);
+                  cubit.getLostPersonImagePicked(1);
                 },
                 child: Container(
                   height: 200,
@@ -121,13 +123,31 @@ class _SearchPersonState extends State<SearchPerson> {
           BlocConsumer<LostPeopleCubit, LostPeopleState>(
             buildWhen: (p, c) => false,
             listener: (context, state) {
+              if(state is SendLostPersonDataLoading){
+                showProgressIndicator(context);
+              }
+              if(state is SendLostPersonDataSuccess){
+                Navigator.pop(context);
+                showToast(errorType: 0, message: state.lostPeopleEntity.message!);
+              }
+              if(state is SendLostPersonDataError){
+                showToast(errorType: 1, message: state.authErrorException.authErrorModel.message);
+              }
             },
             builder: (context, state) {
               var cubit = LostPeopleCubit.get(context);
               return CustomButton(
                 buttonTitle: 'اضاغة',
                 isTapped: () async {
-                  // cubit.;
+                  if(cubit.lostPersonImage==null){
+                    showToast(errorType: 1, message: "يجب اختيار صوره");
+                  }else{
+                    if(lat!=null&&lng!=null){
+                      cubit.sendLostPersonData(HelpLostPersonDataParameters(image: cubit.lostPersonImage!, lng: lng!, lat: lat!));
+                    }else{
+                      showToast(errorType: 1, message: "يجب اختيار العنوان");
+                    }
+                  }
                 },
                 width: double.infinity,
               );

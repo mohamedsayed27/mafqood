@@ -7,10 +7,11 @@ import 'package:mafqood/domain/usecases/lost_people_usecases/add_lost_person_use
 import 'package:image_picker/image_picker.dart';
 
 import '../../../core/global/theme/app_colors_light_theme.dart';
+import '../../../domain/usecases/lost_people_usecases/help_lost_person.dart';
 import 'lost_people_state.dart';
 
 class LostPeopleCubit extends Cubit<LostPeopleState> {
-  LostPeopleCubit(this.addLostPersonDataUsecase) : super(LostPeopleInitial());
+  LostPeopleCubit(this.addLostPersonDataUsecase, this.sendLostPersonDataUsecase) : super(LostPeopleInitial());
   static LostPeopleCubit get(context) => BlocProvider.of(context);
   DateTime? dateTime;
   selectImage(BuildContext context) async {
@@ -95,6 +96,7 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
     }
   }
   final AddLostPersonDataUsecase addLostPersonDataUsecase;
+  final HelpLostPersonDataUsecase sendLostPersonDataUsecase;
   void addLostPersonData(AddLostPersonDataParameters addLostPersonDataParameters) async {
     emit(AddLostPersonDataLoading());
     final response = await addLostPersonDataUsecase(addLostPersonDataParameters);
@@ -104,6 +106,18 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
     }, (r) {
       print(r);
       emit(AddLostPersonDataSuccess(lostPeopleEntity: r));
+    });
+  }
+
+  void sendLostPersonData(HelpLostPersonDataParameters sendLostPersonDataParameter) async {
+    emit(SendLostPersonDataLoading());
+    final response = await sendLostPersonDataUsecase(sendLostPersonDataParameter);
+    response.fold((l) {
+      print(l);
+      emit(SendLostPersonDataError(authErrorException: l));
+    }, (r) {
+      print(r);
+      emit(SendLostPersonDataSuccess(lostPeopleEntity: r));
     });
   }
 }
