@@ -19,10 +19,28 @@ class AddLostPersonDataError extends LostPeopleState {
   final AuthErrorException authErrorException;
   AddLostPersonDataError({required this.authErrorException});
 }
+
+
+
+class SendLostPersonDataLoading extends LostPeopleState {}
+class SendLostPersonDataSuccess extends LostPeopleState {
+  final LostPeopleEntity lostPeopleEntity;
+
+  SendLostPersonDataSuccess({required this.lostPeopleEntity});
+}
+class SendLostPersonDataError extends LostPeopleState {
+  final AuthErrorException authErrorException;
+  SendLostPersonDataError({required this.authErrorException});
+}
+
+
+
 class GetPickedImageSuccessState extends LostPeopleState {
 
 }
 class GetPickedImageErrorState extends LostPeopleState {}
+class GetLostPersonPickedImageSuccessState extends LostPeopleState {}
+class GetLostPersonPickedImageErrorState extends LostPeopleState {}
 class GetDateTimePickedSuccessState extends LostPeopleState {
   final DateTime? dateTime;
 

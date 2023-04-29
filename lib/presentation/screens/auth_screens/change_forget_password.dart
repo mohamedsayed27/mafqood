@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/app_router/screens_name.dart';
+import '../../../core/constants/constants.dart';
 import '../../../core/global/assets_path/fonts_path.dart';
 import '../../../core/global/theme/app_colors_light_theme.dart';
+import '../../controllers/user_cubit/user_cubit.dart';
+import '../../controllers/user_cubit/user_state.dart';
 import '../../widgets_and_components/auth_widgets/pin_field_builder.dart';
 import '../../widgets_and_components/shred_widgets/custom_button.dart';
 import '../../widgets_and_components/shred_widgets/logo_text.dart';
@@ -11,17 +15,25 @@ import '../../widgets_and_components/shred_widgets/password_form_field.dart';
 import '../../widgets_and_components/shred_widgets/phone_form_field.dart';
 
 class ChangeForgottenPassword extends StatefulWidget {
-  const ChangeForgottenPassword({Key? key}) : super(key: key);
+  final String phone;
+  const ChangeForgottenPassword({Key? key, required this.phone}) : super(key: key);
 
   @override
-  State<ChangeForgottenPassword> createState() => _ChangeForgottenPasswordState();
+  State<ChangeForgottenPassword> createState() =>
+      _ChangeForgottenPasswordState();
 }
 
 class _ChangeForgottenPasswordState extends State<ChangeForgottenPassword> {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+  TextEditingController();
   final TextEditingController pinFieldController = TextEditingController();
+  @override
+  void initState() {
+    phoneController.text = widget.phone;
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -84,11 +96,26 @@ class _ChangeForgottenPasswordState extends State<ChangeForgottenPassword> {
                 SizedBox(
                   height: 25.h,
                 ),
-                PhoneFormField(hintText: 'رقم الهاتف', controller: phoneController,),
-                SizedBox(height: 20.h,),
-                PasswordFormField(hintText: 'كلمة المرور', controller: passwordController,),
-                SizedBox(height: 20.h,),
-                PasswordFormField(hintText: 'تأكيد كلمة المرور', controller: confirmPasswordController,isConfirmPassword: true,confirmController: passwordController),
+                PhoneFormField(
+                    hintText: 'رقم الهاتف',
+                    controller: phoneController,
+                    isEnable: false),
+                SizedBox(
+                  height: 20.h,
+                ),
+                PasswordFormField(
+                  hintText: 'كلمة المرور',
+                  controller: passwordController,
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                PasswordFormField(
+                  hintText: 'تأكيد كلمة المرور',
+                  controller: confirmPasswordController,
+                  isConfirmPassword: true,
+                  confirmController: passwordController,
+                ),
                 SizedBox(
                   height: 24.h,
                 ),
@@ -101,12 +128,36 @@ class _ChangeForgottenPasswordState extends State<ChangeForgottenPassword> {
                 SizedBox(
                   height: 30.h,
                 ),
-                CustomButton(
-                  buttonTitle: 'تغيير',
-                  isTapped: () {
-                    Navigator.pushNamedAndRemoveUntil(context, ScreenName.loginScreen,(route) => false);
+                BlocConsumer<UserCubit, UserState>(
+                  buildWhen: (p,c){
+                    return false;
                   },
-                  width: double.infinity,),
+                  listener: (context, state) {
+                    if(state is ResetPasswordLoading){
+                      showProgressIndicator(context);
+                    }
+                    if(state is ResetPasswordSuccess){
+                      Navigator.pop(context);
+                      showToast(errorType: 0, message: state.authenticationEntity.message!);
+                      Navigator.pushNamedAndRemoveUntil(context, ScreenName
+                          .loginScreen, (route) => false);
+                    }
+                    if(state is ResetPasswordError){
+                      Navigator.pop(context);
+                      showToast(errorType: 1, message: state.authErrorException.authErrorModel.message);
+                    }
+                  },
+                  builder: (context, state) {
+                    var cubit = UserCubit.get(context);
+                    return CustomButton(
+                      buttonTitle: 'تغيير',
+                      isTapped: () {
+                        cubit.resetPassword(password: passwordController.text, code: pinFieldController.text, phone: phoneController.text);
+                      },
+                      width: double.infinity,
+                    );
+                  },
+                ),
                 SizedBox(
                   height: 30.h,
                 ),

@@ -9,6 +9,7 @@ import '../../presentation/screens/auth_screens/forget_password_screen.dart';
 import '../../presentation/screens/auth_screens/otp_verification_number_screen.dart';
 import '../../presentation/screens/intro_screens/onboarding_screen.dart';
 import '../../presentation/screens/intro_screens/splash_screen.dart';
+import '../../presentation/screens/main_layout_screens/google_mas_screen.dart';
 
 
 
@@ -24,12 +25,16 @@ class AppRouter {
           return MaterialPageRoute(builder: (BuildContext context) { return const LoginScreen(); });
         case ScreenName.registerScreen:
           return _animateRouteBuilder(const RegisterScreen());
+        case ScreenName.googleMapsScreen:
+          return _animateRouteBuilder(const GoogleMapsScreen());
         case ScreenName.otpVerificationNumberScreen:
-          return _animateRouteBuilder(const OtpVerificationNumberScreen());
+          final phone = settings.arguments as String;
+          return _animateRouteBuilder(OtpVerificationNumberScreen(phone: phone,));
         case ScreenName.forgetPasswordScreen:
           return _animateRouteBuilder(const ForgetPassword());
         case ScreenName.changeForgetPasswordScreen:
-          return _animateRouteBuilder(const ChangeForgottenPassword());
+          final phone = settings.arguments as String;
+          return _animateRouteBuilder(ChangeForgottenPassword(phone: phone,));
         case ScreenName.mainLayoutScreen:
           return _animateRouteBuilder(const MainLayout());
         default:

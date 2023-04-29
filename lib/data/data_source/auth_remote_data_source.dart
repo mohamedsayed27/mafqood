@@ -1,48 +1,38 @@
 import 'package:dio/dio.dart';
 import 'package:mafqood/core/network/api_end_points.dart';
 import 'package:mafqood/data/models/auth_model.dart';
+import 'package:mafqood/domain/usecases/auth_usecases/login_usecase.dart';
 import 'package:mafqood/domain/usecases/auth_usecases/register_usecase.dart';
+import 'package:mafqood/domain/usecases/auth_usecases/reset_password_usecase.dart';
+import 'package:mafqood/domain/usecases/auth_usecases/verify_phone.dart';
 
 import '../../core/error/auth_error_exception.dart';
 import '../../core/network/dio_helper.dart';
 import '../../core/network/error_message_model.dart';
 
 abstract class BaseAuthenticationRemoteDataSource {
-  Future<AuthenticationModel> login({
-    required String password,
-    required String phone,
-  });
+  Future<AuthenticationModel> login(LoginParameter loginParameter);
 
   Future<AuthenticationModel> register(RegisterParameter registerParameter);
 
-  Future<AuthenticationModel> verifyPhone({
-    required String code,
-    required String phone,
-  });
+  Future<AuthenticationModel> verifyPhone(VerifyPhoneParameter parameter);
 
   Future<AuthenticationModel> forgetPassword({
     required String phone,
   });
 
-  Future<AuthenticationModel> resetPassword({
-    required String phone,
-    required String password,
-    required String code,
-  });
+  Future<AuthenticationModel> resetPassword(ResetPasswordParameters resetPasswordParameters);
 }
 
 class AuthenticationRemoteDataSource extends BaseAuthenticationRemoteDataSource {
   @override
-  Future<AuthenticationModel> login({
-    required String password,
-    required String phone,
-  }) async {
+  Future<AuthenticationModel> login(LoginParameter loginParameter) async {
     try{
       final response = await DioHelper.postData(
         url: EndPoints.login,
         data: {
-          'phoneNumber': phone,
-          'password': password,
+          'phoneNumber': loginParameter.phone,
+          'password': loginParameter.password,
         },
       );
       return AuthenticationModel.fromJson(response.data);
@@ -71,21 +61,19 @@ class AuthenticationRemoteDataSource extends BaseAuthenticationRemoteDataSource 
   }
 
   @override
-  Future<AuthenticationModel> verifyPhone({
-    required String code,
-    required String phone,
-  }) async {
-
+  Future<AuthenticationModel> verifyPhone(VerifyPhoneParameter parameter) async {
     try {
       final response = await DioHelper.postData(
         url: EndPoints.verifyPhone,
         data: {
-          'phoneNumber': phone,
-          "code": code,
+          'phoneNumber': parameter.phone,
+          "code": parameter.code,
         },
       );
       return AuthenticationModel.fromJson(response.data);
     }on DioError catch(error){
+      print(error.message);
+      print(error.response!.data);
       throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
 
@@ -109,14 +97,14 @@ class AuthenticationRemoteDataSource extends BaseAuthenticationRemoteDataSource 
   }
 
   @override
-  Future<AuthenticationModel> resetPassword({required String phone, required String password, required String code}) async{
+  Future<AuthenticationModel> resetPassword(ResetPasswordParameters resetPasswordParameters) async{
     try {
       final response = await DioHelper.postData(
         url: EndPoints.resetPassword,
         data: {
-          "phoneNumber": phone,
-          "password": password,
-          "code": code
+          "phoneNumber": resetPasswordParameters.phone,
+          "password": resetPasswordParameters.password,
+          "code": resetPasswordParameters.code
         },
       );
       return AuthenticationModel.fromJson(response.data);

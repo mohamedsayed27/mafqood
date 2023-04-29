@@ -8,26 +8,21 @@ import '../../../domain/usecases/auth_usecases/verify_phone.dart';
 import 'user_state.dart';
 
 class UserCubit extends Cubit<UserState> {
-  UserCubit() : super(UserInitial());
+  UserCubit(this.loginUsecase, this.registerUsecase, this.verifyPhoneUsecase, this.resetPasswordUsecase, this.forgetPasswordUsecase) : super(UserInitial());
 
   static UserCubit get(context) => BlocProvider.of(context);
-  LoginUsecase loginUsecase = LoginUsecase(authenticationBaseRepository: sl());
-  RegisterUsecase registerUsecase =
-      RegisterUsecase(authenticationBaseRepository: sl());
-  VerifyPhoneUsecase verifyPhoneUsecase =
-      VerifyPhoneUsecase(authenticationBaseRepository: sl());
-  ResetPasswordUsecase resetPasswordUsecase =
-      ResetPasswordUsecase(authenticationBaseRepository: sl());
-  ForgetPasswordUsecase forgetPasswordUsecase =
-      ForgetPasswordUsecase(authenticationBaseRepository: sl());
+  final LoginUsecase loginUsecase ;
+  final RegisterUsecase registerUsecase ;
+  final VerifyPhoneUsecase verifyPhoneUsecase ;
+  final ResetPasswordUsecase resetPasswordUsecase ;
+  final ForgetPasswordUsecase forgetPasswordUsecase ;
 
   void login({
     required String password,
     required String phone,
   }) async {
     emit(LoginLoading());
-    final response =
-        await loginUsecase(LoginParameter(password: password, phone: phone));
+    final response = await loginUsecase(LoginParameter(password: password, phone: phone));
     response.fold((l) {
       print(l);
       emit(LoginError(authErrorException: l));
@@ -54,7 +49,7 @@ class UserCubit extends Cubit<UserState> {
     required String phone,
   }) async {
     emit(VerifyPhoneLoading());
-    final response = await verifyPhoneUsecase.execute(phone: phone, code: code);
+    final response = await verifyPhoneUsecase(VerifyPhoneParameter(phone: phone, code: code));
     response.fold((l) {
       print(l);
       emit(VerifyPhoneError(authErrorException: l));
@@ -70,8 +65,7 @@ class UserCubit extends Cubit<UserState> {
     required String phone,
   }) async {
     emit(ResetPasswordLoading());
-    final response = await resetPasswordUsecase.execute(
-        password: password, phone: phone, code: code);
+    final response = await resetPasswordUsecase(ResetPasswordParameters(password: password, phone: phone, code: code));
     response.fold((l) {
       print(l);
       emit(ResetPasswordError(authErrorException: l));

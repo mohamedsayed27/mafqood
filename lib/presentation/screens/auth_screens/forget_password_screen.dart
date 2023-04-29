@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mafqood/core/app_router/screens_name.dart';
 
+import '../../../core/constants/constants.dart';
 import '../../../core/constants/reg_exp.dart';
 import '../../../core/global/assets_path/fonts_path.dart';
 import '../../../core/global/theme/app_colors_light_theme.dart';
+import '../../controllers/user_cubit/user_cubit.dart';
+import '../../controllers/user_cubit/user_state.dart';
 import '../../widgets_and_components/auth_widgets/auth_text_form_field.dart';
 import '../../widgets_and_components/shred_widgets/custom_button.dart';
 import '../../widgets_and_components/shred_widgets/logo_text.dart';
@@ -18,6 +22,7 @@ class ForgetPassword extends StatefulWidget {
 
 class _ForgetPasswordState extends State<ForgetPassword> {
   final TextEditingController phoneController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -104,12 +109,35 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 SizedBox(
                   height: 30.h,
                 ),
-                CustomButton(
-                    buttonTitle: 'اسنرجاع',
-                    isTapped: () {
-                      Navigator.pushNamed(context, ScreenName.changeForgetPasswordScreen);
-                    },
-                    width: double.infinity,),
+                BlocConsumer<UserCubit, UserState>(
+                  buildWhen: (p,c){
+                    return false;
+                  },
+                  listener: (context, state) {
+                    if(state is ForgetPasswordLoading){
+                      showProgressIndicator(context);
+                    }
+                    if(state is ForgetPasswordSuccess){
+                      Navigator.pop(context);
+                      showToast(errorType: 0, message: state.authenticationEntity.message!);
+                      Navigator.pushNamedAndRemoveUntil(context, ScreenName
+                          .changeForgetPasswordScreen, (route) => false,arguments: phoneController.text);
+                    }
+                    if(state is ForgetPasswordError){
+                      Navigator.pop(context);
+                      showToast(errorType: 1, message: state.authErrorException.authErrorModel.message);
+                    }
+                  },
+                  builder: (context, state) {
+                    var cubit = UserCubit.get(context);
+                    return CustomButton(
+                      buttonTitle: 'اسنرجاع',
+                      isTapped: () {
+                        cubit.forgetPassword(phone: phoneController.text);
+                      },
+                      width: double.infinity,);
+                  },
+                ),
               ],
             ),
           ),

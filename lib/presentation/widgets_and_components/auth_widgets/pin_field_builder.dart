@@ -14,7 +14,7 @@ class PinFieldBuilder extends StatelessWidget {
     return PinCodeTextField(
         controller: controller,
         appContext: context,
-        length: 4,
+        length: 6,
         autoFocus: false,
         cursorColor: Colors.black,
         obscureText: false,
@@ -24,7 +24,7 @@ class PinFieldBuilder extends StatelessWidget {
           shape: PinCodeFieldShape.box,
           borderRadius: BorderRadius.circular(11.r),
           fieldHeight: 80.h,
-          fieldWidth: 80.w,
+          fieldWidth: 50.w,
           borderWidth: 0.5.w,
           activeFillColor: AppColorsLightTheme.pinFieldColor,
           selectedFillColor: AppColorsLightTheme.pinFieldColor,

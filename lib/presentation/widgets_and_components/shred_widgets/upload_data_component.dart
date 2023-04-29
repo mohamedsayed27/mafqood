@@ -12,6 +12,7 @@ class UploadDataWidget extends StatelessWidget {
   final String fieldTitle;
   final String fieldHintText;
   final bool isPhone;
+  final bool readOnly;
   final void Function()? onTap;
 
   const UploadDataWidget(
@@ -21,7 +22,7 @@ class UploadDataWidget extends StatelessWidget {
       this.isPhone = false,
       required this.fieldTitle,
       required this.fieldHintText,
-      this.onTap})
+      this.onTap, this.readOnly = false})
       : super(key: key);
 
   @override
@@ -46,6 +47,7 @@ class UploadDataWidget extends StatelessWidget {
                 controller: controller,
               )
             : AuthTextFormField(
+          readOnly: readOnly,
                 onTap: onTap,
                 hintText: fieldHintText,
                 controller: controller,

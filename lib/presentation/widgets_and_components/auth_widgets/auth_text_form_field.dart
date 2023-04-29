@@ -15,6 +15,7 @@ class AuthTextFormField extends StatelessWidget {
   final TextEditingController? controller;
   final TextInputType keyboardType;
   final int maxLength;
+  final bool readOnly;
 
   const AuthTextFormField({
     Key? key,
@@ -25,7 +26,7 @@ class AuthTextFormField extends StatelessWidget {
     this.keyboardType = TextInputType.text,
     this.maxLength = 100,
     this.prefix,
-    this.isPassword = false, this.isEnable, this.onTap,
+    this.isPassword = false, this.isEnable, this.onTap, this.readOnly = false,
   }) : super(key: key);
 
   @override
@@ -33,6 +34,7 @@ class AuthTextFormField extends StatelessWidget {
     return TextFormField(
       enabled: isEnable,
       maxLength: maxLength,
+      readOnly: readOnly,
       onTap: onTap,
       keyboardType: keyboardType,
       controller: controller,
