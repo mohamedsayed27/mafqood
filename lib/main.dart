@@ -29,10 +29,10 @@ void main() async {
   await NotificationService.initializeNotificationService(
     onDidReceiveNotificationResponse,
   );
-  print(await FirebaseMessaging.instance.getToken());
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
   runApp(const MyApp());
 }
+
 
 
 class MyApp extends StatelessWidget {
