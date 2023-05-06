@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mafqood/core/constants/constants.dart';
-import 'package:mafqood/domain/usecases/lost_people_usecases/help_lost_person.dart';
+import 'package:mafqood/domain/usecases/lost_people_usecases/help_lost_person_usecase.dart';
 
 import '../../../core/global/assets_path/fonts_path.dart';
 import '../../../core/global/theme/app_colors_light_theme.dart';

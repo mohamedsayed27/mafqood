@@ -8,13 +8,14 @@ import 'package:mafqood/domain/usecases/auth_usecases/reset_password_usecase.dar
 import 'package:mafqood/domain/usecases/auth_usecases/verify_phone.dart';
 import 'package:mafqood/domain/usecases/lost_people_usecases/add_lost_person_usecase.dart';
 
+import '../../data/data_source/lost_people_local_data_source.dart';
 import '../../data/data_source/lost_people_remote_data_source.dart';
 import '../../data/repositories/lost_people_repository.dart';
 import '../../domain/repository/auth_base_repository/auth_base_repository.dart';
 import '../../domain/repository/lost_people_base_repository/lost_people_base_repository.dart';
 import '../../domain/usecases/auth_usecases/forget_password_usecase.dart';
 import '../../domain/usecases/auth_usecases/login_usecase.dart';
-import '../../domain/usecases/lost_people_usecases/help_lost_person.dart';
+import '../../domain/usecases/lost_people_usecases/help_lost_person_usecase.dart';
 import '../../presentation/controllers/google_maps_cubit/google_maps_cubit.dart';
 import '../../presentation/controllers/lost_people_cubit/lost_people_cubit.dart';
 import '../../presentation/controllers/user_cubit/user_cubit.dart';
@@ -48,13 +49,14 @@ class ServicesLocator{
     ///---------------REPOSITORY---------------
 
     sl.registerLazySingleton<AuthenticationBaseRepository>(() => AuthenticationRepository(baseAuthenticationRemoteDataSource: sl()));
-    sl.registerLazySingleton<LostPeopleBaseRepository>(() => LostPeopleRepository(baseLostPeopleRemoteDataSource: sl()));
+    sl.registerLazySingleton<LostPeopleBaseRepository>(() => LostPeopleRepository(baseLostPeopleRemoteDataSource: sl(), baseLostPeopleLocalDataSource: sl()));
 
 
     ///---------------DATA SOURCE---------------
 
     sl.registerLazySingleton<BaseAuthenticationRemoteDataSource>(() => AuthenticationRemoteDataSource());
     sl.registerLazySingleton<BaseLostPeopleRemoteDataSource>(() => LostPeopleRemoteDataSource());
+    sl.registerLazySingleton<BaseLostPeopleLocalDataSource>(() => LostPeopleLocalDataSource());
 
 
     ///---------------DioClass---------------
@@ -62,7 +64,7 @@ class ServicesLocator{
     sl.registerLazySingleton(() => DioHelper());
 
     ///---------------Google Maps Services---------------
-    ///
+
     sl.registerLazySingleton(() => GoogleMapsServices());
   }
 }
