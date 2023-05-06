@@ -7,7 +7,7 @@ import 'package:mafqood/domain/usecases/lost_people_usecases/add_lost_person_use
 import 'package:image_picker/image_picker.dart';
 
 import '../../../core/global/theme/app_colors_light_theme.dart';
-import '../../../domain/usecases/lost_people_usecases/help_lost_person.dart';
+import '../../../domain/usecases/lost_people_usecases/help_lost_person_usecase.dart';
 import 'lost_people_state.dart';
 
 class LostPeopleCubit extends Cubit<LostPeopleState> {

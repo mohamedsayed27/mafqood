@@ -1,0 +1,2211 @@
+﻿[
+  {
+    "id": "1",
+    "area_ar": "اداره شرطه ميناء الأسكندريه",
+    "area_en": "Port Alexandria Police Dept",
+    "city_id": "3"
+  },
+  {
+    "id": "2",
+    "area_ar": "قسم الدخيلة",
+    "area_en": "Dekhela",
+    "city_id": "3"
+  },
+  {
+    "id": "3",
+    "area_ar": "قسم أول العامرية",
+    "area_en": "Amreya 1",
+    "city_id": "3"
+  },
+  {
+    "id": "4",
+    "area_ar": "قسم ثان العامرية",
+    "area_en": "Amreya 2",
+    "city_id": "3"
+  },
+  {
+    "id": "5",
+    "area_ar": "قسم العطارين",
+    "area_en": "Ataren",
+    "city_id": "3"
+  },
+  {
+    "id": "6",
+    "area_ar": "قسم العطارين",
+    "area_en": "Ataren",
+    "city_id": "3"
+  },
+  {
+    "id": "7",
+    "area_ar": "قسم الجمرك",
+    "area_en": "Gomrok",
+    "city_id": "3"
+  },
+  {
+    "id": "8",
+    "area_ar": "قسم المنشية",
+    "area_en": "Mansheya",
+    "city_id": "3"
+  },
+  {
+    "id": "9",
+    "area_ar": "قسم أول المنتزة",
+    "area_en": "Montaza 1",
+    "city_id": "3"
+  },
+  {
+    "id": "10",
+    "area_ar": "قسم ثان المنتزة",
+    "area_en": "Montaza 2",
+    "city_id": "3"
+  },
+  {
+    "id": "11",
+    "area_ar": "قسم اول الرمل",
+    "area_en": "El Raml 1",
+    "city_id": "3"
+  },
+  {
+    "id": "12",
+    "area_ar": "قسم ثان الرمل",
+    "area_en": "El Raml 2",
+    "city_id": "3"
+  },
+  {
+    "id": "13",
+    "area_ar": "قسم الساحل الشمالى",
+    "area_en": "North Coast",
+    "city_id": "3"
+  },
+  {
+    "id": "14",
+    "area_ar": "قسم الساحل الشمالى",
+    "area_en": "North Coast",
+    "city_id": "3"
+  },
+
+  {
+    "id": "15",
+    "area_ar": "قسم باب شرقى",
+    "area_en": "Bab Sharqi",
+    "city_id": "3"
+  },
+  {
+    "id": "16",
+    "area_ar": "قسم برج العرب",
+    "area_en": "Borg El Arab",
+    "city_id": "3"
+  },
+  {
+    "id": "17",
+    "area_ar": "قسم كرموز",
+    "area_en": "Karmouz",
+    "city_id": "3"
+  },
+  {
+    "id": "18",
+    "area_ar": "مدينة برج العرب الجديدة",
+    "area_en": "New Borg El Arab",
+    "city_id": "3"
+  },
+  {
+    "id": "19",
+    "area_ar": "قسم مينا البصل",
+    "area_en": "Port al-Basal",
+    "city_id": "3"
+  },
+  {
+    "id": "20",
+    "area_ar": "قسم محرم بك",
+    "area_en": "Moharam Bek",
+    "city_id": "3"
+  },
+  {
+    "id": "21",
+    "area_ar": "قسم سيدى جابر",
+    "area_en": "Sidi Gaber",
+    "city_id": "3"
+  },
+  {
+    "id": "22",
+    "area_ar": "مركز أبو سنبل",
+    "area_en": "Abu Simbel",
+    "city_id": "15"
+  },
+  {
+    "id": "23",
+    "area_ar": "مركز أسوان",
+    "area_en": "Aswan",
+    "city_id": "15"
+  },
+  {
+    "id": "24",
+    "area_ar": "قسم اول أسوان",
+    "area_en": "Aswan 1",
+    "city_id": "15"
+  },
+  {
+    "id": "25",
+    "area_ar": "قسم ثان أسوان",
+    "area_en": "Aswan 2",
+    "city_id": "15"
+  },
+  {
+    "id": "26",
+    "area_ar": "مركز دراو",
+    "area_en": "Daraw",
+    "city_id": "15"
+  },
+  {
+    "id": "27",
+    "area_ar": "مركز أدفو",
+    "area_en": "Edfu",
+    "city_id": "15"
+  },
+  {
+    "id": "28",
+    "area_ar": "مركز كوم امبو",
+    "area_en": "Kom Ombo",
+    "city_id": "15"
+  },
+  {
+    "id": "30",
+    "area_ar": "مدينة أسوان الجديدة",
+    "area_en": "New Aswan",
+    "city_id": "15"
+  },
+  {
+    "id": "31",
+    "area_ar": "مدينة توشكى الجديدة",
+    "area_en": "New Tushka",
+    "city_id": "15"
+  },
+  {
+    "id": "32",
+    "area_ar": "مركز نصر",
+    "area_en": "Nasser City",
+    "city_id": "15"
+  },
+  {
+    "id": "33",
+    "area_ar": "مركز أبنوب",
+    "area_en": "Abnub",
+    "city_id": "16"
+  },
+  {
+    "id": "34",
+    "area_ar": "قسم ابو تيج",
+    "area_en": "Abu Tig",
+    "city_id": "16"
+  },
+  {
+    "id": "35",
+    "area_ar": "مركز أبوتيج",
+    "area_en": "Abu Tig",
+    "city_id": "16"
+  },
+  {
+    "id": "36",
+    "area_ar": "مركز البدارى",
+    "area_en": "El Badari",
+    "city_id": "16"
+  },
+  {
+    "id": "37",
+    "area_ar": "مركز الفتح",
+    "area_en": "El Fath",
+    "city_id": "16"
+  },
+  {
+    "id": "38",
+    "area_ar": "مركز الغنايم",
+    "area_en": "El Ghanayem",
+    "city_id": "16"
+  },
+  {
+    "id": "39",
+    "area_ar": "مركز القوصية",
+    "area_en": "El Qusiya",
+    "city_id": "16"
+  },
+  {
+    "id": "40",
+    "area_ar": "مركز أسيوط",
+    "area_en": "Asyut",
+    "city_id": "16"
+  },
+  {
+    "id": "41",
+    "area_ar": "قسم أول أسيوط",
+    "area_en": "Asyut 1",
+    "city_id": "16"
+  },
+  {
+    "id": "42",
+    "area_ar": "قسم ثان أسيوط",
+    "area_en": "Asyut 2",
+    "city_id": "16"
+  },
+  {
+    "id": "43",
+    "area_ar": "مركز ديروط",
+    "area_en": "Dairut",
+    "city_id": "16"
+  },
+  {
+    "id": "44",
+    "area_ar": "مدينة اسيوط الجديدة",
+    "area_en": "New Asyut",
+    "city_id": "16"
+  },
+  {
+    "id": "45",
+    "area_ar": "مركز منفلوط",
+    "area_en": "Manfalut",
+    "city_id": "16"
+  },
+  {
+    "id": "46",
+    "area_ar": "مركز ساحل سليم",
+    "area_en": "Sahel Selim",
+    "city_id": "16"
+  },
+  {
+    "id": "47",
+    "area_ar": "مركز صدفا",
+    "area_en": "Sodfa",
+    "city_id": "16"
+  },
+  {
+    "id": "48",
+    "area_ar": "مركز ابو المطامير",
+    "area_en": "Abu El Matamir",
+    "city_id": "6"
+  },
+  {
+    "id": "49",
+    "area_ar": "مركز ابوحمص",
+    "area_en": "Abu Hummus",
+    "city_id": "6"
+  },
+  {
+    "id": "50",
+    "area_ar": "مركز الدلنجات",
+    "area_en": "El Delengat",
+    "city_id": "6"
+  },
+  {
+    "id": "51",
+    "area_ar": "مركز المحمودية",
+    "area_en": "Mahmoudiyah",
+    "city_id": "6"
+  },
+  {
+    "id": "52",
+    "area_ar": "مركز الرحمانية",
+    "area_en": "Rahmaniya",
+    "city_id": "6"
+  },
+  {
+    "id": "53",
+    "area_ar": "مركز بدر",
+    "area_en": "Badr",
+    "city_id": "6"
+  },
+  {
+    "id": "54",
+    "area_ar": "قسم دمنهور",
+    "area_en": "Damanhour",
+    "city_id": "6"
+  },
+  {
+    "id": "55",
+    "area_ar": "مركز دمنهور",
+    "area_en": "Damanhour",
+    "city_id": "6"
+  },
+  {
+    "id": "56",
+    "area_ar": "قسم كفر الدوار",
+    "area_en": "Kafr El Dawwar",
+    "city_id": "6"
+  },
+  {
+    "id": "57",
+    "area_ar": "قسم غرب النوبارية",
+    "area_en": "West Nubariyah",
+    "city_id": "6"
+  },
+  {
+    "id": "58",
+    "area_ar": "مركز حوش عيسى",
+    "area_en": "Hosh Essa",
+    "city_id": "6"
+  },
+  {
+    "id": "59",
+    "area_ar": "مركز إدكو",
+    "area_en": "Edku",
+    "city_id": "6"
+  },
+  {
+    "id": "60",
+    "area_ar": "مركز إيتاى البارود",
+    "area_en": "Itay El Barud",
+    "city_id": "6"
+  },
+  {
+    "id": "61",
+    "area_ar": "قسم كفر الدوار",
+    "area_en": "Kafr El Dawwar",
+    "city_id": "6"
+  },
+  {
+    "id": "62",
+    "area_ar": "مركز كفر الدوار",
+    "area_en": "Kafr El Dawwar",
+    "city_id": "6"
+  },
+  {
+    "id": "63",
+    "area_ar": "مركز كوم حمادة",
+    "area_en": "Kom Hamada",
+    "city_id": "6"
+  },
+  {
+    "id": "64",
+    "area_ar": "مركز رشيد",
+    "area_en": "Rosetta",
+    "city_id": "6"
+  },
+  {
+    "id": "65",
+    "area_ar": "مركز شبراخيت",
+    "area_en": "Shubrakhit",
+    "city_id": "6"
+  },
+  {
+    "id": "66",
+    "area_ar": "مركز وادى النطرون",
+    "area_en": "Natrn Valley",
+    "city_id": "6"
+  },
+  {
+    "id": "67",
+    "area_ar": "مركز الفشن",
+    "area_en": "El Fashn",
+    "city_id": "17"
+  },
+  {
+    "id": "68",
+    "area_ar": "مركز الواسطى",
+    "area_en": "El Wasta",
+    "city_id": "17"
+  },
+  {
+    "id": "69",
+    "area_ar": "قسم بنى سويف",
+    "area_en": "Beni Suef",
+    "city_id": "17"
+  },
+  {
+    "id": "70",
+    "area_ar": "مركز بنى سويف",
+    "area_en": "Beni Suef",
+    "city_id": "17"
+  },
+  {
+    "id": "71",
+    "area_ar": "مركز ببا",
+    "area_en": "Biba",
+    "city_id": "17"
+  },
+  {
+    "id": "72",
+    "area_ar": "مركز أهناسيا",
+    "area_en": "Ihnasiya",
+    "city_id": "17"
+  },
+  {
+    "id": "73",
+    "area_ar": "قسم مدينة بنى سويف الجديدة",
+    "area_en": "New Beni Suef",
+    "city_id": "17"
+  },
+  {
+    "id": "74",
+    "area_ar": "مركز ناصر",
+    "area_en": "Nasser",
+    "city_id": "17"
+  },
+  {
+    "id": "75",
+    "area_ar": "مركز سمسطا",
+    "area_en": "Sumusta El Waqf",
+    "city_id": "17"
+  },
+  {
+    "id": "76",
+    "area_ar": "قسم 15 مايو",
+    "area_en": "15 May City",
+    "city_id": "1"
+  },
+  {
+    "id": "77",
+    "area_ar": "قسم عابدين",
+    "area_en": "Abdeen",
+    "city_id": "1"
+  },
+  {
+    "id": "78",
+    "area_ar": "قسم الدرب الأحمر",
+    "area_en": "El Darb El Ahmar",
+    "city_id": "1"
+  },
+  {
+    "id": "79",
+    "area_ar": "قسم عين شمس",
+    "area_en": "Ain Shams",
+    "city_id": "1"
+  },
+  {
+    "id": "80",
+    "area_ar": "قسم الاميريه",
+    "area_en": "Amreya",
+    "city_id": "1"
+  },
+  {
+    "id": "81",
+    "area_ar": "قسم الأزبكية",
+    "area_en": "Azbakeya",
+    "city_id": "1"
+  },
+  {
+    "id": "82",
+    "area_ar": "قسم البساتين",
+    "area_en": "El Basatin",
+    "city_id": "1"
+  },
+  {
+    "id": "83",
+    "area_ar": "قسم الجمالية",
+    "area_en": "El Gamaliya",
+    "city_id": "1"
+  },
+  {
+    "id": "84",
+    "area_ar": "قسم الخليفة",
+    "area_en": "El Khalifa",
+    "city_id": "1"
+  },
+  {
+    "id": "85",
+    "area_ar": "قسم المعادي",
+    "area_en": "Maadi",
+    "city_id": "1"
+  },
+  {
+    "id": "86",
+    "area_ar": "قسم المرج",
+    "area_en": "El Marg",
+    "city_id": "1"
+  },
+  {
+    "id": "87",
+    "area_ar": "قسم المعصره",
+    "area_en": "El Masara",
+    "city_id": "1"
+  },
+  {
+    "id": "88",
+    "area_ar": "قسم المطرية",
+    "area_en": "El Matareya",
+    "city_id": "1"
+  },
+  {
+    "id": "89",
+    "area_ar": "قسم المقطم",
+    "area_en": "El Mokattam",
+    "city_id": "1"
+  },
+  {
+    "id": "90",
+    "area_ar": "قسم الموسكي",
+    "area_en": "El Muski",
+    "city_id": "1"
+  },
+  {
+    "id": "91",
+    "area_ar": "قسم أول القاهرة الجديدة",
+    "area_en": "New Cairo 1",
+    "city_id": "1"
+  },
+  {
+    "id": "92",
+    "area_ar": "قسم ثان القاهرة الجديدة",
+    "area_en": "New Cairo 2",
+    "city_id": "1"
+  },
+  {
+    "id": "93",
+    "area_ar": "قسم ثالث القاهره الجديده",
+    "area_en": "New Cairo 3",
+    "city_id": "1"
+  },
+  {
+    "id": "94",
+    "area_ar": "قسم الوايلي",
+    "area_en": "El Weili",
+    "city_id": "1"
+  },
+  {
+    "id": "95",
+    "area_ar": "قسم النزهة",
+    "area_en": "El Nozha",
+    "city_id": "1"
+  },
+  {
+    "id": "96",
+    "area_ar": "قسم الساحل",
+    "area_en": "El Sahel",
+    "city_id": "1"
+  },
+  {
+    "id": "97",
+    "area_ar": "قسم الشرابية",
+    "area_en": "El Sharabiya",
+    "city_id": "1"
+  },
+  {
+    "id": "98",
+    "area_ar": "قسم الشروق",
+    "area_en": "El Shorouk",
+    "city_id": "1"
+  },
+  {
+    "id": "99",
+    "area_ar": "قسم السجل",
+    "area_en": "El Segil",
+    "city_id": "1"
+  },
+  {
+    "id": "100",
+    "area_ar": "قسم أول السلام",
+    "area_en": "El Salam 1",
+    "city_id": "1"
+  },
+  {
+    "id": "101",
+    "area_ar": "قسم ثان السلام",
+    "area_en": "El Salam 2",
+    "city_id": "1"
+  },
+  {
+    "id": "102",
+    "area_ar": "قسم السيدة زينب",
+    "area_en": "El Sayeda Zeinab",
+    "city_id": "1"
+  },
+  {
+    "id": "103",
+    "area_ar": "قسم التبين",
+    "area_en": "El Tebbin",
+    "city_id": "1"
+  },
+  {
+    "id": "104",
+    "area_ar": "قسم الظاهر",
+    "area_en": "El Zaher",
+    "city_id": "1"
+  },
+  {
+    "id": "105",
+    "area_ar": "قسم الزمالك",
+    "area_en": "Zamalek",
+    "city_id": "1"
+  },
+  {
+    "id": "106",
+    "area_ar": "قسم الزاوية الحمراء",
+    "area_en": "El Zawya El Hamra",
+    "city_id": "1"
+  },
+  {
+    "id": "107",
+    "area_ar": "قسم الزيتون",
+    "area_en": "Zeitoun",
+    "city_id": "1"
+  },
+  {
+    "id": "108",
+    "area_ar": "قسم باب الشعرية",
+    "area_en": "Bab El Sharia",
+    "city_id": "1"
+  },
+  {
+    "id": "109",
+    "area_ar": "قسم بولاق",
+    "area_en": "Bulaq",
+    "city_id": "1"
+  },
+  {
+    "id": "110",
+    "area_ar": "قسم دار السلام",
+    "area_en": "Dar El Salam",
+    "city_id": "1"
+  },
+  {
+    "id": "111",
+    "area_ar": "قسم حدائق القبة",
+    "area_en": "Hada'iq El Qobbah",
+    "city_id": "1"
+  },
+  {
+    "id": "112",
+    "area_ar": "قسم حلوان",
+    "area_en": "Helwan",
+    "city_id": "1"
+  },
+  {
+    "id": "113",
+    "area_ar": "قسم مدينة نصر أول",
+    "area_en": "Nasr City 1",
+    "city_id": "1"
+  },
+  {
+    "id": "114",
+    "area_ar": "قسم ثانى مدينه نصر",
+    "area_en": "Nasr City 2",
+    "city_id": "1"
+  },
+  {
+    "id": "115",
+    "area_ar": "قسم مدينة بدر",
+    "area_en": "Badr City",
+    "city_id": "1"
+  },
+  {
+    "id": "116",
+    "area_ar": "قسم مصر الجديدة",
+    "area_en": "Heliopolis",
+    "city_id": "1"
+  },
+  {
+    "id": "117",
+    "area_ar": "قسم مصر القديمة",
+    "area_en": "Old Cairo",
+    "city_id": "1"
+  },
+  {
+    "id": "118",
+    "area_ar": "قسم منشأة ناصر",
+    "area_en": "Manshiyat Naser",
+    "city_id": "1"
+  },
+  {
+    "id": "119",
+    "area_ar": "قسم قصر النيل",
+    "area_en": "Qasr El Nil",
+    "city_id": "1"
+  },
+  {
+    "id": "120",
+    "area_ar": "قسم روض الفرج",
+    "area_en": "Rod El Farag",
+    "city_id": "1"
+  },
+  {
+    "id": "121",
+    "area_ar": "قسم شبرا",
+    "area_en": "Shubra",
+    "city_id": "1"
+  },
+  {
+    "id": "122",
+    "area_ar": "قسم طره",
+    "area_en": "Tura",
+    "city_id": "1"
+  },
+  {
+    "id": "123",
+    "area_ar": "قسم الدقي",
+    "area_en": "Dokki",
+    "city_id": "2"
+  },
+  {
+    "id": "124",
+    "area_ar": "قسم الاهرام",
+    "area_en": "Pyramids",
+    "city_id": "2"
+  },
+  {
+    "id": "125",
+    "area_ar": "قسم العجوزه",
+    "area_en": "Agouza",
+    "city_id": "2"
+  },
+  {
+    "id": "126",
+    "area_ar": "قسم العياط",
+    "area_en": "El Ayyat",
+    "city_id": "2"
+  },
+  {
+    "id": "127",
+    "area_ar": "قسم البدراشين",
+    "area_en": "El Badrashein",
+    "city_id": "2"
+  },
+  {
+    "id": "128",
+    "area_ar": "قسم الحوامدية",
+    "area_en": "El Hawamdeya",
+    "city_id": "2"
+  },
+  {
+    "id": "129",
+    "area_ar": "قسم الجيزة",
+    "area_en": "Giza",
+    "city_id": "2"
+  },
+  {
+    "id": "130",
+    "area_ar": "قسم العمرانية",
+    "area_en": "El Omraniya",
+    "city_id": "2"
+  },
+  {
+    "id": "131",
+    "area_ar": "قسم الواحات البحرية",
+    "area_en": "El Wahat El Bahariya",
+    "city_id": "2"
+  },
+  {
+    "id": "132",
+    "area_ar": "قسم الوراق",
+    "area_en": "El Warraq",
+    "city_id": "2"
+  },
+  {
+    "id": "133",
+    "area_ar": "قسم الشيخ زايد",
+    "area_en": "Sheikh Zayed City",
+    "city_id": "2"
+  },
+  {
+    "id": "134",
+    "area_ar": "قسم الصف",
+    "area_en": "El saff",
+    "city_id": "2"
+  },
+  {
+    "id": "135",
+    "area_ar": "قسم اطفيح",
+    "area_en": "Atfeh",
+    "city_id": "2"
+  },
+  {
+    "id": "137",
+    "area_ar": "قسم الطالبيه",
+    "area_en": "Talbia",
+    "city_id": "2"
+  },
+  {
+    "id": "138",
+    "area_ar": "قسم اوسيم",
+    "area_en": "Ossim",
+    "city_id": "2"
+  },
+  {
+    "id": "139",
+    "area_ar": "قسم بولاق الدكرور",
+    "area_en": "Bulaq",
+    "city_id": "2"
+  },
+  {
+    "id": "140",
+    "area_ar": "قسم امبابة",
+    "area_en": "Imbaba",
+    "city_id": "2"
+  },
+  {
+    "id": "141",
+    "area_ar": "مركز إمبابة",
+    "area_en": "Imbaba",
+    "city_id": "2"
+  },
+  {
+    "id": "142",
+    "area_ar": "مركز كرداسة",
+    "area_en": "Kerdasa",
+    "city_id": "2"
+  },
+  {
+    "id": "143",
+    "area_ar": "قسم ثان 6 أكتوبر",
+    "area_en": "6th of October City (2)",
+    "city_id": "2"
+  },
+  {
+    "id": "144",
+    "area_ar": "قسم أول 6 أكتوبر / قسم ثالث 6 أكتوبر",
+    "area_en": "6 October City (1 & 3)",
+    "city_id": "2"
+  },
+  {
+    "id": "145",
+    "area_ar": "قسم شرطة طابا",
+    "area_en": "Taba",
+    "city_id": "21"
+  },
+  {
+    "id": "146",
+    "area_ar": "مركز أجا",
+    "area_en": "Aga",
+    "city_id": "4"
+  },
+  {
+    "id": "147",
+    "area_ar": "مركز الجمالية",
+    "area_en": "El Gamaliya",
+    "city_id": "4"
+  },
+  {
+    "id": "148",
+    "area_ar": "قسم الكردى",
+    "area_en": "El Kurdi",
+    "city_id": "4"
+  },
+  {
+    "id": "149",
+    "area_ar": "مركز المنصورة",
+    "area_en": "El Mansoura",
+    "city_id": "4"
+  },
+  {
+    "id": "150",
+    "area_ar": "قسم اول المنصورة",
+    "area_en": "El Mansoura 1",
+    "city_id": "4"
+  },
+  {
+    "id": "151",
+    "area_ar": "قسم ثان المنصورة",
+    "area_en": "El Mansoura 2",
+    "city_id": "4"
+  },
+  {
+    "id": "152",
+    "area_ar": "مركز المنزلة",
+    "area_en": "El Manzala",
+    "city_id": "4"
+  },
+  {
+    "id": "153",
+    "area_ar": "مركز المطرية",
+    "area_en": "El Matareya",
+    "city_id": "4"
+  },
+  {
+    "id": "154",
+    "area_ar": "مركز السنبلاوين",
+    "area_en": "El Senbellawein",
+    "city_id": "4"
+  },
+  {
+    "id": "155",
+    "area_ar": "مركز بنى عبيد",
+    "area_en": "Beni Ebeid",
+    "city_id": "4"
+  },
+  {
+    "id": "156",
+    "area_ar": "مركز بلقاس",
+    "area_en": "Belqas",
+    "city_id": "4"
+  },
+  {
+    "id": "157",
+    "area_ar": "مركز دكرنس",
+    "area_en": "Dikirnis",
+    "city_id": "4"
+  },
+  {
+    "id": "158",
+    "area_ar": "قسم جمصة",
+    "area_en": "Gamasa",
+    "city_id": "4"
+  },
+  {
+    "id": "159",
+    "area_ar": "مركز محلة دمنة",
+    "area_en": "Maḥallat Damanah",
+    "city_id": "4"
+  },
+  {
+    "id": "160",
+    "area_ar": "مركز منية النصر",
+    "area_en": "Minyet El Nasr",
+    "city_id": "4"
+  },
+  {
+    "id": "161",
+    "area_ar": "مركز ميت غمر",
+    "area_en": "Mit Ghamr",
+    "city_id": "4"
+  },
+  {
+    "id": "162",
+    "area_ar": "مركز ميت سلسيل",
+    "area_en": "Mit Salsil",
+    "city_id": "4"
+  },
+  {
+    "id": "163",
+    "area_ar": "مركز نبروة",
+    "area_en": "Nabaroh",
+    "city_id": "4"
+  },
+  {
+    "id": "164",
+    "area_ar": "مركز شربين",
+    "area_en": "Shirbin",
+    "city_id": "4"
+  },
+  {
+    "id": "165",
+    "area_ar": "مركز طلخا",
+    "area_en": "Talkha",
+    "city_id": "4"
+  },
+  {
+    "id": "166",
+    "area_ar": "مركز تمى الأمديد",
+    "area_en": "Timay El Imdid",
+    "city_id": "4"
+  },
+  {
+    "id": "167",
+    "area_ar": "مركز الزرقا",
+    "area_en": "El Zarqa",
+    "city_id": "19"
+  },
+  {
+    "id": "168",
+    "area_ar": "مركز دمياط",
+    "area_en": "Damietta",
+    "city_id": "19"
+  },
+  {
+    "id": "169",
+    "area_ar": "قسم أول دمياط",
+    "area_en": "Damietta 1",
+    "city_id": "19"
+  },
+  {
+    "id": "170",
+    "area_ar": "قسم ثان دمياط",
+    "area_en": "Damietta 2",
+    "city_id": "19"
+  },
+  {
+    "id": "171",
+    "area_ar": "مركز فارسكور",
+    "area_en": "Faraskur",
+    "city_id": "19"
+  },
+  {
+    "id": "172",
+    "area_ar": "إداره شرطه ميناء دمياط الجديد",
+    "area_en": "Police Dept. Port of Damietta",
+    "city_id": "19"
+  },
+  {
+    "id": "173",
+    "area_ar": "مركز كفر البطيخ",
+    "area_en": "Kafr El Battikh",
+    "city_id": "19"
+  },
+  {
+    "id": "174",
+    "area_ar": "مركز كفر سعد",
+    "area_en": "Kafr Saad",
+    "city_id": "19"
+  },
+  {
+    "id": "175",
+    "area_ar": "قسم مدينه دمياط الجديده",
+    "area_en": "New Damietta",
+    "city_id": "19"
+  },
+  {
+    "id": "176",
+    "area_ar": "قسم رأس البر",
+    "area_en": "Ras El Bar",
+    "city_id": "19"
+  },
+  {
+    "id": "177",
+    "area_ar": "مركز الفيوم",
+    "area_en": "Faiyum",
+    "city_id": "7"
+  },
+  {
+    "id": "178",
+    "area_ar": "قسم الفيوم",
+    "area_en": "Faiyum 1 & 2",
+    "city_id": "7"
+  },
+  {
+    "id": "179",
+    "area_ar": "مركز أبشواى",
+    "area_en": "Ibsheway",
+    "city_id": "7"
+  },
+  {
+    "id": "180",
+    "area_ar": "مركز أطسا",
+    "area_en": "Itsa",
+    "city_id": "7"
+  },
+  {
+    "id": "181",
+    "area_ar": "مدينة الفيوم الجديدة",
+    "area_en": "New Faiyum",
+    "city_id": "7"
+  },
+  {
+    "id": "182",
+    "area_ar": "مركز سنورس",
+    "area_en": "Sinnuris",
+    "city_id": "7"
+  },
+  {
+    "id": "183",
+    "area_ar": "مركز طامية",
+    "area_en": "Tamiya",
+    "city_id": "7"
+  },
+  {
+    "id": "184",
+    "area_ar": "مركز يوسف الصديق",
+    "area_en": "Yousef El Seddik",
+    "city_id": "7"
+  },
+  {
+    "id": "185",
+    "area_ar": "مركز المحله الكبرى",
+    "area_en": "El Mahalla El Kubra",
+    "city_id": "8"
+  },
+  {
+    "id": "186",
+    "area_ar": "قسم أول المحلة الكبرى",
+    "area_en": "El Mahalla El Kubra 1",
+    "city_id": "8"
+  },
+  {
+    "id": "187",
+    "area_ar": "قسم ثان المحلة الكبرى",
+    "area_en": "El Mahalla El Kubra 2",
+    "city_id": "8"
+  },
+  {
+    "id": "188",
+    "area_ar": "قسم ثالث المحلة الكبرى",
+    "area_en": "El Mahalla El Kubra 3",
+    "city_id": "8"
+  },
+  {
+    "id": "189",
+    "area_ar": "مركز السنطة",
+    "area_en": "El Sunta",
+    "city_id": "8"
+  },
+  {
+    "id": "190",
+    "area_ar": "مركز بسيون",
+    "area_en": "Basyoun",
+    "city_id": "8"
+  },
+  {
+    "id": "191",
+    "area_ar": "مركز كفر الزيات",
+    "area_en": "Kafr El Zayat",
+    "city_id": "8"
+  },
+  {
+    "id": "192",
+    "area_ar": "مركز قطور",
+    "area_en": "Kotoor",
+    "city_id": "8"
+  },
+  {
+    "id": "193",
+    "area_ar": "مركز سمنود",
+    "area_en": "Samanoud",
+    "city_id": "8"
+  },
+  {
+    "id": "194",
+    "area_ar": "مركز طنطا",
+    "area_en": "Tanta",
+    "city_id": "8"
+  },
+  {
+    "id": "195",
+    "area_ar": "قسم أول طنطا",
+    "area_en": "Tanta 1",
+    "city_id": "8"
+  },
+  {
+    "id": "196",
+    "area_ar": "قسم ثان طنطا",
+    "area_en": "Tanta 2",
+    "city_id": "8"
+  },
+  {
+    "id": "197",
+    "area_ar": "قسم زفتى",
+    "area_en": "Zefta",
+    "city_id": "8"
+  },
+  {
+    "id": "198",
+    "area_ar": "مركز ابو صوير",
+    "area_en": "Abu Suwir",
+    "city_id": "9"
+  },
+  {
+    "id": "199",
+    "area_ar": "مركز الاسماعيلية",
+    "area_en": "Ismailia",
+    "city_id": "9"
+  },
+  {
+    "id": "200",
+    "area_ar": "قسم أول الاسماعيلية",
+    "area_en": "Ismailia 1",
+    "city_id": "9"
+  },
+  {
+    "id": "201",
+    "area_ar": "قسم ثان الاسماعيلية",
+    "area_en": "Ismailia 2",
+    "city_id": "9"
+  },
+  {
+    "id": "202",
+    "area_ar": "قسم ثالث الاسماعيلية",
+    "area_en": "Ismailia 3",
+    "city_id": "9"
+  },
+  {
+    "id": "203",
+    "area_ar": "مركز القنطرة",
+    "area_en": "El Qantara",
+    "city_id": "9"
+  },
+  {
+    "id": "204",
+    "area_ar": "قسم القنطرة شرق",
+    "area_en": "El Qantara El Sharqiya",
+    "city_id": "9"
+  },
+  {
+    "id": "205",
+    "area_ar": "مركز القصاصين الجديده",
+    "area_en": "New Kasaseen",
+    "city_id": "9"
+  },
+  {
+    "id": "206",
+    "area_ar": "مركز التل الكبير",
+    "area_en": "Tell El Kebir",
+    "city_id": "9"
+  },
+  {
+    "id": "207",
+    "area_ar": "مركز فايد",
+    "area_en": "Fayid",
+    "city_id": "9"
+  },
+  {
+    "id": "208",
+    "area_ar": "مركز البرلس",
+    "area_en": "Burullus",
+    "city_id": "22"
+  },
+  {
+    "id": "209",
+    "area_ar": "مركز الحامول",
+    "area_en": "El Hamool",
+    "city_id": "22"
+  },
+  {
+    "id": "210",
+    "area_ar": "مركز الرياض",
+    "area_en": "El Reyad",
+    "city_id": "22"
+  },
+  {
+    "id": "211",
+    "area_ar": "مركز بيلا",
+    "area_en": "Bila",
+    "city_id": "22"
+  },
+  {
+    "id": "212",
+    "area_ar": "مركز دسوق",
+    "area_en": "Desouk",
+    "city_id": "22"
+  },
+  {
+    "id": "213",
+    "area_ar": "مركز فوه",
+    "area_en": "Fuwa",
+    "city_id": "22"
+  },
+  {
+    "id": "214",
+    "area_ar": "مركز كفر الشيخ",
+    "area_en": "Kafr el Sheikh",
+    "city_id": "22"
+  },
+  {
+    "id": "215",
+    "area_ar": "قسم أول كفر الشيخ",
+    "area_en": "Kafr el Sheikh 1",
+    "city_id": "22"
+  },
+  {
+    "id": "216",
+    "area_ar": "قسم ثان كفر الشيخ",
+    "area_en": "Kafr el Sheikh 2",
+    "city_id": "22"
+  },
+  {
+    "id": "217",
+    "area_ar": "مركز مطوبس",
+    "area_en": "Metoubes",
+    "city_id": "22"
+  },
+  {
+    "id": "218",
+    "area_ar": "مركز قلين",
+    "area_en": "Qallin",
+    "city_id": "22"
+  },
+  {
+    "id": "219",
+    "area_ar": "مركز سيدى سالم",
+    "area_en": "Sidi Salem",
+    "city_id": "22"
+  },
+  {
+    "id": "220",
+    "area_ar": "مركز القرنه",
+    "area_en": "Qurna",
+    "city_id": "24"
+  },
+  {
+    "id": "221",
+    "area_ar": "مركز الأقصر",
+    "area_en": "Luxor",
+    "city_id": "24"
+  },
+  {
+    "id": "222",
+    "area_ar": "مركز أرمنت",
+    "area_en": "Armant",
+    "city_id": "24"
+  },
+  {
+    "id": "223",
+    "area_ar": "مركز إسنا",
+    "area_en": "Esna",
+    "city_id": "24"
+  },
+  {
+    "id": "224",
+    "area_ar": "مركز شرطة طيبة",
+    "area_en": "Tiba",
+    "city_id": "24"
+  },
+  {
+    "id": "225",
+    "area_ar": "قسم الضبعة",
+    "area_en": "El Dabaa",
+    "city_id": "23"
+  },
+  {
+    "id": "226",
+    "area_ar": "قسم العلمين",
+    "area_en": "El Alamein",
+    "city_id": "23"
+  },
+  {
+    "id": "227",
+    "area_ar": "قسم الحمام",
+    "area_en": "El Hamam",
+    "city_id": "23"
+  },
+  {
+    "id": "228",
+    "area_ar": "قسم النجيله",
+    "area_en": "El Negaila",
+    "city_id": "23"
+  },
+  {
+    "id": "229",
+    "area_ar": "قسم الساحل الشمالى-جزء",
+    "area_en": "North Coast",
+    "city_id": "23"
+  },
+  {
+    "id": "230",
+    "area_ar": "قسم السلوم",
+    "area_en": "Sallum",
+    "city_id": "23"
+  },
+  {
+    "id": "231",
+    "area_ar": "قسم مرسى مطروح",
+    "area_en": "Mersa Matruh",
+    "city_id": "23"
+  },
+  {
+    "id": "232",
+    "area_ar": "قسم سيدى برانى",
+    "area_en": "Sidi Barrani",
+    "city_id": "23"
+  },
+  {
+    "id": "233",
+    "area_ar": "قسم سيوة",
+    "area_en": "Siwa Oasis",
+    "city_id": "23"
+  },
+  {
+    "id": "234",
+    "area_ar": "مركز ابو قرقاص",
+    "area_en": "Abu Qirqas",
+    "city_id": "11"
+  },
+  {
+    "id": "235",
+    "area_ar": "مركز العدوة",
+    "area_en": "El Idwa",
+    "city_id": "11"
+  },
+  {
+    "id": "236",
+    "area_ar": "مركز المنيا",
+    "area_en": "Minya",
+    "city_id": "11"
+  },
+  {
+    "id": "237",
+    "area_ar": "قسم أول المنيا",
+    "area_en": "Minya 1",
+    "city_id": "11"
+  },
+  {
+    "id": "238",
+    "area_ar": "قسم ثان المنيا",
+    "area_en": "Minya 2",
+    "city_id": "11"
+  },
+  {
+    "id": "239",
+    "area_ar": "قسم ثالث المنيا",
+    "area_en": "Minya 3",
+    "city_id": "11"
+  },
+  {
+    "id": "240",
+    "area_ar": "مركز بنى مزار",
+    "area_en": "Beni Mazar",
+    "city_id": "11"
+  },
+  {
+    "id": "241",
+    "area_ar": "مركز دير مواس",
+    "area_en": "Deir Mawas",
+    "city_id": "11"
+  },
+  {
+    "id": "242",
+    "area_ar": "مدينة المنيا الجديدة",
+    "area_en": "New Minya",
+    "city_id": "11"
+  },
+  {
+    "id": "243",
+    "area_ar": "مركز مغاغة",
+    "area_en": "Maghagha",
+    "city_id": "11"
+  },
+  {
+    "id": "244",
+    "area_ar": "مركز سمالوط غرب",
+    "area_en": "Malawit Gharb",
+    "city_id": "11"
+  },
+  {
+    "id": "245",
+    "area_ar": "مركز ملوى",
+    "area_en": "Mallawi",
+    "city_id": "11"
+  },
+  {
+    "id": "246",
+    "area_ar": "مركز مطاى",
+    "area_en": "Matai",
+    "city_id": "11"
+  },
+  {
+    "id": "247",
+    "area_ar": "مركز سمالوط",
+    "area_en": "Samalut",
+    "city_id": "11"
+  },
+  {
+    "id": "248",
+    "area_ar": "مركز الباجور",
+    "area_en": "El Bagour",
+    "city_id": "10"
+  },
+  {
+    "id": "249",
+    "area_ar": "مركز أشمون",
+    "area_en": "Ashmoun",
+    "city_id": "10"
+  },
+  {
+    "id": "250",
+    "area_ar": "مركز الشهداء",
+    "area_en": "El Shohada",
+    "city_id": "10"
+  },
+  {
+    "id": "251",
+    "area_ar": "مركز بركة السبع",
+    "area_en": "Birket el Sab",
+    "city_id": "10"
+  },
+  {
+    "id": "252",
+    "area_ar": "مركز و مدينة السادات",
+    "area_en": "Sadat City",
+    "city_id": "10"
+  },
+  {
+    "id": "253",
+    "area_ar": "مركز منوف",
+    "area_en": "Menouf",
+    "city_id": "10"
+  },
+  {
+    "id": "254",
+    "area_ar": "مركز قويسنا",
+    "area_en": "Quweisna",
+    "city_id": "10"
+  },
+  {
+    "id": "255",
+    "area_ar": "مركز شبين الكوم",
+    "area_en": "Shibin el Kom",
+    "city_id": "10"
+  },
+  {
+    "id": "256",
+    "area_ar": "قسم سرس الليانة",
+    "area_en": "Sers El Lyan",
+    "city_id": "10"
+  },
+  {
+    "id": "257",
+    "area_ar": "مركز تلا",
+    "area_en": "Tala",
+    "city_id": "10"
+  },
+  {
+    "id": "258",
+    "area_ar": "قسم الواحات الخارجة",
+    "area_en": "Kharga",
+    "city_id": "13"
+  },
+  {
+    "id": "259",
+    "area_ar": "مركز بلاط",
+    "area_en": "Balat",
+    "city_id": "13"
+  },
+  {
+    "id": "260",
+    "area_ar": "مركز شرطة الداخلة",
+    "area_en": "Dakhla",
+    "city_id": "13"
+  },
+  {
+    "id": "261",
+    "area_ar": "مركز شرطة الفرافرة",
+    "area_en": "Farafra",
+    "city_id": "13"
+  },
+  {
+    "id": "262",
+    "area_ar": "مركز شرطة باريس",
+    "area_en": "Baris",
+    "city_id": "13"
+  },
+  {
+    "id": "263",
+    "area_ar": "قسم أول العريش",
+    "area_en": "El Arish 1",
+    "city_id": "26"
+  },
+  {
+    "id": "264",
+    "area_ar": "قسم ثان العريش",
+    "area_en": "El Arish 2",
+    "city_id": "26"
+  },
+  {
+    "id": "265",
+    "area_ar": "قسم ثالث العريش",
+    "area_en": "El Arish 3",
+    "city_id": "26"
+  },
+  {
+    "id": "266",
+    "area_ar": "قسم رابع العريش",
+    "area_en": "El Arish 4",
+    "city_id": "26"
+  },
+  {
+    "id": "267",
+    "area_ar": "قسم الحسنة",
+    "area_en": "El Hassana",
+    "city_id": "26"
+  },
+  {
+    "id": "268",
+    "area_ar": "قسم الشيخ زويد",
+    "area_en": "Sheikh Zuweid",
+    "city_id": "26"
+  },
+  {
+    "id": "269",
+    "area_ar": "قسم بئر العبد",
+    "area_en": "Bir El Abd",
+    "city_id": "26"
+  },
+  {
+    "id": "270",
+    "area_ar": "قسم نخل",
+    "area_en": "Nakhl",
+    "city_id": "26"
+  },
+  {
+    "id": "271",
+    "area_ar": "قسم رفح",
+    "area_en": "Rafah",
+    "city_id": "26"
+  },
+  {
+    "id": "272",
+    "area_ar": "قسم شرطة القسيمة",
+    "area_en": "Shurtet El Qasima",
+    "city_id": "26"
+  },
+  {
+    "id": "273",
+    "area_ar": "قسم شرطة رمانة",
+    "area_en": "Shurtet Rumana",
+    "city_id": "26"
+  },
+  {
+    "id": "274",
+    "area_ar": "قسم شرطة الضواحي",
+    "area_en": "El Dawahy",
+    "city_id": "18"
+  },
+  {
+    "id": "275",
+    "area_ar": "قسم العرب",
+    "area_en": "El Arab",
+    "city_id": "18"
+  },
+  {
+    "id": "276",
+    "area_ar": "قسم الجنوب",
+    "area_en": "El Ganoub",
+    "city_id": "18"
+  },
+  {
+    "id": "277",
+    "area_ar": "قسم ثان الجنوب",
+    "area_en": "El Ganoub 2",
+    "city_id": "18"
+  },
+  {
+    "id": "278",
+    "area_ar": "قسم المناخ",
+    "area_en": "El Manakh",
+    "city_id": "18"
+  },
+  {
+    "id": "279",
+    "area_ar": "قسم المناصرة",
+    "area_en": "El Manasra",
+    "city_id": "18"
+  },
+  {
+    "id": "280",
+    "area_ar": "قسم الشرق",
+    "area_en": "El Sharq",
+    "city_id": "18"
+  },
+  {
+    "id": "281",
+    "area_ar": "قسم شرطة الزهور",
+    "area_en": "El Zohur",
+    "city_id": "18"
+  },
+  {
+    "id": "282",
+    "area_ar": "قسم بورفؤاد",
+    "area_en": "Port Fuad",
+    "city_id": "18"
+  },
+  {
+    "id": "283",
+    "area_ar": "قسم ثان بورفؤاد",
+    "area_en": "Port Fuad 2",
+    "city_id": "18"
+  },
+  {
+    "id": "284",
+    "area_ar": "إدارة شرطة ميناء بورسعيد",
+    "area_en": "Police Department Port Said",
+    "city_id": "18"
+  },
+  {
+    "id": "285",
+    "area_ar": "قسم مبارك - شرق التفريعة",
+    "area_en": "Mubarak East",
+    "city_id": "18"
+  },
+  {
+    "id": "286",
+    "area_ar": "مركز الخانكة",
+    "area_en": "Khanka",
+    "city_id": "12"
+  },
+  {
+    "id": "287",
+    "area_ar": "قسم الخصوص",
+    "area_en": "Khusus",
+    "city_id": "12"
+  },
+  {
+    "id": "288",
+    "area_ar": "مركز القناطر الخيرية",
+    "area_en": "El Qanater El Khayreya",
+    "city_id": "12"
+  },
+  {
+    "id": "289",
+    "area_ar": "قسم العبور",
+    "area_en": "El Ubour",
+    "city_id": "12"
+  },
+  {
+    "id": "290",
+    "area_ar": "مركز بنها",
+    "area_en": "Banha",
+    "city_id": "12"
+  },
+  {
+    "id": "291",
+    "area_ar": "قسم اول بنها",
+    "area_en": "Banha 1",
+    "city_id": "12"
+  },
+  {
+    "id": "292",
+    "area_ar": "قسم ثان بنها",
+    "area_en": "Banha 2",
+    "city_id": "12"
+  },
+  {
+    "id": "293",
+    "area_ar": "مركز كفر شكر",
+    "area_en": "Kafr Shukr[9]",
+    "city_id": "12"
+  },
+  {
+    "id": "294",
+    "area_ar": "قسم قها",
+    "area_en": "Qaha",
+    "city_id": "12"
+  },
+  {
+    "id": "295",
+    "area_ar": "مركز قليوب",
+    "area_en": "Qalyub",
+    "city_id": "12"
+  },
+  {
+    "id": "296",
+    "area_ar": "قسم أول شبرا الخيمة",
+    "area_en": "Shubra El Kheima 1",
+    "city_id": "12"
+  },
+  {
+    "id": "297",
+    "area_ar": "قسم ثان شبرا الخيمة",
+    "area_en": "Shubra El Kheima 2",
+    "city_id": "12"
+  },
+  {
+    "id": "298",
+    "area_ar": "مركز شبين القناطر",
+    "area_en": "Shibin El Qanater",
+    "city_id": "12"
+  },
+  {
+    "id": "299",
+    "area_ar": "مركز طوخ",
+    "area_en": "Tukh",
+    "city_id": "12"
+  },
+  {
+    "id": "300",
+    "area_ar": "مركز أبو طشت",
+    "area_en": "Abu Tesht",
+    "city_id": "25"
+  },
+  {
+    "id": "301",
+    "area_ar": "مركز الوقف",
+    "area_en": "El Waqf",
+    "city_id": "25"
+  },
+  {
+    "id": "302",
+    "area_ar": "مركز دشنا",
+    "area_en": "Dishna",
+    "city_id": "25"
+  },
+  {
+    "id": "303",
+    "area_ar": "مركز فرشوط",
+    "area_en": "Farshut",
+    "city_id": "25"
+  },
+  {
+    "id": "304",
+    "area_ar": "مدينة قنا الجديدة",
+    "area_en": "New Qena",
+    "city_id": "25"
+  },
+  {
+    "id": "305",
+    "area_ar": "مركز نجع حمادى",
+    "area_en": "Nag Hammadi",
+    "city_id": "25"
+  },
+  {
+    "id": "306",
+    "area_ar": "مركز نقادة",
+    "area_en": "Naqada",
+    "city_id": "25"
+  },
+  {
+    "id": "307",
+    "area_ar": "مركز قفط",
+    "area_en": "Gebtu or Coptos",
+    "city_id": "25"
+  },
+  {
+    "id": "308",
+    "area_ar": "مركز قنا",
+    "area_en": "Qena",
+    "city_id": "25"
+  },
+  {
+    "id": "309",
+    "area_ar": "مركز قوص",
+    "area_en": "Qus",
+    "city_id": "25"
+  },
+  {
+    "id": "310",
+    "area_ar": "قسم أول الغردقة",
+    "area_en": "Hurghada 1",
+    "city_id": "5"
+  },
+  {
+    "id": "311",
+    "area_ar": "قسم ثان الغردقة",
+    "area_en": "Hurghada 2",
+    "city_id": "5"
+  },
+  {
+    "id": "312",
+    "area_ar": "قسم القصير",
+    "area_en": "El Qusair",
+    "city_id": "5"
+  },
+  {
+    "id": "313",
+    "area_ar": "قسم الشلاتين",
+    "area_en": "Shalateen",
+    "city_id": "5"
+  },
+  {
+    "id": "314",
+    "area_ar": "قسم حلايب",
+    "area_en": "Halaib",
+    "city_id": "5"
+  },
+  {
+    "id": "315",
+    "area_ar": "قسم مرسى علم",
+    "area_en": "Marsa Alam",
+    "city_id": "5"
+  },
+  {
+    "id": "316",
+    "area_ar": "قسم رأس غارب",
+    "area_en": "Ras Gharib",
+    "city_id": "5"
+  },
+  {
+    "id": "317",
+    "area_ar": "قسم سفاجا",
+    "area_en": "Safaga",
+    "city_id": "5"
+  },
+  {
+    "id": "318",
+    "area_ar": "قسم الأربعين",
+    "area_en": "Arbaeen",
+    "city_id": "14"
+  },
+  {
+    "id": "319",
+    "area_ar": "قسم الجناين",
+    "area_en": "Ganayen",
+    "city_id": "14"
+  },
+  {
+    "id": "320",
+    "area_ar": "قسم السويس",
+    "area_en": "Suez",
+    "city_id": "14"
+  },
+  {
+    "id": "321",
+    "area_ar": "قسم عتاقة",
+    "area_en": "Attaka",
+    "city_id": "14"
+  },
+  {
+    "id": "322",
+    "area_ar": "قسم فيصل",
+    "area_en": "Faisal",
+    "city_id": "14"
+  },
+  {
+    "id": "323",
+    "area_ar": "إدارة شرطة ميناء السويس",
+    "area_en": "Port Suez Police Department",
+    "city_id": "14"
+  },
+  {
+    "id": "324",
+    "area_ar": "مركز أبو حماد",
+    "area_en": "Abu Hammad",
+    "city_id": "20"
+  },
+  {
+    "id": "325",
+    "area_ar": "مركز أبوكبير",
+    "area_en": "Abu Kebir",
+    "city_id": "20"
+  },
+  {
+    "id": "326",
+    "area_ar": "مركز الحسينية",
+    "area_en": "El Husseiniya",
+    "city_id": "20"
+  },
+  {
+    "id": "327",
+    "area_ar": "مركز الأبراهيمية",
+    "area_en": "El Ibrahimiya",
+    "city_id": "20"
+  },
+  {
+    "id": "328",
+    "area_ar": "قسم القنايات",
+    "area_en": "El Qanayat",
+    "city_id": "20"
+  },
+  {
+    "id": "329",
+    "area_ar": "قسم القرين",
+    "area_en": "El Qurein",
+    "city_id": "20"
+  },
+  {
+    "id": "330",
+    "area_ar": "قسم الصالحية الجديدة",
+    "area_en": "New Salhia",
+    "city_id": "20"
+  },
+  {
+    "id": "331",
+    "area_ar": "مركز أولاد صقر",
+    "area_en": "Awlad Saqr",
+    "city_id": "20"
+  },
+  {
+    "id": "332",
+    "area_ar": "قسم اول الزقازيق",
+    "area_en": "Zagazig 1",
+    "city_id": "20"
+  },
+  {
+    "id": "333",
+    "area_ar": "قسم ثان الزقازيق",
+    "area_en": "Zagazig 2",
+    "city_id": "20"
+  },
+  {
+    "id": "334",
+    "area_ar": "مركز الزقازيق",
+    "area_en": "Zagazig",
+    "city_id": "20"
+  },
+  {
+    "id": "335",
+    "area_ar": "مركز بلبيس",
+    "area_en": "Bilbeis",
+    "city_id": "20"
+  },
+  {
+    "id": "336",
+    "area_ar": "مركز ديرب نجم",
+    "area_en": "Diyarb Negm",
+    "city_id": "20"
+  },
+  {
+    "id": "337",
+    "area_ar": "مركز فاقوس",
+    "area_en": "Faqous",
+    "city_id": "20"
+  },
+  {
+    "id": "338",
+    "area_ar": "مركز ههيا",
+    "area_en": "Hihya",
+    "city_id": "20"
+  },
+  {
+    "id": "339",
+    "area_ar": "مركز كفر صقر",
+    "area_en": "Kafr Saqr",
+    "city_id": "20"
+  },
+  {
+    "id": "340",
+    "area_ar": "قسم أول مدينة عشرة رمضان",
+    "area_en": "10th of Ramadan City 1",
+    "city_id": "20"
+  },
+  {
+    "id": "341",
+    "area_ar": "قسم ثان مدينة عشرة رمضان",
+    "area_en": "10th of Ramadan City 2",
+    "city_id": "20"
+  },
+  {
+    "id": "342",
+    "area_ar": "مركز مشتول السوق",
+    "area_en": "Mashtool El Souk",
+    "city_id": "20"
+  },
+  {
+    "id": "343",
+    "area_ar": "مركز منيا القمح",
+    "area_en": "Minya El Qamh",
+    "city_id": "20"
+  },
+  {
+    "id": "344",
+    "area_ar": "مركز منشاه ابوعمر",
+    "area_en": "Minshat Abu Omar",
+    "city_id": "20"
+  },
+  {
+    "id": "345",
+    "area_ar": "مركز صان الحجر",
+    "area_en": "Tanis",
+    "city_id": "20"
+  },
+  {
+    "id": "346",
+    "area_ar": "مركز أخميم",
+    "area_en": "Akhmim",
+    "city_id": "27"
+  },
+  {
+    "id": "347",
+    "area_ar": "مركز البلينا",
+    "area_en": "El Balyana",
+    "city_id": "27"
+  },
+  {
+    "id": "348",
+    "area_ar": "قسم الكوثر",
+    "area_en": "El Kawtar",
+    "city_id": "27"
+  },
+  {
+    "id": "349",
+    "area_ar": "مركز المراغة",
+    "area_en": "El Maragha",
+    "city_id": "27"
+  },
+  {
+    "id": "350",
+    "area_ar": "مركز المنشأة",
+    "area_en": "El Munsha",
+    "city_id": "27"
+  },
+  {
+    "id": "351",
+    "area_ar": "مركز العسيرات",
+    "area_en": "Aserat",
+    "city_id": "27"
+  },
+  {
+    "id": "352",
+    "area_ar": "مركز دار السلام",
+    "area_en": "Dar El Salam",
+    "city_id": "27"
+  },
+  {
+    "id": "353",
+    "area_ar": "مركز جرجا",
+    "area_en": "Girga",
+    "city_id": "27"
+  },
+  {
+    "id": "354",
+    "area_ar": "مركز جهينة الغربية",
+    "area_en": "Juhaynah West",
+    "city_id": "27"
+  },
+  {
+    "id": "355",
+    "area_ar": "مدينة أخميم الجديدة",
+    "area_en": "New Akhmim",
+    "city_id": "27"
+  },
+  {
+    "id": "356",
+    "area_ar": "مدينة سوهاج الجديدة",
+    "area_en": "New Sohag",
+    "city_id": "27"
+  },
+  {
+    "id": "357",
+    "area_ar": "مركز ساقلته",
+    "area_en": "Saqultah",
+    "city_id": "27"
+  },
+  {
+    "id": "358",
+    "area_ar": "مركز سوهاج",
+    "area_en": "Sohag",
+    "city_id": "27"
+  },
+  {
+    "id": "359",
+    "area_ar": "قسم اول سوهاج",
+    "area_en": "Sohag 1",
+    "city_id": "27"
+  },
+  {
+    "id": "360",
+    "area_ar": "قسم ثان سوهاج",
+    "area_en": "Sohag 2",
+    "city_id": "27"
+  },
+  {
+    "id": "361",
+    "area_ar": "مركز طهطا",
+    "area_en": "Tahta",
+    "city_id": "27"
+  },
+  {
+    "id": "362",
+    "area_ar": "مركز طما",
+    "area_en": "Tima",
+    "city_id": "27"
+  },
+  {
+    "id": "363",
+    "area_ar": "قسم أبو رديس",
+    "area_en": "Abu Radis (incl. Abu Zenima)",
+    "city_id": "21"
+  },
+  {
+    "id": "364",
+    "area_ar": "قسم الطور",
+    "area_en": "El Tor",
+    "city_id": "21"
+  },
+  {
+    "id": "365",
+    "area_ar": "قسم دهب",
+    "area_en": "Dahab",
+    "city_id": "21"
+  },
+  {
+    "id": "366",
+    "area_ar": "قسم نويبع",
+    "area_en": "Nuweiba",
+    "city_id": "21"
+  },
+  {
+    "id": "367",
+    "area_ar": "قسم رأس سدر",
+    "area_en": "Ras Sidr",
+    "city_id": "21"
+  },
+  {
+    "id": "368",
+    "area_ar": "قسم سانت كاترين",
+    "area_en": "Saint Catherine",
+    "city_id": "21"
+  },
+  {
+    "id": "369",
+    "area_ar": "قسم أول شرم الشيخ",
+    "area_en": "Sharm El Sheikh 1",
+    "city_id": "21"
+  },
+  {
+    "id": "370",
+    "area_ar": "قسم ثان شرم الشيخ",
+    "area_en": "Sharm El Sheikh 2",
+    "city_id": "21"
+  }
+]
