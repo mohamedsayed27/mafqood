@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../core/global/assets_path/fonts_path.dart';
-import '../../../core/global/theme/app_colors_light_theme.dart';
+import '../../../core/assets_path/fonts_path.dart';
+import '../../../core/theme/app_colors_light_theme.dart';
 
 class AuthTextFormField extends StatelessWidget {
   final String hintText;

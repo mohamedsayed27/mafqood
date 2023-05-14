@@ -6,7 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:mafqood/domain/usecases/lost_people_usecases/get_my_lost_people_usecase.dart';
 
 import '../../../core/base_usecases/base_usecase.dart';
-import '../../../core/global/theme/app_colors_light_theme.dart';
+import '../../../core/theme/app_colors_light_theme.dart';
 import '../../../domain/usecases/lost_people_usecases/get_areas_usecase.dart';
 import '../../../domain/usecases/lost_people_usecases/get_cities_usecase.dart';
 import '../../../domain/usecases/lost_people_usecases/help_lost_person_usecase.dart';

@@ -6,9 +6,9 @@ import '../../../core/app_router/screens_name.dart';
 import '../../../core/cache_manager/cache_keys.dart';
 import '../../../core/cache_manager/shared_preferences.dart';
 import '../../../core/constants/constants.dart';
-import '../../../core/global/assets_path/fonts_path.dart';
-import '../../../core/global/assets_path/images_path.dart';
-import '../../../core/global/theme/app_colors_light_theme.dart';
+import '../../../core/assets_path/fonts_path.dart';
+import '../../../core/assets_path/images_path.dart';
+import '../../../core/theme/app_colors_light_theme.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);

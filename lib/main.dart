@@ -11,7 +11,7 @@ import 'package:mafqood/presentation/controllers/google_maps_cubit/google_maps_c
 import 'package:mafqood/presentation/controllers/lost_people_cubit/lost_people_cubit.dart';
 import 'package:mafqood/presentation/controllers/user_cubit/user_cubit.dart';
 import 'bloc_observer.dart';
-import 'core/global/theme/app_colors_light_theme.dart';
+import 'core/theme/app_colors_light_theme.dart';
 import 'core/notification/notification_services.dart';
 import 'core/services/services_locator.dart';
 import 'package:firebase_core/firebase_core.dart';

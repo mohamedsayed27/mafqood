@@ -5,7 +5,7 @@ import 'package:mafqood/core/base_usecases/base_usecase.dart';
 import 'package:mafqood/data/models/city_model.dart';
 
 import '../../core/error/auth_error_exception.dart';
-import '../../core/global/assets_path/json_path.dart';
+import '../../core/assets_path/json_path.dart';
 import '../../core/network/error_message_model.dart';
 import '../models/area_model.dart';
 

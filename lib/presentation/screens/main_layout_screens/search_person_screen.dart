@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mafqood/core/constants/constants.dart';
 import 'package:mafqood/domain/usecases/lost_people_usecases/help_lost_person_usecase.dart';
 
-import '../../../core/global/assets_path/fonts_path.dart';
-import '../../../core/global/theme/app_colors_light_theme.dart';
+import '../../../core/assets_path/fonts_path.dart';
+import '../../../core/theme/app_colors_light_theme.dart';
 import '../../controllers/google_maps_cubit/google_maps_cubit.dart';
 import '../../controllers/google_maps_cubit/google_maps_state.dart';
 import '../../controllers/lost_people_cubit/lost_people_cubit.dart';

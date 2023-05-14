@@ -6,8 +6,8 @@ import 'package:mafqood/presentation/controllers/user_cubit/user_cubit.dart';
 import 'package:mafqood/presentation/controllers/user_cubit/user_state.dart';
 
 import '../../../core/app_router/screens_name.dart';
-import '../../../core/global/assets_path/fonts_path.dart';
-import '../../../core/global/theme/app_colors_light_theme.dart';
+import '../../../core/assets_path/fonts_path.dart';
+import '../../../core/theme/app_colors_light_theme.dart';
 import '../../widgets_and_components/auth_widgets/pin_field_builder.dart';
 import '../../widgets_and_components/shred_widgets/custom_button.dart';
 import '../../widgets_and_components/shred_widgets/logo_text.dart';

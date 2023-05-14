@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mafqood/core/global/assets_path/fonts_path.dart';
+import 'package:mafqood/core/assets_path/fonts_path.dart';
 
 class SimpleDialogOptionWidget extends StatelessWidget {
   final void Function()? onPressed;

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mafqood/presentation/widgets_and_components/shred_widgets/phone_form_field.dart';
 
-import '../../../core/global/assets_path/fonts_path.dart';
-import '../../../core/global/theme/app_colors_light_theme.dart';
+import '../../../core/assets_path/fonts_path.dart';
+import '../../../core/theme/app_colors_light_theme.dart';
 import '../auth_widgets/auth_text_form_field.dart';
 
 class UploadDataWidget extends StatelessWidget {

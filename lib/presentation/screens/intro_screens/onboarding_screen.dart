@@ -5,8 +5,8 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../core/app_router/screens_name.dart';
 import '../../../core/cache_manager/cache_keys.dart';
-import '../../../core/global/assets_path/images_path.dart';
-import '../../../core/global/theme/app_colors_light_theme.dart';
+import '../../../core/assets_path/images_path.dart';
+import '../../../core/theme/app_colors_light_theme.dart';
 import '../../widgets_and_components/intro_screens_widgets/boarding_button.dart';
 import '../../widgets_and_components/intro_screens_widgets/images_widget.dart';
 import '../../widgets_and_components/intro_screens_widgets/onboarding_class.dart';

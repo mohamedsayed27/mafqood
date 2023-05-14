@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-import '../../../core/global/theme/app_colors_light_theme.dart';
+import '../../../core/theme/app_colors_light_theme.dart';
 
 class PinFieldBuilder extends StatelessWidget {
   final TextEditingController controller;
