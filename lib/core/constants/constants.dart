@@ -29,5 +29,6 @@ void showToast({required int errorType, required String message}){
   }
 }
 String? token = CacheHelper.getData(key: CacheKeys.token);
+String? onboarding = CacheHelper.getData(key: CacheKeys.onboarding);
 String? userId = CacheHelper.getData(key: CacheKeys.userId);
 String? userType = CacheHelper.getData(key: CacheKeys.userType);

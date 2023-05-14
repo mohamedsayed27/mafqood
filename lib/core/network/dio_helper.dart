@@ -2,9 +2,9 @@ import 'package:dio/dio.dart';
 import 'api_end_points.dart';
 
 class DioHelper {
-  static late Dio dio;
+   static late Dio dio;
 
-  static init() {
+   static init() {
     dio = Dio(
       BaseOptions(
         baseUrl: EndPoints.baseUrl,
@@ -13,7 +13,7 @@ class DioHelper {
     );
   }
 
-  static Future<Response> getData({
+   Future<Response> getData({
     required String url,
     Map<String, dynamic>? query,
     String? bearerToken,
@@ -28,7 +28,7 @@ class DioHelper {
     return await dio.get(url, queryParameters: query);
   }
 
-  static Future<Response> postData({
+   Future<Response> postData({
     required String url,
     dynamic query,
     dynamic data,
@@ -46,7 +46,7 @@ class DioHelper {
     // return ;
   }
 
-  static Future<Response> deleteData({
+   Future<Response> deleteData({
     required String url,
     dynamic query,
     dynamic data,
@@ -62,7 +62,7 @@ class DioHelper {
     return await dio.delete(url, queryParameters: query, data: data);
   }
 
-  static Future<Response> putData({
+   Future<Response> putData({
     required String url,
     dynamic query,
     dynamic data,

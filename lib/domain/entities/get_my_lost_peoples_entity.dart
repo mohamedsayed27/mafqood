@@ -3,14 +3,15 @@ import 'package:equatable/equatable.dart';
 class GetMyLostPeopleEntity extends Equatable {
   final int status;
   final String message;
-  final List<Data> data;
-  final List<String> errors;
+  final List<Data>? data;
+  final List<String>? errors;
 
-  const GetMyLostPeopleEntity(
-      {required this.status,
-      required this.message,
-      required this.data,
-      required this.errors});
+  const GetMyLostPeopleEntity({
+    required this.status,
+    required this.message,
+    required this.data,
+    required this.errors,
+  });
 
   @override
   List<Object?> get props => [
@@ -22,19 +23,19 @@ class GetMyLostPeopleEntity extends Equatable {
 }
 
 class Data extends Equatable {
-  final int id;
-  final String name;
-  final String birthDate;
-  final String city;
-  final String area;
-  final String street;
-  final String phoneNumber;
-  final int long;
-  final int lat;
-  final int longFind;
-  final int latFind;
-  final String url;
-  final bool status;
+  final int? id;
+  final String? name;
+  final String? birthDate;
+  final String? city;
+  final String? area;
+  final String? street;
+  final String? phoneNumber;
+  final double? long;
+  final double? lat;
+  final double? longFind;
+  final double? latFind;
+  final String? url;
+  final bool? status;
 
   const Data({
     required this.id,

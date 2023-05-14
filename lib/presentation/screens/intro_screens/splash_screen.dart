@@ -47,6 +47,8 @@ class _SplashScreenState extends State<SplashScreen>
         if (onboarding == null) {
           Navigator.pushReplacementNamed(context, ScreenName.onboardingScreen);
         } else if (token != null) {
+          Navigator.pushNamedAndRemoveUntil(context,
+              ScreenName.mainLayoutScreen, (route) => false);
         } else {
           Navigator.pushReplacementNamed(context, ScreenName.loginScreen);
         }

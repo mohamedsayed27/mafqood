@@ -29,13 +29,16 @@ abstract class BaseLostPeopleRemoteDataSource {
 }
 
 class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
+  final DioHelper dioHelper;
+
+  LostPeopleRemoteDataSource(this.dioHelper);
   @override
   Future<LostPeopleModel> addLostPersonData(
       AddLostPersonDataParameters parameters) async {
     print(parameters.lng);
-    print(parameters.lng);
+    print(parameters.lat);
     try {
-      final response = await DioHelper.postData(
+      final response = await dioHelper.postData(
         token: token,
         url: EndPoints.sendLostData,
         data: FormData.fromMap({
@@ -48,7 +51,7 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
           'Street': parameters.street,
           'PhoneNumber': parameters.phone,
           'Long': parameters.lng,
-          'Lat ': parameters.lat,
+          'Lat': parameters.lat,
         }),
       );
       return LostPeopleModel.fromJson(response.data);
@@ -61,15 +64,17 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
   @override
   Future<LostPeopleModel> helpLostPerson(
       HelpLostPersonDataParameters parameters) async {
+    print(parameters.lng);
+    print(parameters.lat);
     try {
-      final response = await DioHelper.postData(
+      final response = await dioHelper.postData(
         token: token,
         url: EndPoints.helpLostPerson,
         data: FormData.fromMap({
           'File': await MultipartFile.fromFile(parameters.image.path,
               filename: path.basename(parameters.image.path)),
           'Long': parameters.lng,
-          'Lat ': parameters.lat,
+          'Lat': parameters.lat,
         }),
       );
       return LostPeopleModel.fromJson(response.data);
@@ -83,11 +88,11 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
   Future<BasicSuccessResponseModel> updateMyLost(
       UpdateMyLostParameters parameters) async {
     try {
-      final response = await DioHelper.putData(
+      final response = await dioHelper.putData(
         token: token,
         url: EndPoints.updateMyLost,
         data: FormData.fromMap({
-          'id ': parameters.id,
+          'id': parameters.id,
         }),
       );
       return BasicSuccessResponseModel.fromJson(response.data);
@@ -99,9 +104,11 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
   @override
   Future<GetMyLostPeopleModel> getMyLostPeople(NoParameters parameters) async {
     try {
-      final response = await DioHelper.getData(url: EndPoints.getMyLostPeople);
+      final response = await dioHelper.getData(url: EndPoints.getMyLostPeople,bearerToken: token);
+      print(response);
       return GetMyLostPeopleModel.fromJson(response.data);
     } on DioError catch (error) {
+      print(token);
       throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
   }

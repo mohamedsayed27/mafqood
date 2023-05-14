@@ -25,10 +25,12 @@ abstract class BaseAuthenticationRemoteDataSource {
 }
 
 class AuthenticationRemoteDataSource extends BaseAuthenticationRemoteDataSource {
+  final DioHelper dioHelper;
+  AuthenticationRemoteDataSource(this.dioHelper);
   @override
   Future<AuthenticationModel> login(LoginParameter loginParameter) async {
     try{
-      final response = await DioHelper.postData(
+      final response = await dioHelper.postData(
         url: EndPoints.login,
         data: {
           'phoneNumber': loginParameter.phone,
@@ -45,7 +47,7 @@ class AuthenticationRemoteDataSource extends BaseAuthenticationRemoteDataSource 
   @override
   Future<AuthenticationModel> register(RegisterParameter registerParameter) async {
     try{
-      final response = await DioHelper.postData(
+      final response = await dioHelper.postData(
         url: EndPoints.register,
         data: {
           'phoneNumber': registerParameter.phone,
@@ -63,7 +65,7 @@ class AuthenticationRemoteDataSource extends BaseAuthenticationRemoteDataSource 
   @override
   Future<AuthenticationModel> verifyPhone(VerifyPhoneParameter parameter) async {
     try {
-      final response = await DioHelper.postData(
+      final response = await dioHelper.postData(
         url: EndPoints.verifyPhone,
         data: {
           'phoneNumber': parameter.phone,
@@ -82,7 +84,7 @@ class AuthenticationRemoteDataSource extends BaseAuthenticationRemoteDataSource 
   @override
   Future<AuthenticationModel> forgetPassword({required String phone}) async{
     try {
-      final response = await DioHelper.postData(
+      final response = await dioHelper.postData(
         url: EndPoints.forgetPassword,
         data: {
           'phoneNumber': phone,
@@ -99,7 +101,7 @@ class AuthenticationRemoteDataSource extends BaseAuthenticationRemoteDataSource 
   @override
   Future<AuthenticationModel> resetPassword(ResetPasswordParameters resetPasswordParameters) async{
     try {
-      final response = await DioHelper.postData(
+      final response = await dioHelper.postData(
         url: EndPoints.resetPassword,
         data: {
           "phoneNumber": resetPasswordParameters.phone,

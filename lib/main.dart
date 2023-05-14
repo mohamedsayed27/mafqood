@@ -33,8 +33,6 @@ void main() async {
   runApp(const MyApp());
 }
 
-
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -44,29 +42,47 @@ class MyApp extends StatelessWidget {
       designSize: const Size(428, 926),
       builder: (BuildContext context, Widget? child) {
         return MultiBlocProvider(
-            providers: [
-              BlocProvider(create: (context) => UserCubit(sl(),sl(),sl(),sl(),sl())),
-              BlocProvider(create: (context) => LostPeopleCubit(sl(), sl())),
-              BlocProvider(create: (context) => GoogleMapsCubit()..getCurrentPosition()),
-            ],
-            child: MaterialApp(
-              title: 'مفقود',
-              localizationsDelegates: const [
-                GlobalCupertinoLocalizations.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-              ],
-              supportedLocales: const [
-                Locale("ar", "AE"),
-              ],
-              theme: ThemeData(
-                primarySwatch:
-                    createMaterialColor(AppColorsLightTheme.primaryColor),
+          providers: [
+            BlocProvider(
+              create: (context) => UserCubit(
+                sl(),
+                sl(),
+                sl(),
+                sl(),
+                sl(),
               ),
-              onGenerateRoute: AppRouter.generateRoute,
-              initialRoute: ScreenName.splashscreen,
-              // home:  OtpVerificationNumberScreen(phone: '01124276092',),
-            ));
+            ),
+            BlocProvider(
+              create: (context) => LostPeopleCubit(
+                sl(),
+                sl(),
+                sl(),
+                sl(),
+                sl(),
+              )..getMyLostPeopleList(),
+            ),
+            BlocProvider(
+                create: (context) => GoogleMapsCubit()..getCurrentPosition()),
+          ],
+          child: MaterialApp(
+            title: 'مفقود',
+            localizationsDelegates: const [
+              GlobalCupertinoLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+            ],
+            supportedLocales: const [
+              Locale("ar", "AE"),
+            ],
+            theme: ThemeData(
+              primarySwatch:
+                  createMaterialColor(AppColorsLightTheme.primaryColor),
+            ),
+            onGenerateRoute: AppRouter.generateRoute,
+            initialRoute: ScreenName.splashscreen,
+            // home:  TryScreen(),
+          ),
+        );
       },
     );
   }

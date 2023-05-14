@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mafqood/presentation/screens/main_layout_screens/search_person_screen.dart';
 import 'package:mafqood/presentation/screens/main_layout_screens/upload_data_screen.dart';
 
+import '../../../core/constants/constants.dart';
 import '../../../core/global/theme/app_colors_light_theme.dart';
 
 class MainLayout extends StatefulWidget {
@@ -13,11 +14,15 @@ class MainLayout extends StatefulWidget {
 }
 
 class _MainLayoutState extends State<MainLayout> {
-  List<Widget> screens = [const UploadData(), const SearchPerson(),];
+  List<Widget> screens = [
+    const UploadData(),
+    const SearchPerson(),
+  ];
   int currentScreenIndex = 0;
 
   @override
   Widget build(BuildContext context) {
+    print(token);
     return SafeArea(
       child: Scaffold(
         body: screens[currentScreenIndex],
@@ -37,22 +42,18 @@ class _MainLayoutState extends State<MainLayout> {
           unselectedLabelStyle: const TextStyle(
             color: Colors.grey,
           ),
-          onTap: (index){
+          onTap: (index) {
             setState(() {
               currentScreenIndex = index;
             });
           },
           items: [
             BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home
-              ),
+              icon: Icon(Icons.home),
               label: 'ارفاق بيانات',
             ),
             BottomNavigationBarItem(
-              icon: Icon(
-                  Icons.person
-              ),
+              icon: Icon(Icons.person),
               label: 'بحث عن مجهول',
             ),
           ],

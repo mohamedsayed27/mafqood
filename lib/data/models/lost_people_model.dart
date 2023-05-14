@@ -31,6 +31,8 @@ class DataModel extends Data {
     required super.lat,
     required super.url,
     required super.publicId,
+    required super.latFind,
+    required super.longFind,
   });
 
   factory DataModel.fromJson(Map<String, dynamic> json) {
@@ -46,6 +48,8 @@ class DataModel extends Data {
       lat: json['lat'],
       url: json['url'],
       publicId: json['publicId'],
+      latFind: json['latFind'],
+      longFind: json['longFind'],
     );
   }
 }
