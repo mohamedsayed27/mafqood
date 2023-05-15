@@ -22,7 +22,8 @@ class UploadDataWidget extends StatelessWidget {
       this.isPhone = false,
       required this.fieldTitle,
       required this.fieldHintText,
-      this.onTap, this.readOnly = false})
+      this.onTap,
+      this.readOnly = false})
       : super(key: key);
 
   @override
@@ -47,7 +48,7 @@ class UploadDataWidget extends StatelessWidget {
                 controller: controller,
               )
             : AuthTextFormField(
-          readOnly: readOnly,
+                readOnly: readOnly,
                 onTap: onTap,
                 hintText: fieldHintText,
                 controller: controller,
