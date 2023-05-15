@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mafqood/core/cache_manager/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../core/app_router/screens_name.dart';
-import '../../../core/global/assets_path/images_path.dart';
-import '../../../core/global/theme/app_colors_light_theme.dart';
+import '../../../core/cache_manager/cache_keys.dart';
+import '../../../core/assets_path/images_path.dart';
+import '../../../core/theme/app_colors_light_theme.dart';
 import '../../widgets_and_components/intro_screens_widgets/boarding_button.dart';
 import '../../widgets_and_components/intro_screens_widgets/images_widget.dart';
 import '../../widgets_and_components/intro_screens_widgets/onboarding_class.dart';
@@ -87,11 +89,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             child: CustomBoardingButton(
               isLast: isLast,
               isLastTap: () {
-                Navigator.pushNamedAndRemoveUntil(context, ScreenName.loginScreen, (route) => false);
-                // CacheHelper.saveData(key: CacheKeys.onboarding, value: true).whenComplete((){
-                //
-                // });
-                // print("object");
+                CacheHelper.saveData(key: CacheKeys.onboarding, value: true).then((value) {
+                  Navigator.pushNamedAndRemoveUntil(context, ScreenName.loginScreen, (route) => false);
+                });
               },
               isTapped: () {
                 pageViewController.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.fastOutSlowIn);

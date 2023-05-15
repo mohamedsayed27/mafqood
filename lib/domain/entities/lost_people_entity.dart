@@ -29,6 +29,8 @@ class Data extends Equatable {
   final double? lat;
   final String? url;
   final String? publicId;
+  final int? longFind;
+  final int? latFind;
 
   const Data(
       {this.id,
@@ -40,7 +42,8 @@ class Data extends Equatable {
       this.phoneNumber,
       this.long,
       this.lat,
-      this.url,
+        this.longFind, this.latFind,
+        this.url,
       this.publicId});
 
   @override
@@ -57,5 +60,6 @@ class Data extends Equatable {
         lat,
         url,
         publicId,
-      ];
+    longFind, latFind,
+  ];
 }

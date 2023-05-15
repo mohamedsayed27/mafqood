@@ -6,8 +6,8 @@ import 'package:mafqood/domain/usecases/auth_usecases/register_usecase.dart';
 import 'package:mafqood/presentation/widgets_and_components/shred_widgets/custom_button.dart';
 
 import '../../../core/constants/constants.dart';
-import '../../../core/global/assets_path/fonts_path.dart';
-import '../../../core/global/theme/app_colors_light_theme.dart';
+import '../../../core/assets_path/fonts_path.dart';
+import '../../../core/theme/app_colors_light_theme.dart';
 import '../../controllers/user_cubit/user_cubit.dart';
 import '../../controllers/user_cubit/user_state.dart';
 import '../../widgets_and_components/shred_widgets/auth_text_button.dart';

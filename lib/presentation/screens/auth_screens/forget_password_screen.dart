@@ -5,8 +5,8 @@ import 'package:mafqood/core/app_router/screens_name.dart';
 
 import '../../../core/constants/constants.dart';
 import '../../../core/constants/reg_exp.dart';
-import '../../../core/global/assets_path/fonts_path.dart';
-import '../../../core/global/theme/app_colors_light_theme.dart';
+import '../../../core/assets_path/fonts_path.dart';
+import '../../../core/theme/app_colors_light_theme.dart';
 import '../../controllers/user_cubit/user_cubit.dart';
 import '../../controllers/user_cubit/user_state.dart';
 import '../../widgets_and_components/auth_widgets/auth_text_form_field.dart';

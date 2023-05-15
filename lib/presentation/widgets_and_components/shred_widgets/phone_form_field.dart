@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/constants/reg_exp.dart';
-import '../../../core/global/theme/app_colors_light_theme.dart';
+import '../../../core/theme/app_colors_light_theme.dart';
 import '../auth_widgets/auth_text_form_field.dart';
 
 class PhoneFormField extends StatelessWidget {

@@ -10,8 +10,8 @@ import 'package:mafqood/presentation/controllers/lost_people_cubit/lost_people_c
 import 'package:mafqood/presentation/controllers/lost_people_cubit/lost_people_state.dart';
 import 'package:mafqood/presentation/widgets_and_components/shred_widgets/custom_button.dart';
 
-import '../../../core/global/assets_path/fonts_path.dart';
-import '../../../core/global/theme/app_colors_light_theme.dart';
+import '../../../core/assets_path/fonts_path.dart';
+import '../../../core/theme/app_colors_light_theme.dart';
 import '../../../domain/usecases/lost_people_usecases/add_lost_person_usecase.dart';
 import '../../controllers/google_maps_cubit/google_maps_cubit.dart';
 import '../../widgets_and_components/google_maps_widgets/choose_location_type_alert_dialog.dart';

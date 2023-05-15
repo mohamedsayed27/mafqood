@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mafqood/core/app_router/screens_name.dart';
+import 'package:mafqood/core/cache_manager/cache_keys.dart';
+import 'package:mafqood/core/cache_manager/shared_preferences.dart';
 import 'package:mafqood/presentation/controllers/user_cubit/user_cubit.dart';
 import 'package:mafqood/presentation/controllers/user_cubit/user_state.dart';
 
 import '../../../core/constants/constants.dart';
-import '../../../core/global/assets_path/fonts_path.dart';
-import '../../../core/global/theme/app_colors_light_theme.dart';
+import '../../../core/assets_path/fonts_path.dart';
+import '../../../core/theme/app_colors_light_theme.dart';
 import '../../widgets_and_components/shred_widgets/auth_text_button.dart';
 import '../../widgets_and_components/shred_widgets/custom_button.dart';
 import '../../widgets_and_components/shred_widgets/logo_text.dart';
@@ -122,8 +124,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             errorType: 0,
                             message: state.authenticationEntity.message!);
                         print(state.authenticationEntity);
-                        Navigator.pushNamedAndRemoveUntil(context,
-                            ScreenName.mainLayoutScreen, (route) => false);
+                        CacheHelper.saveData(key: CacheKeys.token, value: state.authenticationEntity.data!.token).whenComplete(() {
+                          token = CacheHelper.getData(key: CacheKeys.token);
+                          Navigator.pushNamedAndRemoveUntil(context,
+                              ScreenName.mainLayoutScreen, (route) => false);
+                        });
                       } else if (state is LoginError) {
                         Navigator.pop(context);
                         showToast(

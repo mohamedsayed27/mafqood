@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/global/theme/app_colors_light_theme.dart';
+import '../../../core/theme/app_colors_light_theme.dart';
 import '../auth_widgets/auth_text_form_field.dart';
 
 class NameFormField extends StatelessWidget {
