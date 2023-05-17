@@ -8,6 +8,7 @@ import 'core/assets_path/gif_path.dart';
 class TryScreen extends StatelessWidget {
   const TryScreen({Key? key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
