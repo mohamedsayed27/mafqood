@@ -92,6 +92,7 @@ flutter:
     - assets/images/
     - assets/svg/
     - assets/json/
+    - assets/gif/
 
   # assets:
   #   - images/a_dot_burr.jpeg

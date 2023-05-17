@@ -5,6 +5,7 @@ import 'package:mafqood/presentation/widgets_and_components/shred_widgets/image_
 import 'package:mafqood/presentation/widgets_and_components/shred_widgets/upload_data_component.dart';
 
 import '../../core/assets_path/fonts_path.dart';
+import 'auth_widgets/auth_text_form_field.dart';
 
 class AddLostPeopleContainer extends StatefulWidget {
   final TextEditingController? name;
@@ -27,7 +28,7 @@ class AddLostPeopleContainer extends StatefulWidget {
 }
 
 class _AddLostPeopleContainerState extends State<AddLostPeopleContainer> {
-  RangeValues values = RangeValues(1, 100);
+  RangeValues values = const RangeValues(1, 5);
 
   @override
   Widget build(BuildContext context) {
@@ -42,11 +43,16 @@ class _AddLostPeopleContainerState extends State<AddLostPeopleContainer> {
       child: Column(
         children: [
           SizedBox(height: 20.h,),
-          UploadDataWidget(
+          AuthTextFormField(
+            readOnly: false,
+            onTap: (){},
+            hintText: 'اكتب الاسم',
             controller: TextEditingController(),
-            fieldTitle: 'اكتب الاسم',
-            fieldHintText: 'الاسم',
-            iconPath: Icons.person,
+            keyboardType: TextInputType.text,
+            prefix: const Icon(
+              Icons.person,
+              color: AppColorsLightTheme.primaryColor,
+            ),
           ),
           SizedBox(height: 20.h,),
           Container(
@@ -83,7 +89,7 @@ class _AddLostPeopleContainerState extends State<AddLostPeopleContainer> {
             ),
           ),
           SizedBox(height: 20.h,),
-          ImagePickerContainer(),
+          const ImagePickerContainer(),
           SizedBox(height: 20.h,),
           Container(
             height: 121.h,
@@ -99,7 +105,11 @@ class _AddLostPeopleContainerState extends State<AddLostPeopleContainer> {
               inactiveColor: Colors.grey.withOpacity(0.5),
               activeColor: AppColorsLightTheme.primaryColor,
               values: values,
-              onChanged: (RangeValues values) {},
+              onChanged: (RangeValues values) {
+                setState(() {
+                  this.values = values;
+                });
+              },
             ),
           )
         ],

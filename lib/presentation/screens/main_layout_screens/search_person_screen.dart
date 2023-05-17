@@ -40,7 +40,7 @@ class _SearchPersonState extends State<SearchPerson> {
               var cubit = LostPeopleCubit.get(context);
               return InkWell(
                 onTap: () {
-                  cubit.getLostPersonImagePicked(1);
+                  cubit.getImagePick(1,cubit.lostPersonImage!);
                 },
                 child: Container(
                   height: 200,

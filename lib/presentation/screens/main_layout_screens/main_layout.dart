@@ -35,6 +35,7 @@ class _MainLayoutState extends State<MainLayout> {
             selectedIndex: currentScreenIndex,
             onChanged: (int index) {
               if(currentScreenIndex!=index){
+                print(token);
                 setState(() {
                   currentScreenIndex = index;
                 });

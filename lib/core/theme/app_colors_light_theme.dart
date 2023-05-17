@@ -26,8 +26,9 @@ class AppColorsLightTheme{
   static const blueTextColor = Color(0xff89CFF0);
   static const greyTextColor = Color(0xffAAAAAA);
   static const greyOtpFieldColor = Color(0xffD9D9D9);
+  static const greySeacrTextFilledColor =  Color(0xffD9D9D9);
   static const greyColorContainers = Color(0xffF0F0F0);
-  static const authTextFieldFillColor =  Color(0xffD9D9D9);
+  static const authTextFieldFillColor =  Color(0xffF9F9F9);
   static const bottomNavBarGreyIconColor =  Color(0xff777777);
   static Color pinFieldColor =  const Color(0xffD9D9D9).withOpacity(0.6);
 }

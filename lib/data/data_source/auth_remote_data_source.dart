@@ -17,9 +17,7 @@ abstract class BaseAuthenticationRemoteDataSource {
 
   Future<AuthenticationModel> verifyPhone(VerifyPhoneParameter parameter);
 
-  Future<AuthenticationModel> forgetPassword({
-    required String phone,
-  });
+  Future<AuthenticationModel> forgetPassword({required String phone,});
 
   Future<AuthenticationModel> resetPassword(ResetPasswordParameters resetPasswordParameters);
 }
@@ -74,8 +72,6 @@ class AuthenticationRemoteDataSource extends BaseAuthenticationRemoteDataSource 
       );
       return AuthenticationModel.fromJson(response.data);
     }on DioError catch(error){
-      print(error.message);
-      print(error.response!.data);
       throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
 

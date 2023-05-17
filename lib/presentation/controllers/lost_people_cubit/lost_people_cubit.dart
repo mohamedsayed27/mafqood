@@ -10,10 +10,11 @@ import '../../../core/theme/app_colors_light_theme.dart';
 import '../../../domain/usecases/lost_people_usecases/get_areas_usecase.dart';
 import '../../../domain/usecases/lost_people_usecases/get_cities_usecase.dart';
 import '../../../domain/usecases/lost_people_usecases/help_lost_person_usecase.dart';
+import '../../../domain/usecases/lost_people_usecases/search_lost_person_by_image.dart';
 import 'lost_people_state.dart';
 
 class LostPeopleCubit extends Cubit<LostPeopleState> {
-  LostPeopleCubit(this._addLostPersonDataUsecase, this._sendLostPersonDataUsecase, this._getMyLostPeopleUsecase, this._getCitiesUsecase, this._getAreasUsecase) : super(LostPeopleInitial());
+  LostPeopleCubit(this._addLostPersonDataUsecase, this._sendLostPersonDataUsecase, this._getMyLostPeopleUsecase, this._getCitiesUsecase, this._getAreasUsecase, this._searchForPersonByImageUsecase) : super(LostPeopleInitial());
   static LostPeopleCubit get(context) => BlocProvider.of(context);
   DateTime? dateTime;
   final AddLostPersonDataUsecase _addLostPersonDataUsecase;
@@ -21,11 +22,13 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
   final GetMyLostPeopleUsecase _getMyLostPeopleUsecase;
   final GetCitiesUsecase _getCitiesUsecase;
   final GetAreasUsecase _getAreasUsecase;
+  final SearchForPersonByImageUsecase _searchForPersonByImageUsecase;
   File? imagePicked;
   File? lostPersonImage;
+  File? searchLostPersonImage;
   final _picker = ImagePicker();
 
-  selectImage(BuildContext context) async {
+  selectImage(BuildContext context,File? image) async {
     return showDialog(
       context: context,
       builder: (context) {
@@ -37,7 +40,7 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
               child: const Text('التقط صوره'),
               onPressed: () async {
                 Navigator.of(context).pop();
-                getImagePick(0);
+                getImagePick(0,image);
               },
             ),
             SimpleDialogOption(
@@ -45,7 +48,7 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
               child: const Text('قم بأختيار صورة'),
               onPressed: () async {
                 Navigator.of(context).pop();
-                getImagePick(1);
+                getImagePick(1,image);
               },
             ),
             SimpleDialogOption(
@@ -86,23 +89,13 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
     });
   }
 
-  Future<void> getImagePick(int source) async {
+  Future<void> getImagePick(int source,File? image) async {
     final pickedFile = await _picker.pickImage(source: source == 1?ImageSource.gallery:ImageSource.camera);
     if (pickedFile != null) {
-      imagePicked = File(pickedFile.path);
+      image = File(pickedFile.path);
       emit(GetPickedImageSuccessState());
     } else {
       emit(GetPickedImageErrorState());
-    }
-  }
-
-  Future<void> getLostPersonImagePicked(int source) async {
-    final pickedFile = await _picker.pickImage(source: source == 1?ImageSource.gallery:ImageSource.camera);
-    if (pickedFile != null) {
-      lostPersonImage = File(pickedFile.path);
-      emit(GetLostPersonPickedImageSuccessState());
-    } else {
-      emit(GetLostPersonPickedImageErrorState());
     }
   }
 
@@ -127,6 +120,18 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
     }, (r) {
       print(r);
       emit(SendLostPersonDataSuccess(lostPeopleEntity: r));
+    });
+  }
+
+  void searchForLostPersonByImage() async {
+    emit(SearchForLostPersonDataLoading());
+    final response = await _searchForPersonByImageUsecase(searchLostPersonImage!);
+    response.fold((l) {
+      print(l);
+      emit(SearchForLostPersonDataError(authErrorException: l));
+    }, (r) {
+      print(r);
+      emit(SearchForLostPersonDataSuccess(lostPersonEntity: r));
     });
   }
 

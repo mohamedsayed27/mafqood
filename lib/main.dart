@@ -3,16 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mafqood/core/app_router/app_router.dart';
-import 'package:mafqood/core/app_router/screens_name.dart';
 import 'package:mafqood/core/cache_manager/shared_preferences.dart';
 import 'package:mafqood/core/network/dio_helper.dart';
 import 'package:mafqood/presentation/controllers/google_maps_cubit/google_maps_cubit.dart';
 import 'package:mafqood/presentation/controllers/lost_people_cubit/lost_people_cubit.dart';
 import 'package:mafqood/presentation/controllers/user_cubit/user_cubit.dart';
-import 'package:mafqood/presentation/screens/main_layout_screens/add_lost_eople_screen.dart';
-import 'package:mafqood/presentation/screens/main_layout_screens/home_screen.dart';
-import 'package:mafqood/presentation/screens/main_layout_screens/search_screen.dart';
+import 'package:mafqood/try_screen.dart';
 import 'bloc_observer.dart';
 import 'core/theme/app_colors_light_theme.dart';
 import 'core/notification/notification_services.dart';
@@ -62,6 +58,7 @@ class MyApp extends StatelessWidget {
                 sl(),
                 sl(),
                 sl(),
+                sl(),
               )..getMyLostPeopleList(),
             ),
             BlocProvider(
@@ -81,9 +78,9 @@ class MyApp extends StatelessWidget {
               primarySwatch:
                   createMaterialColor(AppColorsLightTheme.primaryColor),
             ),
-            onGenerateRoute: AppRouter.generateRoute,
-            initialRoute: ScreenName.splashscreen,
-            // home:  SearchScreen(),
+            // onGenerateRoute: AppRouter.generateRoute,
+            // initialRoute: ScreenName.splashscreen,
+            home:  TryScreen(),
           ),
         );
       },

@@ -86,7 +86,7 @@ class _UploadDataState extends State<UploadData> {
                     alignment: Alignment.center,
                     child: IconButton(
                       onPressed: () {
-                        cubit.selectImage(context);
+                        cubit.selectImage(context,cubit.imagePicked!);
                       },
                       iconSize: 38.r,
                       padding: const EdgeInsets.symmetric(
