@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:mafqood/core/base_usecases/base_usecase.dart';
 import 'package:mafqood/core/constants/constants.dart';
@@ -13,6 +15,7 @@ import '../../core/network/error_message_model.dart';
 import '../../domain/usecases/lost_people_usecases/help_lost_person_usecase.dart';
 import '../../domain/usecases/lost_people_usecases/update_my_lost_usecase.dart';
 import '../models/get_my_lost_people_model.dart';
+import '../models/lost_person_model.dart';
 
 abstract class BaseLostPeopleRemoteDataSource {
   Future<LostPeopleModel> addLostPersonData(
@@ -26,17 +29,17 @@ abstract class BaseLostPeopleRemoteDataSource {
 
   Future<GetMyLostPeopleModel> getMyLostPeople(NoParameters parameters);
 
+  Future<LostPersonModel> searchForLostPersonByImage(File image);
 }
 
 class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
   final DioHelper dioHelper;
 
   LostPeopleRemoteDataSource(this.dioHelper);
+
   @override
   Future<LostPeopleModel> addLostPersonData(
       AddLostPersonDataParameters parameters) async {
-    print(parameters.lng);
-    print(parameters.lat);
     try {
       final response = await dioHelper.postData(
         token: token,
@@ -56,7 +59,6 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
       );
       return LostPeopleModel.fromJson(response.data);
     } on DioError catch (error) {
-      print(error);
       throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
   }
@@ -64,8 +66,6 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
   @override
   Future<LostPeopleModel> helpLostPerson(
       HelpLostPersonDataParameters parameters) async {
-    print(parameters.lng);
-    print(parameters.lat);
     try {
       final response = await dioHelper.postData(
         token: token,
@@ -79,7 +79,6 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
       );
       return LostPeopleModel.fromJson(response.data);
     } on DioError catch (error) {
-      print(error);
       throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
   }
@@ -104,13 +103,30 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
   @override
   Future<GetMyLostPeopleModel> getMyLostPeople(NoParameters parameters) async {
     try {
-      final response = await dioHelper.getData(url: EndPoints.getMyLostPeople,bearerToken: token);
-      print(response);
+      final response = await dioHelper.getData(
+          url: EndPoints.getMyLostPeople, bearerToken: token);
       return GetMyLostPeopleModel.fromJson(response.data);
     } on DioError catch (error) {
-      print(token);
       throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
   }
 
+  @override
+  Future<LostPersonModel> searchForLostPersonByImage(File image) async {
+    try {
+      final response = await dioHelper.postData(
+        token: token,
+        url: EndPoints.findByPhoto,
+        data: FormData.fromMap({
+          'File': await MultipartFile.fromFile(
+            image.path,
+            filename: path.basename(image.path),
+          ),
+        }),
+      );
+      return LostPersonModel.fromJson(response.data);
+    } on DioError catch (error) {
+      throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
+    }
+  }
 }

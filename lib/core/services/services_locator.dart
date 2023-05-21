@@ -19,6 +19,7 @@ import '../../domain/usecases/lost_people_usecases/get_areas_usecase.dart';
 import '../../domain/usecases/lost_people_usecases/get_cities_usecase.dart';
 import '../../domain/usecases/lost_people_usecases/get_my_lost_people_usecase.dart';
 import '../../domain/usecases/lost_people_usecases/help_lost_person_usecase.dart';
+import '../../domain/usecases/lost_people_usecases/search_lost_person_by_image.dart';
 import '../../presentation/controllers/google_maps_cubit/google_maps_cubit.dart';
 import '../../presentation/controllers/lost_people_cubit/lost_people_cubit.dart';
 import '../../presentation/controllers/user_cubit/user_cubit.dart';
@@ -31,7 +32,7 @@ class ServicesLocator{
     ///---------------BLoC---------------
 
     sl.registerFactory(() => UserCubit(sl(),sl(),sl(),sl(),sl()));
-    sl.registerFactory(() => LostPeopleCubit(sl(), sl(), sl(), sl(), sl()));
+    sl.registerFactory(() => LostPeopleCubit(sl(), sl(), sl(), sl(), sl(),sl()));
     sl.registerFactory(() => GoogleMapsCubit());
 
 
@@ -48,6 +49,7 @@ class ServicesLocator{
     sl.registerLazySingleton(() => AddLostPersonDataUsecase(lostPeopleBaseRepository: sl()));
     sl.registerLazySingleton(() => HelpLostPersonDataUsecase(lostPeopleBaseRepository: sl()));
     sl.registerLazySingleton(() => GetMyLostPeopleUsecase(lostPeopleBaseRepository: sl()));
+    sl.registerLazySingleton(() => SearchForPersonByImageUsecase(lostPeopleBaseRepository: sl()));
     ///LOST PEOPLE USECASES ------------------->>>>>
 
     sl.registerLazySingleton(() => GetAreasUsecase(lostPeopleBaseRepository: sl()));

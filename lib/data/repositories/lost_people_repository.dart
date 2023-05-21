@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:mafqood/core/base_usecases/base_usecase.dart';
 import 'package:mafqood/core/error/auth_error_exception.dart';
@@ -7,6 +9,7 @@ import 'package:mafqood/domain/entities/basic_response_entity.dart';
 import 'package:mafqood/domain/entities/city_entity.dart';
 import 'package:mafqood/domain/entities/get_my_lost_peoples_entity.dart';
 import 'package:mafqood/domain/entities/lost_people_entity.dart';
+import 'package:mafqood/domain/entities/lost_person_data_entity.dart';
 import 'package:mafqood/domain/repository/lost_people_base_repository/lost_people_base_repository.dart';
 import 'package:mafqood/domain/usecases/lost_people_usecases/add_lost_person_usecase.dart';
 import 'package:mafqood/domain/usecases/lost_people_usecases/help_lost_person_usecase.dart';
@@ -103,5 +106,11 @@ class LostPeopleRepository extends LostPeopleBaseRepository {
         ),
       );
     }
+  }
+
+  @override
+  Future<Either<AuthErrorException, LostPersonEntity>> searchLostPersonByItsImage(File image) {
+    // TODO: implement searchLostPersonByItsImage
+    throw UnimplementedError();
   }
 }

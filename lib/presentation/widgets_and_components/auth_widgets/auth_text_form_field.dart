@@ -64,7 +64,7 @@ class AuthTextFormField extends StatelessWidget {
         fillColor: AppColorsLightTheme.authTextFieldFillColor,
         hintText: hintText,
         hintStyle: TextStyle(
-            color: Colors.grey,
+            color: AppColorsLightTheme.bottomNavBarGreyIconColor,
             fontSize: 14.sp,
             fontFamily: FontsPath.sukarRegular),
         suffixIcon: suffix,

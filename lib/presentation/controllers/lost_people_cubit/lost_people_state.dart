@@ -3,6 +3,7 @@ import 'package:mafqood/domain/entities/get_my_lost_peoples_entity.dart';
 
 import '../../../core/error/auth_error_exception.dart';
 import '../../../domain/entities/lost_people_entity.dart';
+import '../../../domain/entities/lost_person_data_entity.dart';
 
 abstract class LostPeopleState {}
 
@@ -33,6 +34,19 @@ class SendLostPersonDataSuccess extends LostPeopleState {
 class SendLostPersonDataError extends LostPeopleState {
   final AuthErrorException authErrorException;
   SendLostPersonDataError({required this.authErrorException});
+}
+
+
+
+class SearchForLostPersonDataLoading extends LostPeopleState {}
+class SearchForLostPersonDataSuccess extends LostPeopleState {
+  final LostPersonEntity lostPersonEntity;
+
+  SearchForLostPersonDataSuccess({required this.lostPersonEntity});
+}
+class SearchForLostPersonDataError extends LostPeopleState {
+  final AuthErrorException authErrorException;
+  SearchForLostPersonDataError({required this.authErrorException});
 }
 
 
