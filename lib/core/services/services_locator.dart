@@ -46,8 +46,8 @@ class ServicesLocator{
     sl.registerLazySingleton(() => VerifyPhoneUsecase(authenticationBaseRepository: sl()));
 
     ///LOST PEOPLE USECASES ------------------->>>>>
-    sl.registerLazySingleton(() => AddLostPersonDataUsecase(lostPeopleBaseRepository: sl()));
-    sl.registerLazySingleton(() => HelpLostPersonDataUsecase(lostPeopleBaseRepository: sl()));
+    sl.registerLazySingleton(() => AddLostPersonFromFamilyDataUsecase(lostPeopleBaseRepository: sl()));
+    sl.registerLazySingleton(() => AddLostPersonsDataFromAnonymousUsecase(lostPeopleBaseRepository: sl()));
     sl.registerLazySingleton(() => GetMyLostPeopleUsecase(lostPeopleBaseRepository: sl()));
     sl.registerLazySingleton(() => SearchForPersonByImageUsecase(lostPeopleBaseRepository: sl()));
     ///LOST PEOPLE USECASES ------------------->>>>>

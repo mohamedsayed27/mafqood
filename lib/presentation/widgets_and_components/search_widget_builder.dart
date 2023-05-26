@@ -18,7 +18,7 @@ class SearchWidgetBuilder extends StatelessWidget {
             width: 182.w,
             height: 162.h,
             decoration: BoxDecoration(
-              color: AppColorsLightTheme.authTextFieldFillColor,
+              color: AppColorsLightTheme.greySeacrTextFilledColor,
               borderRadius: BorderRadius.circular(20.r),
               boxShadow: [
                 BoxShadow(

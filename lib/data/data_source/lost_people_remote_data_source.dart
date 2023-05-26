@@ -18,11 +18,11 @@ import '../models/get_my_lost_people_model.dart';
 import '../models/lost_person_model.dart';
 
 abstract class BaseLostPeopleRemoteDataSource {
-  Future<LostPeopleModel> addLostPersonData(
-      AddLostPersonDataParameters parameters);
+  Future<LostPeopleModel> addLostPersonDataFromFamily(
+      AddLostPersonFromFamilyDataParameters parameters);
 
   Future<LostPeopleModel> helpLostPerson(
-      HelpLostPersonDataParameters parameters);
+      AddLostPersonsDataFromAnonymousParameters parameters);
 
   Future<BasicSuccessResponseModel> updateMyLost(
       UpdateMyLostParameters parameters);
@@ -38,12 +38,12 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
   LostPeopleRemoteDataSource(this.dioHelper);
 
   @override
-  Future<LostPeopleModel> addLostPersonData(
-      AddLostPersonDataParameters parameters) async {
+  Future<LostPeopleModel> addLostPersonDataFromFamily(
+      AddLostPersonFromFamilyDataParameters parameters) async {
     try {
       final response = await dioHelper.postData(
         token: token,
-        url: EndPoints.sendLostData,
+        url: EndPoints.sendLostPersonDataFromFamily,
         data: FormData.fromMap({
           'File': await MultipartFile.fromFile(parameters.image.path,
               filename: path.basename(parameters.image.path)),
@@ -59,13 +59,14 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
       );
       return LostPeopleModel.fromJson(response.data);
     } on DioError catch (error) {
+      print(error);
       throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
   }
 
   @override
   Future<LostPeopleModel> helpLostPerson(
-      HelpLostPersonDataParameters parameters) async {
+      AddLostPersonsDataFromAnonymousParameters parameters) async {
     try {
       final response = await dioHelper.postData(
         token: token,
@@ -75,6 +76,9 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
               filename: path.basename(parameters.image.path)),
           'Long': parameters.lng,
           'Lat': parameters.lat,
+          'Name': parameters.name,
+          'MaxAge': parameters.maxEdge,
+          'MinAge': parameters.minEdge,
         }),
       );
       return LostPeopleModel.fromJson(response.data);

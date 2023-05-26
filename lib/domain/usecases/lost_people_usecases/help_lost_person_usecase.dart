@@ -8,32 +8,44 @@ import 'package:mafqood/domain/repository/lost_people_base_repository/lost_peopl
 import '../../../core/base_usecases/base_usecase.dart';
 import '../../entities/lost_people_entity.dart';
 
-class HelpLostPersonDataUsecase extends BaseUsecase<LostPeopleEntity, HelpLostPersonDataParameters> {
+class AddLostPersonsDataFromAnonymousUsecase
+    extends BaseUsecase<LostPeopleEntity, AddLostPersonsDataFromAnonymousParameters> {
   final LostPeopleBaseRepository lostPeopleBaseRepository;
 
-  HelpLostPersonDataUsecase({required this.lostPeopleBaseRepository});
+  AddLostPersonsDataFromAnonymousUsecase({required this.lostPeopleBaseRepository});
+
   @override
-  Future<Either<AuthErrorException, LostPeopleEntity>> call(HelpLostPersonDataParameters parameters) async{
-    return await lostPeopleBaseRepository.helpLostPersonsByPhoto(parameters);
+  Future<Either<AuthErrorException, LostPeopleEntity>> call(
+      AddLostPersonsDataFromAnonymousParameters parameters) async {
+    return await lostPeopleBaseRepository.addLostPersonsDataFromAnonymous(parameters);
   }
 }
 
-class HelpLostPersonDataParameters extends Equatable {
+class AddLostPersonsDataFromAnonymousParameters extends Equatable {
   final File image;
   final double lng;
   final double lat;
+  final String name;
+  final int maxEdge;
+  final int minEdge;
 
-  const HelpLostPersonDataParameters( {
+  const AddLostPersonsDataFromAnonymousParameters({
     required this.image,
     required this.lng,
     required this.lat,
+    required this.name,
+    required this.maxEdge,
+    required this.minEdge,
   });
 
   @override
   // TODO: implement props
   List<Object?> get props => [
-    image,
-    lng,
-    lat,
-  ];
+        image,
+        lng,
+        lat,
+        name,
+        maxEdge,
+        minEdge,
+      ];
 }

@@ -9,7 +9,7 @@ import '../../../core/assets_path/fonts_path.dart';
 import '../../../core/theme/app_colors_light_theme.dart';
 import '../../controllers/user_cubit/user_cubit.dart';
 import '../../controllers/user_cubit/user_state.dart';
-import '../../widgets_and_components/auth_widgets/auth_text_form_field.dart';
+import '../../widgets_and_components/auth_widgets/custom_text_form_field.dart';
 import '../../widgets_and_components/shred_widgets/custom_button.dart';
 import '../../widgets_and_components/shred_widgets/logo_text.dart';
 
@@ -86,7 +86,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 SizedBox(
                   height: 30.h,
                 ),
-                AuthTextFormField(
+                CustomTextFormField(
                   hintText: 'رقم الهاتف',
                   controller: phoneController,
                   keyboardType: TextInputType.phone,

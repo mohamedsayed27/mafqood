@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_colors_light_theme.dart';
-import '../auth_widgets/auth_text_form_field.dart';
+import '../auth_widgets/custom_text_form_field.dart';
 
 class NameFormField extends StatelessWidget {
   final String hintText;
@@ -10,7 +10,7 @@ class NameFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AuthTextFormField(
+    return CustomTextFormField(
       hintText: hintText,
       controller: controller,
       prefix: const Icon(

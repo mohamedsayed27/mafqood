@@ -10,7 +10,7 @@ factory LostPersonModel.fromJson(Map<String, dynamic> json) {
  return LostPersonModel( status : json['status'],
      message : json['message'],
      data : json['data'] != null ? new LostPersonDataModel.fromJson(json['data']) : null,
-  errors : json['errors'].cast<String>(),);
+  errors : json['errors']!=null?json['errors'].cast<String>():null,);
 }
 
 }

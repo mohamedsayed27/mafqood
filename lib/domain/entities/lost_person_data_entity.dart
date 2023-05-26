@@ -38,10 +38,10 @@ class LostPersonDataEntity extends Equatable {
   final String? area;
   final String? street;
   final String? phoneNumber;
-  final int? long;
-  final int? lat;
-  final int? longFind;
-  final int? latFind;
+  final double? long;
+  final double? lat;
+  final double? longFind;
+  final double? latFind;
   final String? url;
   final bool? status;
 

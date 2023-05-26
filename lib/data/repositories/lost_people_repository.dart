@@ -24,10 +24,10 @@ class LostPeopleRepository extends LostPeopleBaseRepository {
   LostPeopleRepository({required this.baseLostPeopleLocalDataSource,required this.baseLostPeopleRemoteDataSource});
 
   @override
-  Future<Either<AuthErrorException, LostPeopleEntity>> sendLostPersonsData(AddLostPersonDataParameters addLostPersonDataParameters) async {
+  Future<Either<AuthErrorException, LostPeopleEntity>> sendLostPersonsDataFromFamily(AddLostPersonFromFamilyDataParameters addLostPersonDataParameters) async {
     try {
       final response = await baseLostPeopleRemoteDataSource
-          .addLostPersonData(addLostPersonDataParameters);
+          .addLostPersonDataFromFamily(addLostPersonDataParameters);
       return Right(response);
     } on AuthErrorException catch (error) {
       return Left(
@@ -39,7 +39,7 @@ class LostPeopleRepository extends LostPeopleBaseRepository {
   }
 
   @override
-  Future<Either<AuthErrorException, LostPeopleEntity>> helpLostPersonsByPhoto(HelpLostPersonDataParameters helpLostPersonDataParameters) async{
+  Future<Either<AuthErrorException, LostPeopleEntity>> addLostPersonsDataFromAnonymous(AddLostPersonsDataFromAnonymousParameters helpLostPersonDataParameters) async{
     try {
       final response = await baseLostPeopleRemoteDataSource.helpLostPerson(helpLostPersonDataParameters);
       return Right(response);
@@ -109,8 +109,16 @@ class LostPeopleRepository extends LostPeopleBaseRepository {
   }
 
   @override
-  Future<Either<AuthErrorException, LostPersonEntity>> searchLostPersonByItsImage(File image) {
-    // TODO: implement searchLostPersonByItsImage
-    throw UnimplementedError();
+  Future<Either<AuthErrorException, LostPersonEntity>> searchLostPersonByItsImage(File image) async{
+    try {
+      final response = await baseLostPeopleRemoteDataSource.searchForLostPersonByImage(image);
+      return Right(response);
+    } on AuthErrorException catch (error) {
+      return Left(
+        AuthErrorException(
+          error.authErrorModel,
+        ),
+      );
+    }
   }
 }

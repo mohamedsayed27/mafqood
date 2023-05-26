@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 import 'package:mafqood/domain/entities/get_my_lost_peoples_entity.dart';
 
 import '../../../core/error/auth_error_exception.dart';
@@ -12,15 +14,15 @@ class LostPeopleInitial extends LostPeopleState {}
 
 
 
-class AddLostPersonDataLoading extends LostPeopleState {}
-class AddLostPersonDataSuccess extends LostPeopleState {
+class AddLostPersonDataFromFamilyLoading extends LostPeopleState {}
+class AddLostPersonDataFromFamilySuccess extends LostPeopleState {
   final LostPeopleEntity lostPeopleEntity;
 
-  AddLostPersonDataSuccess({required this.lostPeopleEntity});
+  AddLostPersonDataFromFamilySuccess({required this.lostPeopleEntity});
 }
-class AddLostPersonDataError extends LostPeopleState {
+class AddLostPersonDataFromFamilyError extends LostPeopleState {
   final AuthErrorException authErrorException;
-  AddLostPersonDataError({required this.authErrorException});
+  AddLostPersonDataFromFamilyError({required this.authErrorException});
 }
 
 
@@ -80,6 +82,9 @@ class GetAreasError extends LostPeopleState {
 
 
 class GetPickedImageSuccessState extends LostPeopleState {
+  final File? image;
+
+  GetPickedImageSuccessState({required this.image});
 
 }
 class GetPickedImageErrorState extends LostPeopleState {}
@@ -90,4 +95,14 @@ class GetDateTimePickedSuccessState extends LostPeopleState {
 
   GetDateTimePickedSuccessState(this.dateTime);
 }
-class GetDateTimePickedErrorState extends LostPeopleState {}
+class GetDateTimePickedErrorState extends LostPeopleState {
+
+}
+
+class ChangeAgeValueSuccess extends LostPeopleState {}
+class ChangeAreaDropdownValueSuccess extends LostPeopleState {}
+class ChangeCityDropdownValueSuccess extends LostPeopleState {
+  final String cityId;
+
+  ChangeCityDropdownValueSuccess({required this.cityId});
+}

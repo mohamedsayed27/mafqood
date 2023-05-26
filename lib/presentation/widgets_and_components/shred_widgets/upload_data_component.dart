@@ -4,7 +4,7 @@ import 'package:mafqood/presentation/widgets_and_components/shred_widgets/phone_
 
 import '../../../core/assets_path/fonts_path.dart';
 import '../../../core/theme/app_colors_light_theme.dart';
-import '../auth_widgets/auth_text_form_field.dart';
+import '../auth_widgets/custom_text_form_field.dart';
 
 class UploadDataWidget extends StatelessWidget {
   final TextEditingController controller;
@@ -47,7 +47,7 @@ class UploadDataWidget extends StatelessWidget {
                 hintText: fieldHintText,
                 controller: controller,
               )
-            : AuthTextFormField(
+            : CustomTextFormField(
                 readOnly: readOnly,
                 onTap: onTap,
                 hintText: fieldHintText,

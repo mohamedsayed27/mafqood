@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/constants/reg_exp.dart';
 import '../../../core/theme/app_colors_light_theme.dart';
-import '../auth_widgets/auth_text_form_field.dart';
+import '../auth_widgets/custom_text_form_field.dart';
 
 class PhoneFormField extends StatelessWidget {
   final String hintText;
@@ -12,7 +12,7 @@ class PhoneFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AuthTextFormField(
+    return CustomTextFormField(
       isEnable: isEnable,
       hintText: hintText,
       controller: controller,

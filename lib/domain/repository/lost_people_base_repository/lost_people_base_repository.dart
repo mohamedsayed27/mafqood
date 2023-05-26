@@ -14,8 +14,8 @@ import '../../entities/get_my_lost_peoples_entity.dart';
 import '../../entities/lost_person_data_entity.dart';
 
 abstract class LostPeopleBaseRepository{
-  Future<Either<AuthErrorException, LostPeopleEntity>> sendLostPersonsData(AddLostPersonDataParameters addLostPersonDataParameters);
-  Future<Either<AuthErrorException, LostPeopleEntity>> helpLostPersonsByPhoto(HelpLostPersonDataParameters helpLostPersonDataParameters);
+  Future<Either<AuthErrorException, LostPeopleEntity>> sendLostPersonsDataFromFamily(AddLostPersonFromFamilyDataParameters addLostPersonDataParameters);
+  Future<Either<AuthErrorException, LostPeopleEntity>> addLostPersonsDataFromAnonymous(AddLostPersonsDataFromAnonymousParameters helpLostPersonDataParameters);
   Future<Either<AuthErrorException, BasicSuccessResponseEntity>> updateMyLost(UpdateMyLostParameters updateMyLostParameters);
   Future<Either<AuthErrorException, LostPersonEntity>> searchLostPersonByItsImage(File image);
   Future<Either<AuthErrorException, GetMyLostPeopleEntity>> getMyLostPeople();
