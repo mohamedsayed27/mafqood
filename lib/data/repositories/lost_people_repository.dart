@@ -7,9 +7,11 @@ import 'package:mafqood/data/data_source/lost_people_remote_data_source.dart';
 import 'package:mafqood/domain/entities/area_entity.dart';
 import 'package:mafqood/domain/entities/basic_response_entity.dart';
 import 'package:mafqood/domain/entities/city_entity.dart';
+import 'package:mafqood/domain/entities/get_all_lost_entity.dart';
 import 'package:mafqood/domain/entities/get_my_lost_peoples_entity.dart';
 import 'package:mafqood/domain/entities/lost_people_entity.dart';
 import 'package:mafqood/domain/entities/lost_person_data_entity.dart';
+import 'package:mafqood/domain/entities/search_lost_by_name_entity.dart';
 import 'package:mafqood/domain/repository/lost_people_base_repository/lost_people_base_repository.dart';
 import 'package:mafqood/domain/usecases/lost_people_usecases/add_lost_person_usecase.dart';
 import 'package:mafqood/domain/usecases/lost_people_usecases/help_lost_person_usecase.dart';
@@ -120,5 +122,31 @@ class LostPeopleRepository extends LostPeopleBaseRepository {
         ),
       );
     }
+  }
+
+  @override
+  Future<Either<AuthErrorException, SearchLostPeopleEntity>> searchLostPeopleByName(String name) async{
+    try {
+      final response = await baseLostPeopleRemoteDataSource.searchForLostPersonByName(name);
+      return Right(response);
+    } on AuthErrorException catch (error) {
+      return Left(
+        AuthErrorException(
+          error.authErrorModel,
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<AuthErrorException, GetAllLostEntity>> getAllLost() {
+    // TODO: implement getAllLost
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<AuthErrorException, GetAllLostEntity>> getAllSurvivals() {
+    // TODO: implement getAllSurvivals
+    throw UnimplementedError();
   }
 }

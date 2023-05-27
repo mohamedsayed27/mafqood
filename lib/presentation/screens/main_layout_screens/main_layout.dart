@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mafqood/presentation/screens/main_layout_screens/search_person_screen.dart';
 import 'package:mafqood/presentation/screens/main_layout_screens/search_screen.dart';
-import 'package:mafqood/presentation/screens/main_layout_screens/upload_data_screen.dart';
 
 import '../../../core/constants/constants.dart';
 import '../../widgets_and_components/main_layout_widgets/bottom_nav_bar_widget.dart';
-import 'add_lost_eople_screen.dart';
+import 'add_lost_people_screen.dart';
 import 'home_screen.dart';
 
 class MainLayout extends StatefulWidget {

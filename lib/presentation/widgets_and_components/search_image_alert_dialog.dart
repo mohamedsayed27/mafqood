@@ -22,15 +22,15 @@ class SearchImageAlertDialog extends StatelessWidget {
         child: BlocConsumer<LostPeopleCubit, LostPeopleState>(
           listener: (context, state) {
             var cubit = LostPeopleCubit.get(context);
-            if (state is SearchForLostPersonDataLoading) {
+            if (state is SearchForLostPersonByImageDataLoading) {
               showProgressIndicator(context);
-            } else if (state is SearchForLostPersonDataError) {
+            } else if (state is SearchForLostPersonByImageDataError) {
               Navigator.pop(context);
               Navigator.pop(context);
               showToast(
                   errorType: 1,
                   message: state.authErrorException.authErrorModel.errors[0]);
-            } else if (state is SearchForLostPersonDataSuccess) {
+            } else if (state is SearchForLostPersonByImageDataSuccess) {
               Navigator.pop(context);
               Navigator.pop(context);
               Navigator.push(context, MaterialPageRoute(builder: (context)=>PersonDataScreen(lostPersonDataEntity: cubit.lostPersonDataEntity!,)));

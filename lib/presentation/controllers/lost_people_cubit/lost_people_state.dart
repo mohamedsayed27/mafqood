@@ -6,6 +6,7 @@ import 'package:mafqood/domain/entities/get_my_lost_peoples_entity.dart';
 import '../../../core/error/auth_error_exception.dart';
 import '../../../domain/entities/lost_people_entity.dart';
 import '../../../domain/entities/lost_person_data_entity.dart';
+import '../../../domain/entities/search_lost_by_name_entity.dart';
 
 abstract class LostPeopleState {}
 
@@ -40,15 +41,28 @@ class SendLostPersonDataError extends LostPeopleState {
 
 
 
-class SearchForLostPersonDataLoading extends LostPeopleState {}
-class SearchForLostPersonDataSuccess extends LostPeopleState {
+class SearchForLostPersonByImageDataLoading extends LostPeopleState {}
+class SearchForLostPersonByImageDataSuccess extends LostPeopleState {
   final LostPersonEntity lostPersonEntity;
 
-  SearchForLostPersonDataSuccess({required this.lostPersonEntity});
+  SearchForLostPersonByImageDataSuccess({required this.lostPersonEntity});
 }
-class SearchForLostPersonDataError extends LostPeopleState {
+class SearchForLostPersonByImageDataError extends LostPeopleState {
   final AuthErrorException authErrorException;
-  SearchForLostPersonDataError({required this.authErrorException});
+  SearchForLostPersonByImageDataError({required this.authErrorException});
+}
+
+
+
+class SearchForLostPersonByNameDataLoading extends LostPeopleState {}
+class SearchForLostPersonByNameDataSuccess extends LostPeopleState {
+  final SearchLostPeopleEntity searchLostPeopleEntity;
+
+  SearchForLostPersonByNameDataSuccess({required this.searchLostPeopleEntity});
+}
+class SearchForLostPersonByNameDataError extends LostPeopleState {
+  final AuthErrorException authErrorException;
+  SearchForLostPersonByNameDataError({required this.authErrorException});
 }
 
 

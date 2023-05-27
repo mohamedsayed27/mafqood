@@ -16,6 +16,7 @@ import '../../domain/usecases/lost_people_usecases/help_lost_person_usecase.dart
 import '../../domain/usecases/lost_people_usecases/update_my_lost_usecase.dart';
 import '../models/get_my_lost_people_model.dart';
 import '../models/lost_person_model.dart';
+import '../models/search_lost_people_by_name.dart';
 
 abstract class BaseLostPeopleRemoteDataSource {
   Future<LostPeopleModel> addLostPersonDataFromFamily(
@@ -30,6 +31,7 @@ abstract class BaseLostPeopleRemoteDataSource {
   Future<GetMyLostPeopleModel> getMyLostPeople(NoParameters parameters);
 
   Future<LostPersonModel> searchForLostPersonByImage(File image);
+  Future<SearchLostPeopleByNameModel> searchForLostPersonByName(String name);
 }
 
 class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
@@ -129,6 +131,46 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
         }),
       );
       return LostPersonModel.fromJson(response.data);
+    } on DioError catch (error) {
+      throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
+    }
+  }
+
+  @override
+  Future<SearchLostPeopleByNameModel> searchForLostPersonByName(String name) async{
+    try {
+      final response = await dioHelper.getData(
+        bearerToken: token,
+        url: EndPoints.findByName,
+        query: {
+          "Trim":name,
+        },
+      );
+      return SearchLostPeopleByNameModel.fromJson(response.data);
+    } on DioError catch (error) {
+      throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
+    }
+  }
+
+  Future<SearchLostPeopleByNameModel> getAllLost() async{
+    try {
+      final response = await dioHelper.getData(
+        bearerToken: token,
+        url: EndPoints.findByName,
+      );
+      return SearchLostPeopleByNameModel.fromJson(response.data);
+    } on DioError catch (error) {
+      throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
+    }
+  }
+
+  Future<SearchLostPeopleByNameModel> getAllSurvivals() async{
+    try {
+      final response = await dioHelper.getData(
+        bearerToken: token,
+        url: EndPoints.findByName,
+      );
+      return SearchLostPeopleByNameModel.fromJson(response.data);
     } on DioError catch (error) {
       throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
     }

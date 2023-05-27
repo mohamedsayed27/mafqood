@@ -9,12 +9,14 @@ import 'package:mafqood/presentation/widgets_and_components/shred_widgets/custom
 import 'package:mafqood/presentation/widgets_and_components/shred_widgets/image_picher_container.dart';
 import 'package:mafqood/presentation/widgets_and_components/shred_widgets/phone_form_field.dart';
 
+import '../../../core/assets_path/fonts_path.dart';
 import '../../../core/constants/constants.dart';
 import '../../../domain/usecases/lost_people_usecases/add_lost_person_usecase.dart';
 import '../../controllers/lost_people_cubit/lost_people_cubit.dart';
 import '../../controllers/lost_people_cubit/lost_people_state.dart';
 import '../auth_widgets/custom_text_form_field.dart';
 import '../choose_location_widget.dart';
+import '../shred_widgets/simple_dialog_option.dart';
 
 class AddLostPersonFromFamily extends StatefulWidget {
   const AddLostPersonFromFamily({
@@ -67,7 +69,49 @@ class _AddLostPersonFromFamilyState extends State<AddLostPersonFromFamily> {
                   cubit.getImagePick(1, cubit.lostPersonFromAnonymousImage);
                 },
                 chooseAnotherImage: (){
-                  cubit.selectImage(context, cubit.lostPersonFromAnonymousImage);
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return SimpleDialog(
+                        title: Text(
+                          "قم بأختيار صورة",
+                          style: TextStyle(
+                            fontSize: 14.sp,
+                            color: Colors.black,
+                            fontFamily: FontsPath.sukarBold,
+                          ),
+                        ),
+                        children: [
+                          CustomSimpleDialogOption(
+                            title: 'التقط صوره',
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                              cubit.getImagePick(
+                                0,
+                                cubit.searchLostPersonImage,
+                              );
+                            },
+                          ),
+                          CustomSimpleDialogOption(
+                            title: 'قم بأختيار صورة',
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                              cubit.getImagePick(
+                                1,
+                                cubit.searchLostPersonImage,
+                              );
+                            },
+                          ),
+                          CustomSimpleDialogOption(
+                            title: 'الغاء',
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
                 },
               );
             },

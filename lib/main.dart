@@ -8,7 +8,6 @@ import 'package:mafqood/core/network/dio_helper.dart';
 import 'package:mafqood/presentation/controllers/google_maps_cubit/google_maps_cubit.dart';
 import 'package:mafqood/presentation/controllers/lost_people_cubit/lost_people_cubit.dart';
 import 'package:mafqood/presentation/controllers/user_cubit/user_cubit.dart';
-import 'package:mafqood/presentation/screens/main_layout_screens/main_layout.dart';
 import 'bloc_observer.dart';
 import 'core/app_router/app_router.dart';
 import 'core/app_router/screens_name.dart';
@@ -60,7 +59,7 @@ class MyApp extends StatelessWidget {
                 sl(),
                 sl(),
                 sl(),
-                sl(),
+                sl(),sl(),
               )..getCities(),
             ),
             BlocProvider(

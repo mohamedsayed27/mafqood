@@ -10,4 +10,5 @@ static const helpLostPerson ='/LostPeoples/HelpByPhoto';
 static const updateMyLost ='/LostPeoples/MyLostDone';
 static const getMyLostPeople ='/LostPeoples/GetMyLost';
 static const findByPhoto ='/LostPeoples/FindByPhoto';
+static const findByName ='/LostPeoples/FindByName';
 }

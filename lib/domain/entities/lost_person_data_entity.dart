@@ -45,6 +45,7 @@ class LostPersonDataEntity extends Equatable {
   final String? url;
   final bool? status;
 
+
   const LostPersonDataEntity({
     this.id,
     this.name,

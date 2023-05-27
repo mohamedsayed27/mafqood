@@ -14,6 +14,7 @@ import '../../controllers/lost_people_cubit/lost_people_cubit.dart';
 import '../../controllers/lost_people_cubit/lost_people_state.dart';
 import '../auth_widgets/custom_text_form_field.dart';
 import '../choose_location_widget.dart';
+import '../shred_widgets/simple_dialog_option.dart';
 import 'age_range_widget.dart';
 
 class AddLostPersonFromAnonymous extends StatefulWidget {
@@ -66,7 +67,49 @@ class _AddLostPersonFromAnonymousState
                   cubit.getImagePick(1, cubit.lostPersonFromAnonymousImage);
                 },
                 chooseAnotherImage: (){
-                  cubit.selectImage(context, cubit.lostPersonFromAnonymousImage);
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return SimpleDialog(
+                        title: Text(
+                          "قم بأختيار صورة",
+                          style: TextStyle(
+                            fontSize: 14.sp,
+                            color: Colors.black,
+                            fontFamily: FontsPath.sukarBold,
+                          ),
+                        ),
+                        children: [
+                          CustomSimpleDialogOption(
+                            title: 'التقط صوره',
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                              cubit.getImagePick(
+                                0,
+                                cubit.searchLostPersonImage,
+                              );
+                            },
+                          ),
+                          CustomSimpleDialogOption(
+                            title: 'قم بأختيار صورة',
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                              cubit.getImagePick(
+                                1,
+                                cubit.searchLostPersonImage,
+                              );
+                            },
+                          ),
+                          CustomSimpleDialogOption(
+                            title: 'الغاء',
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
                 },
               );
             },
