@@ -1,9 +1,12 @@
 
+import 'dart:io';
+
 import 'package:mafqood/domain/entities/get_my_lost_peoples_entity.dart';
 
 import '../../../core/error/auth_error_exception.dart';
 import '../../../domain/entities/lost_people_entity.dart';
 import '../../../domain/entities/lost_person_data_entity.dart';
+import '../../../domain/entities/search_lost_by_name_entity.dart';
 
 abstract class LostPeopleState {}
 
@@ -12,15 +15,15 @@ class LostPeopleInitial extends LostPeopleState {}
 
 
 
-class AddLostPersonDataLoading extends LostPeopleState {}
-class AddLostPersonDataSuccess extends LostPeopleState {
+class AddLostPersonDataFromFamilyLoading extends LostPeopleState {}
+class AddLostPersonDataFromFamilySuccess extends LostPeopleState {
   final LostPeopleEntity lostPeopleEntity;
 
-  AddLostPersonDataSuccess({required this.lostPeopleEntity});
+  AddLostPersonDataFromFamilySuccess({required this.lostPeopleEntity});
 }
-class AddLostPersonDataError extends LostPeopleState {
+class AddLostPersonDataFromFamilyError extends LostPeopleState {
   final AuthErrorException authErrorException;
-  AddLostPersonDataError({required this.authErrorException});
+  AddLostPersonDataFromFamilyError({required this.authErrorException});
 }
 
 
@@ -38,15 +41,28 @@ class SendLostPersonDataError extends LostPeopleState {
 
 
 
-class SearchForLostPersonDataLoading extends LostPeopleState {}
-class SearchForLostPersonDataSuccess extends LostPeopleState {
+class SearchForLostPersonByImageDataLoading extends LostPeopleState {}
+class SearchForLostPersonByImageDataSuccess extends LostPeopleState {
   final LostPersonEntity lostPersonEntity;
 
-  SearchForLostPersonDataSuccess({required this.lostPersonEntity});
+  SearchForLostPersonByImageDataSuccess({required this.lostPersonEntity});
 }
-class SearchForLostPersonDataError extends LostPeopleState {
+class SearchForLostPersonByImageDataError extends LostPeopleState {
   final AuthErrorException authErrorException;
-  SearchForLostPersonDataError({required this.authErrorException});
+  SearchForLostPersonByImageDataError({required this.authErrorException});
+}
+
+
+
+class SearchForLostPersonByNameDataLoading extends LostPeopleState {}
+class SearchForLostPersonByNameDataSuccess extends LostPeopleState {
+  final SearchLostPeopleEntity searchLostPeopleEntity;
+
+  SearchForLostPersonByNameDataSuccess({required this.searchLostPeopleEntity});
+}
+class SearchForLostPersonByNameDataError extends LostPeopleState {
+  final AuthErrorException authErrorException;
+  SearchForLostPersonByNameDataError({required this.authErrorException});
 }
 
 
@@ -80,6 +96,9 @@ class GetAreasError extends LostPeopleState {
 
 
 class GetPickedImageSuccessState extends LostPeopleState {
+  final File? image;
+
+  GetPickedImageSuccessState({required this.image});
 
 }
 class GetPickedImageErrorState extends LostPeopleState {}
@@ -90,4 +109,14 @@ class GetDateTimePickedSuccessState extends LostPeopleState {
 
   GetDateTimePickedSuccessState(this.dateTime);
 }
-class GetDateTimePickedErrorState extends LostPeopleState {}
+class GetDateTimePickedErrorState extends LostPeopleState {
+
+}
+
+class ChangeAgeValueSuccess extends LostPeopleState {}
+class ChangeAreaDropdownValueSuccess extends LostPeopleState {}
+class ChangeCityDropdownValueSuccess extends LostPeopleState {
+  final String cityId;
+
+  ChangeCityDropdownValueSuccess({required this.cityId});
+}

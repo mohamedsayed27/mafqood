@@ -1,70 +1,60 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mafqood/domain/entities/area_entity.dart';
+import 'package:mafqood/domain/entities/city_entity.dart';
+import 'package:mafqood/domain/entities/lost_person_data_entity.dart';
 import 'package:mafqood/domain/usecases/lost_people_usecases/add_lost_person_usecase.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mafqood/domain/usecases/lost_people_usecases/get_my_lost_people_usecase.dart';
 
 import '../../../core/base_usecases/base_usecase.dart';
 import '../../../core/theme/app_colors_light_theme.dart';
+import '../../../domain/entities/search_lost_by_name_entity.dart';
 import '../../../domain/usecases/lost_people_usecases/get_areas_usecase.dart';
 import '../../../domain/usecases/lost_people_usecases/get_cities_usecase.dart';
 import '../../../domain/usecases/lost_people_usecases/help_lost_person_usecase.dart';
+import '../../../domain/usecases/lost_people_usecases/search_lost_people_by_name.dart';
 import '../../../domain/usecases/lost_people_usecases/search_lost_person_by_image.dart';
 import 'lost_people_state.dart';
 
 class LostPeopleCubit extends Cubit<LostPeopleState> {
-  LostPeopleCubit(this._addLostPersonDataUsecase, this._sendLostPersonDataUsecase, this._getMyLostPeopleUsecase, this._getCitiesUsecase, this._getAreasUsecase, this._searchForPersonByImageUsecase) : super(LostPeopleInitial());
+  LostPeopleCubit(
+    this._addLostPersonDataUsecase,
+    this._sendLostPersonDataUsecase,
+    this._getMyLostPeopleUsecase,
+    this._getCitiesUsecase,
+    this._getAreasUsecase,
+    this._searchForPersonByImageUsecase, this._searchLostPeopleByNameUsecase,
+  ) : super(LostPeopleInitial());
+
   static LostPeopleCubit get(context) => BlocProvider.of(context);
   DateTime? dateTime;
-  final AddLostPersonDataUsecase _addLostPersonDataUsecase;
-  final HelpLostPersonDataUsecase _sendLostPersonDataUsecase;
+  final AddLostPersonFromFamilyDataUsecase _addLostPersonDataUsecase;
+  final AddLostPersonsDataFromAnonymousUsecase _sendLostPersonDataUsecase;
   final GetMyLostPeopleUsecase _getMyLostPeopleUsecase;
   final GetCitiesUsecase _getCitiesUsecase;
   final GetAreasUsecase _getAreasUsecase;
   final SearchForPersonByImageUsecase _searchForPersonByImageUsecase;
-  File? imagePicked;
-  File? lostPersonImage;
+  final SearchLostPeopleByNameUsecase _searchLostPeopleByNameUsecase;
+  File? lostPersonFromFamilyImage;
+  File? lostPersonFromAnonymousImage;
   File? searchLostPersonImage;
+  double? lat;
+  double? lng;
+  int? minAge;
+  int? maxAge;
   final _picker = ImagePicker();
+  List<CityEntity>? citiesList;
+  List<AreaEntity>? areaList;
+  CityEntity? cityEntity;
+  AreaEntity? areaEntity;
+  LostPersonDataEntity? lostPersonDataEntity;
+  List<SearchByNameDataEntity>? searchForLostByNameLis;
+  RangeValues values = const RangeValues(1, 100);
 
-  selectImage(BuildContext context,File? image) async {
-    return showDialog(
-      context: context,
-      builder: (context) {
-        return SimpleDialog(
-          title: const Text("قم بأختيار صورة"),
-          children: [
-            SimpleDialogOption(
-              padding: const EdgeInsets.all(20),
-              child: const Text('التقط صوره'),
-              onPressed: () async {
-                Navigator.of(context).pop();
-                getImagePick(0,image);
-              },
-            ),
-            SimpleDialogOption(
-              padding: const EdgeInsets.all(20),
-              child: const Text('قم بأختيار صورة'),
-              onPressed: () async {
-                Navigator.of(context).pop();
-                getImagePick(1,image);
-              },
-            ),
-            SimpleDialogOption(
-              padding: const EdgeInsets.all(20),
-              child: const Text('الغاء'),
-              onPressed: () async {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  selectTDateTime(BuildContext context){
+  bool searchByNameLoading = false;
+  selectTDateTime(BuildContext context) {
     showDatePicker(
       context: context,
       initialDate: dateTime ?? DateTime.now(),
@@ -89,49 +79,67 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
     });
   }
 
-  Future<void> getImagePick(int source,File? image) async {
-    final pickedFile = await _picker.pickImage(source: source == 1?ImageSource.gallery:ImageSource.camera);
+  Future<void> getImagePick(int source, File? image) async {
+    final pickedFile = await _picker.pickImage(
+        source: source == 1 ? ImageSource.gallery : ImageSource.camera);
     if (pickedFile != null) {
       image = File(pickedFile.path);
-      emit(GetPickedImageSuccessState());
+      emit(GetPickedImageSuccessState(image: image));
     } else {
       emit(GetPickedImageErrorState());
     }
   }
 
-  void addLostPersonData(AddLostPersonDataParameters addLostPersonDataParameters) async {
-    emit(AddLostPersonDataLoading());
-    final response = await _addLostPersonDataUsecase(addLostPersonDataParameters);
+  void addLostPersonDataFromFamily(
+      AddLostPersonFromFamilyDataParameters addLostPersonDataParameters) async {
+    emit(AddLostPersonDataFromFamilyLoading());
+    final response =
+        await _addLostPersonDataUsecase(addLostPersonDataParameters);
     response.fold((l) {
-      print(l);
-      emit(AddLostPersonDataError(authErrorException: l));
+      emit(AddLostPersonDataFromFamilyError(authErrorException: l));
     }, (r) {
-      print(r);
-      emit(AddLostPersonDataSuccess(lostPeopleEntity: r));
+      emit(AddLostPersonDataFromFamilySuccess(lostPeopleEntity: r));
     });
   }
 
-  void sendLostPersonData(HelpLostPersonDataParameters sendLostPersonDataParameter) async {
+  void sendLostPersonData(
+      AddLostPersonsDataFromAnonymousParameters
+          sendLostPersonDataParameter) async {
     emit(SendLostPersonDataLoading());
-    final response = await _sendLostPersonDataUsecase(sendLostPersonDataParameter);
+    final response =
+        await _sendLostPersonDataUsecase(sendLostPersonDataParameter);
     response.fold((l) {
-      print(l);
       emit(SendLostPersonDataError(authErrorException: l));
     }, (r) {
-      print(r);
       emit(SendLostPersonDataSuccess(lostPeopleEntity: r));
     });
   }
 
   void searchForLostPersonByImage() async {
-    emit(SearchForLostPersonDataLoading());
-    final response = await _searchForPersonByImageUsecase(searchLostPersonImage!);
+    emit(SearchForLostPersonByImageDataLoading());
+    final response =
+        await _searchForPersonByImageUsecase(searchLostPersonImage!);
     response.fold((l) {
-      print(l);
-      emit(SearchForLostPersonDataError(authErrorException: l));
+      emit(SearchForLostPersonByImageDataError(authErrorException: l));
     }, (r) {
-      print(r);
-      emit(SearchForLostPersonDataSuccess(lostPersonEntity: r));
+      lostPersonDataEntity = r.data!;
+      emit(SearchForLostPersonByImageDataSuccess(lostPersonEntity: r));
+    });
+  }
+
+  void searchForLostPersonByName({required String name}) async {
+    searchForLostByNameLis = [];
+    searchByNameLoading = true;
+    emit(SearchForLostPersonByNameDataLoading());
+    final response = await _searchLostPeopleByNameUsecase(name);
+    response.fold((l) {
+      searchByNameLoading = false;
+      emit(SearchForLostPersonByNameDataError(authErrorException: l));
+    }, (r) {
+      searchByNameLoading = false;
+      searchForLostByNameLis = r.data;
+      print(searchForLostByNameLis);
+      emit(SearchForLostPersonByNameDataSuccess(searchLostPeopleEntity: r));
     });
   }
 
@@ -139,35 +147,49 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
     emit(GetMyLostDataLoading());
     final response = await _getMyLostPeopleUsecase(const NoParameters());
     response.fold((l) {
-      print(l);
       emit(GetMyLostDataError(authErrorException: l));
     }, (r) {
-      print(r);
       emit(GetMyLostDataSuccess(getMyLostPeopleEntity: r));
     });
   }
 
   void getCities() async {
     emit(GetCitiesLoading());
+    citiesList = [];
     final response = await _getCitiesUsecase(const NoParameters());
     response.fold((l) {
-      print(l);
       emit(GetCitiesError(authErrorException: l));
     }, (r) {
-      print(r);
+      citiesList = r;
       emit(GetCitiesSuccess());
     });
   }
 
   void getAreas(String id) async {
     emit(GetAreasLoading());
+    areaList = [];
     final response = await _getAreasUsecase(id);
     response.fold((l) {
-      print(l);
       emit(GetAreasError(authErrorException: l));
     }, (r) {
-      print(r);
+      areaList = r;
       emit(GetAreasSuccess());
     });
+  }
+
+  void changeCityDropDownValue(CityEntity? cityEntity) async {
+    this.cityEntity = cityEntity;
+    areaEntity = null;
+    emit(ChangeCityDropdownValueSuccess(cityId: this.cityEntity!.id!));
+  }
+
+  void changeAreaDropDownValue(AreaEntity? areaEntity) async {
+    this.areaEntity = areaEntity;
+    emit(ChangeAreaDropdownValueSuccess());
+  }
+
+  void changeAgeRangeValueValue(RangeValues rangeValues) async {
+    values = rangeValues;
+    emit(ChangeAgeValueSuccess());
   }
 }

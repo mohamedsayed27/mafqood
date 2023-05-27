@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/assets_path/fonts_path.dart';
 import '../../../core/theme/app_colors_light_theme.dart';
 
-class AuthTextFormField extends StatelessWidget {
+class CustomTextFormField extends StatelessWidget {
   final String hintText;
   final String? Function(String?)? validate;
   final void Function()? onTap;
@@ -17,7 +17,7 @@ class AuthTextFormField extends StatelessWidget {
   final int maxLength;
   final bool readOnly;
 
-  const AuthTextFormField({
+  const CustomTextFormField({
     Key? key,
     required this.hintText,
     this.validate,

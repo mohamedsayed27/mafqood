@@ -28,6 +28,9 @@ class HomeScreen extends StatelessWidget {
               fontSize: 24.sp,
             ),
           ),
+          SizedBox(
+            height: 10.h,
+          ),
           Text(
             'هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى',
             style: TextStyle(
@@ -36,6 +39,9 @@ class HomeScreen extends StatelessWidget {
               fontSize: 16.sp,
             ),
           ),
+          SizedBox(
+            height: 30.h,
+          ),
           Text(
             'تتفاصيل التطبيق',
             style: TextStyle(
@@ -43,6 +49,9 @@ class HomeScreen extends StatelessWidget {
               fontFamily: FontsPath.sukarBlack,
               fontSize: 24.sp,
             ),
+          ),
+          SizedBox(
+            height: 10.h,
           ),
           Row(
             children: [

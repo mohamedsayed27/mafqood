@@ -5,9 +5,10 @@ static const register ='/Auth/Register';
 static const verifyPhone ='/Auth/VerfiyPhone';
 static const forgetPassword ='/Auth/ForgetPassword';
 static const resetPassword ='/Auth/RessetPassword';
-static const sendLostData ='/LostPeoples/Search';
+static const sendLostPersonDataFromFamily ='/LostPeoples/FamilyAdd';
 static const helpLostPerson ='/LostPeoples/HelpByPhoto';
 static const updateMyLost ='/LostPeoples/MyLostDone';
 static const getMyLostPeople ='/LostPeoples/GetMyLost';
 static const findByPhoto ='/LostPeoples/FindByPhoto';
+static const findByName ='/LostPeoples/FindByName';
 }

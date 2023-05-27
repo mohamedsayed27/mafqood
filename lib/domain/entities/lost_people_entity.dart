@@ -32,6 +32,7 @@ class Data extends Equatable {
   final int? longFind;
   final int? latFind;
 
+
   const Data(
       {this.id,
       this.name,

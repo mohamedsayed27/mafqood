@@ -8,17 +8,17 @@ import 'package:mafqood/domain/repository/lost_people_base_repository/lost_peopl
 import '../../../core/base_usecases/base_usecase.dart';
 import '../../entities/lost_people_entity.dart';
 
-class AddLostPersonDataUsecase extends BaseUsecase<LostPeopleEntity, AddLostPersonDataParameters> {
+class AddLostPersonFromFamilyDataUsecase extends BaseUsecase<LostPeopleEntity, AddLostPersonFromFamilyDataParameters> {
   final LostPeopleBaseRepository lostPeopleBaseRepository;
 
-  AddLostPersonDataUsecase({required this.lostPeopleBaseRepository});
+  AddLostPersonFromFamilyDataUsecase({required this.lostPeopleBaseRepository});
   @override
-  Future<Either<AuthErrorException, LostPeopleEntity>> call(AddLostPersonDataParameters parameters) async{
-    return await lostPeopleBaseRepository.sendLostPersonsData(parameters);
+  Future<Either<AuthErrorException, LostPeopleEntity>> call(AddLostPersonFromFamilyDataParameters parameters) async{
+    return await lostPeopleBaseRepository.sendLostPersonsDataFromFamily(parameters);
   }
 }
 
-class AddLostPersonDataParameters extends Equatable {
+class AddLostPersonFromFamilyDataParameters extends Equatable {
   final String name;
   final String street;
   final String area;
@@ -29,7 +29,7 @@ class AddLostPersonDataParameters extends Equatable {
   final double lat;
   final String birthDate;
 
-  const AddLostPersonDataParameters( {
+  const AddLostPersonFromFamilyDataParameters( {
     required this.name,
     required this.street,
     required this.area,

@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mafqood/presentation/controllers/google_maps_cubit/google_maps_cubit.dart';
 import 'package:mafqood/presentation/controllers/google_maps_cubit/google_maps_state.dart';
-import 'package:mafqood/presentation/screens/main_layout_screens/upload_data_screen.dart';
 
 class GoogleMapsScreen extends StatelessWidget {
   const GoogleMapsScreen({Key? key}) : super(key: key);

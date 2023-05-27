@@ -8,7 +8,9 @@ import '../../core/assets_path/svg_path.dart';
 
 class SearchTextField extends StatelessWidget {
   final void Function()? onCameraClicked;
-  const SearchTextField({Key? key, this.onCameraClicked}) : super(key: key);
+  final void Function()? onSearchPressed;
+  final TextEditingController? controller;
+  const SearchTextField({Key? key, this.onCameraClicked, this.onSearchPressed, this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +30,7 @@ class SearchTextField extends StatelessWidget {
         children: [
           Expanded(
             child: TextField(
+              controller: controller,
               style: TextStyle(
                 color: AppColorsLightTheme.whitColor,
                 fontSize: 14.sp,
@@ -48,13 +51,16 @@ class SearchTextField extends StatelessWidget {
                 ),
                 prefixIcon: Padding(
                   padding:  const EdgeInsets.all(9.0),
-                  child: SvgPicture.asset(
-                    SvgPath.searchIcon,
-                    width: 16.w,
-                    height: 16.h,
-                    colorFilter: const ColorFilter.mode(
-                      AppColorsLightTheme.whitColor,
-                      BlendMode.srcIn,
+                  child: InkWell(
+                    onTap: onSearchPressed,
+                    child: SvgPicture.asset(
+                      SvgPath.searchIcon,
+                      width: 16.w,
+                      height: 16.h,
+                      colorFilter: const ColorFilter.mode(
+                        AppColorsLightTheme.whitColor,
+                        BlendMode.srcIn,
+                      ),
                     ),
                   ),
                 ),
