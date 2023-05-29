@@ -15,7 +15,7 @@ class AddLostPersonsDataFromAnonymousUsecase
   AddLostPersonsDataFromAnonymousUsecase({required this.lostPeopleBaseRepository});
 
   @override
-  Future<Either<AuthErrorException, LostPeopleEntity>> call(
+  Future<Either<ErrorException, LostPeopleEntity>> call(
       AddLostPersonsDataFromAnonymousParameters parameters) async {
     return await lostPeopleBaseRepository.addLostPersonsDataFromAnonymous(parameters);
   }

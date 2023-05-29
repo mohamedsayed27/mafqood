@@ -13,7 +13,7 @@ class AddLostPersonFromFamilyDataUsecase extends BaseUsecase<LostPeopleEntity, A
 
   AddLostPersonFromFamilyDataUsecase({required this.lostPeopleBaseRepository});
   @override
-  Future<Either<AuthErrorException, LostPeopleEntity>> call(AddLostPersonFromFamilyDataParameters parameters) async{
+  Future<Either<ErrorException, LostPeopleEntity>> call(AddLostPersonFromFamilyDataParameters parameters) async{
     return await lostPeopleBaseRepository.sendLostPersonsDataFromFamily(parameters);
   }
 }

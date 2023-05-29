@@ -13,7 +13,7 @@ class RegisterUsecase
   RegisterUsecase({required this.authenticationBaseRepository});
 
   @override
-  Future<Either<AuthErrorException, AuthenticationEntity>> call(
+  Future<Either<ErrorException, AuthenticationEntity>> call(
       RegisterParameter parameters) async {
     return await authenticationBaseRepository.register(parameters);
   }

@@ -20,6 +20,7 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
+
   await DioHelper.init();
   ServicesLocator().init();
   Bloc.observer = MyBlocObserver();
@@ -59,7 +60,7 @@ class MyApp extends StatelessWidget {
                 sl(),
                 sl(),
                 sl(),
-                sl(),sl(),
+                sl(),sl(),sl(),sl(),
               )..getCities(),
             ),
             BlocProvider(

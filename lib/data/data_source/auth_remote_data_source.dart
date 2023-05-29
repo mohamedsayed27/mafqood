@@ -37,7 +37,7 @@ class AuthenticationRemoteDataSource extends BaseAuthenticationRemoteDataSource 
       );
       return AuthenticationModel.fromJson(response.data);
     }on DioError catch(error){
-      throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
+      throw ErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
 
   }
@@ -56,7 +56,7 @@ class AuthenticationRemoteDataSource extends BaseAuthenticationRemoteDataSource 
       );
       return AuthenticationModel.fromJson(response.data);
     }on DioError catch(error){
-      throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
+      throw ErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
   }
 
@@ -72,7 +72,7 @@ class AuthenticationRemoteDataSource extends BaseAuthenticationRemoteDataSource 
       );
       return AuthenticationModel.fromJson(response.data);
     }on DioError catch(error){
-      throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
+      throw ErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
 
   }
@@ -89,7 +89,7 @@ class AuthenticationRemoteDataSource extends BaseAuthenticationRemoteDataSource 
       return AuthenticationModel.fromJson(response.data);
 
     } on DioError catch(error){
-      throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
+      throw ErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
 
   }
@@ -107,7 +107,7 @@ class AuthenticationRemoteDataSource extends BaseAuthenticationRemoteDataSource 
       );
       return AuthenticationModel.fromJson(response.data);
     }on DioError catch(error){
-      throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
+      throw ErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
   }
 }

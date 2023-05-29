@@ -15,6 +15,8 @@ import '../../domain/repository/auth_base_repository/auth_base_repository.dart';
 import '../../domain/repository/lost_people_base_repository/lost_people_base_repository.dart';
 import '../../domain/usecases/auth_usecases/forget_password_usecase.dart';
 import '../../domain/usecases/auth_usecases/login_usecase.dart';
+import '../../domain/usecases/lost_people_usecases/get_all_lost.dart';
+import '../../domain/usecases/lost_people_usecases/get_all_survivals.dart';
 import '../../domain/usecases/lost_people_usecases/get_areas_usecase.dart';
 import '../../domain/usecases/lost_people_usecases/get_cities_usecase.dart';
 import '../../domain/usecases/lost_people_usecases/get_my_lost_people_usecase.dart';
@@ -33,9 +35,8 @@ class ServicesLocator{
     ///---------------BLoC---------------
 
     sl.registerFactory(() => UserCubit(sl(),sl(),sl(),sl(),sl()));
-    sl.registerFactory(() => LostPeopleCubit(sl(), sl(), sl(), sl(), sl(),sl(),sl()));
+    sl.registerFactory(() => LostPeopleCubit(sl(), sl(), sl(), sl(), sl(),sl(),sl(),sl(),sl()));
     sl.registerFactory(() => GoogleMapsCubit());
-
 
     ///---------------USE CASES---------------
 
@@ -52,30 +53,30 @@ class ServicesLocator{
     sl.registerLazySingleton(() => GetMyLostPeopleUsecase(lostPeopleBaseRepository: sl()));
     sl.registerLazySingleton(() => SearchForPersonByImageUsecase(lostPeopleBaseRepository: sl()));
     sl.registerLazySingleton(() => SearchLostPeopleByNameUsecase(lostPeopleBaseRepository: sl()));
-    ///LOST PEOPLE USECASES ------------------->>>>>
+    sl.registerLazySingleton(() => GetAllLostUsecase(lostPeopleBaseRepository: sl()));
+    sl.registerLazySingleton(() => GetAllSurvivalsUsecase(lostPeopleBaseRepository: sl()));
 
+
+    ///City & Area USECASES ------------------->>>>>
     sl.registerLazySingleton(() => GetAreasUsecase(lostPeopleBaseRepository: sl()));
     sl.registerLazySingleton(() => GetCitiesUsecase(lostPeopleBaseRepository: sl()));
 
-    ///---------------REPOSITORY---------------
-
+    ///---------------REPOSITORY--------------->>>>
     sl.registerLazySingleton<AuthenticationBaseRepository>(() => AuthenticationRepository(baseAuthenticationRemoteDataSource: sl()));
     sl.registerLazySingleton<LostPeopleBaseRepository>(() => LostPeopleRepository(baseLostPeopleRemoteDataSource: sl(), baseLostPeopleLocalDataSource: sl()));
 
 
-    ///---------------DATA SOURCE---------------
-
+    ///---------------DATA SOURCE--------------->>>
     sl.registerLazySingleton<BaseAuthenticationRemoteDataSource>(() => AuthenticationRemoteDataSource(sl()));
     sl.registerLazySingleton<BaseLostPeopleRemoteDataSource>(() => LostPeopleRemoteDataSource(sl()));
     sl.registerLazySingleton<BaseLostPeopleLocalDataSource>(() => LostPeopleLocalDataSource());
 
 
-    ///---------------DioClass---------------
-
+    ///---------------DioClass--------------->>>>>
     sl.registerLazySingleton(() => DioHelper());
 
-    ///---------------Google Maps Services---------------
 
+    ///---------------Google Maps Services--------------->>>>
     sl.registerLazySingleton(() => GoogleMapsServices());
   }
 }

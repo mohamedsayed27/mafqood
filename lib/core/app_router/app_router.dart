@@ -10,6 +10,7 @@ import '../../presentation/screens/auth_screens/otp_verification_number_screen.d
 import '../../presentation/screens/intro_screens/onboarding_screen.dart';
 import '../../presentation/screens/intro_screens/splash_screen.dart';
 import '../../presentation/screens/google_maps/google_mas_screen.dart';
+import '../../presentation/screens/main_layout_screens/all_survivals_screen.dart';
 
 
 
@@ -37,6 +38,8 @@ class AppRouter {
           return _animateRouteBuilder(ChangeForgottenPassword(phone: phone,));
         case ScreenName.mainLayoutScreen:
           return _animateRouteBuilder(const MainLayout());
+        case ScreenName.allSurvivalsScreen:
+          return _animateRouteBuilder(const AllSurvivalsScreen());
         default:
           return _errorRoute();
       }

@@ -22,6 +22,24 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController searchController = TextEditingController();
+  ScrollController scrollController = ScrollController();
+
+  @override
+  void initState() {
+    var cubit = LostPeopleCubit.get(context);
+    if (cubit
+        .getAllLostDataList
+        .isEmpty) {
+      cubit.getAllLost();
+    }
+    scrollController.addListener(() {
+      if (scrollController.position.maxScrollExtent ==
+          scrollController.offset) {
+        cubit.getAllLost();
+      }
+    });
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,16 +121,22 @@ class _SearchScreenState extends State<SearchScreen> {
               height: 15.h,
             ),
             Expanded(
-              child: ListView.builder(
-                itemCount: 5,
-                itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8.h),
-                    child: SearchWidgetBuilder(
-                      textDirection: index % 2 == 0
-                          ? TextDirection.ltr
-                          : TextDirection.rtl,
-                    ),
+              child: BlocConsumer<LostPeopleCubit, LostPeopleState>(
+                listener: (context, state) {},
+                builder: (context, state) {
+                  var cubit = LostPeopleCubit.get(context);
+                  return ListView.builder(
+                    itemCount: cubit.getAllLostDataList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8.h),
+                        child: SearchWidgetBuilder(
+                          textDirection: index % 2 == 0
+                              ? TextDirection.ltr
+                              : TextDirection.rtl, getAllLostDataEntity: cubit.getAllLostDataList[index],
+                        ),
+                      );
+                    },
                   );
                 },
               ),

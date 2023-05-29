@@ -8,13 +8,13 @@ import '../../usecases/auth_usecases/reset_password_usecase.dart';
 import '../../usecases/auth_usecases/verify_phone.dart';
 
 abstract class AuthenticationBaseRepository {
-  Future<Either<AuthErrorException, AuthenticationEntity>> login(LoginParameter loginParameter);
+  Future<Either<ErrorException, AuthenticationEntity>> login(LoginParameter loginParameter);
 
-  Future<Either<AuthErrorException, AuthenticationEntity>> register(RegisterParameter registerParameter);
+  Future<Either<ErrorException, AuthenticationEntity>> register(RegisterParameter registerParameter);
 
-  Future<Either<AuthErrorException, AuthenticationEntity>> verifyPhone(VerifyPhoneParameter parameters);
+  Future<Either<ErrorException, AuthenticationEntity>> verifyPhone(VerifyPhoneParameter parameters);
 
-  Future<Either<AuthErrorException, AuthenticationEntity>> forgetPassword({required String phone});
+  Future<Either<ErrorException, AuthenticationEntity>> forgetPassword({required String phone});
 
-  Future<Either<AuthErrorException, AuthenticationEntity>> resetPassword(ResetPasswordParameters parameters);
+  Future<Either<ErrorException, AuthenticationEntity>> resetPassword(ResetPasswordParameters parameters);
 }

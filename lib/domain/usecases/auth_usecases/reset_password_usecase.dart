@@ -14,7 +14,7 @@ class ResetPasswordUsecase extends BaseUsecase<AuthenticationEntity,ResetPasswor
 
 
   @override
-  Future<Either<AuthErrorException, AuthenticationEntity>> call(ResetPasswordParameters parameters) async{
+  Future<Either<ErrorException, AuthenticationEntity>> call(ResetPasswordParameters parameters) async{
     return await authenticationBaseRepository.resetPassword(parameters);
   }
 }

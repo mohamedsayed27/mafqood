@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'api_end_points.dart';
 
 class DioHelper {
-   static late Dio dio;
+  static late Dio dio;
 
    static init() {
     dio = Dio(

@@ -20,7 +20,7 @@ class SearchTextField extends StatelessWidget {
         bottomRight: Radius.circular(10.r),
       ),
       borderSide: const BorderSide(
-        color: AppColorsLightTheme.greySeacrTextFilledColor,
+        color: AppColorsLightTheme.greySearchTextFilledColor,
       ),
     );
     return SizedBox(
@@ -40,7 +40,7 @@ class SearchTextField extends StatelessWidget {
                 contentPadding: EdgeInsets.zero,
                 hintText: "بحث بالأسم",
                 filled: true,
-                fillColor: AppColorsLightTheme.greySeacrTextFilledColor,
+                fillColor: AppColorsLightTheme.greySearchTextFilledColor,
                 border: border,
                 enabledBorder: border,
                 focusedBorder: border,
@@ -82,7 +82,7 @@ class SearchTextField extends StatelessWidget {
               child: Center(
                 child: Icon(
                   Icons.camera_alt,
-                  color: AppColorsLightTheme.greySeacrTextFilledColor,
+                  color: AppColorsLightTheme.greySearchTextFilledColor,
                   size: 26.r,
                 ),
               ),

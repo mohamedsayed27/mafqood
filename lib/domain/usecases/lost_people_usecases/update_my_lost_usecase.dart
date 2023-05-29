@@ -13,7 +13,7 @@ class HelpLostPersonDataUsecase
   HelpLostPersonDataUsecase({required this.lostPeopleBaseRepository});
 
   @override
-  Future<Either<AuthErrorException, BasicSuccessResponseEntity>> call(
+  Future<Either<ErrorException, BasicSuccessResponseEntity>> call(
       UpdateMyLostParameters parameters) async {
     return await lostPeopleBaseRepository.updateMyLost(parameters);
   }

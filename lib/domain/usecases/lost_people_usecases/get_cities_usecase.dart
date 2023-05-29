@@ -11,7 +11,7 @@ class GetCitiesUsecase extends BaseUsecase<List<CityEntity>, NoParameters> {
   GetCitiesUsecase({required this.lostPeopleBaseRepository});
 
   @override
-  Future<Either<AuthErrorException, List<CityEntity>>> call(NoParameters parameters) async{
+  Future<Either<ErrorException, List<CityEntity>>> call(NoParameters parameters) async{
     return await lostPeopleBaseRepository.getCities();
   }
 }

@@ -11,7 +11,7 @@ class ForgetPasswordUsecase extends BaseUsecase<AuthenticationEntity,String>{
   ForgetPasswordUsecase({required this.authenticationBaseRepository});
 
   @override
-  Future<Either<AuthErrorException, AuthenticationEntity>> call(String parameters) async {
+  Future<Either<ErrorException, AuthenticationEntity>> call(String parameters) async {
     return await authenticationBaseRepository.forgetPassword(phone: parameters);
   }
 }
