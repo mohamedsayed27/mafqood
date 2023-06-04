@@ -7,6 +7,7 @@ import 'package:mafqood/presentation/screens/main_layout_screens/main_layout.dar
 import '../../presentation/screens/auth_screens/change_forget_password.dart';
 import '../../presentation/screens/auth_screens/forget_password_screen.dart';
 import '../../presentation/screens/auth_screens/otp_verification_number_screen.dart';
+import '../../presentation/screens/chat_screens/chat_screen.dart';
 import '../../presentation/screens/intro_screens/onboarding_screen.dart';
 import '../../presentation/screens/intro_screens/splash_screen.dart';
 import '../../presentation/screens/google_maps/google_mas_screen.dart';
@@ -36,6 +37,9 @@ class AppRouter {
         case ScreenName.changeForgetPasswordScreen:
           final phone = settings.arguments as String;
           return _animateRouteBuilder(ChangeForgottenPassword(phone: phone,));
+        case ScreenName.chatScreen:
+          final chatScreenArgs = settings.arguments as ChatScreenArgs;
+          return _animateRouteBuilder(ChatScreen(chatScreenArgs: chatScreenArgs,));
         case ScreenName.mainLayoutScreen:
           return _animateRouteBuilder(const MainLayout());
         case ScreenName.allSurvivalsScreen:

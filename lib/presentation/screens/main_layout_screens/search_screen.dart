@@ -56,7 +56,9 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
             BlocConsumer<LostPeopleCubit, LostPeopleState>(
               listener: (context, state) {
+                var cubit = LostPeopleCubit.get(context);
                 if (state is GetPickedImageSuccessState) {
+                  cubit.searchLostPersonImage = state.image;
                   showDialog(
                       context: context,
                       builder: (context) => const SearchImageAlertDialog());

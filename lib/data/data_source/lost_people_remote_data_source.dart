@@ -20,17 +20,10 @@ import '../models/lost_person_model.dart';
 import '../models/search_lost_people_by_name.dart';
 
 abstract class BaseLostPeopleRemoteDataSource {
-  Future<LostPeopleModel> addLostPersonDataFromFamily(
-      AddLostPersonFromFamilyDataParameters parameters);
-
-  Future<LostPeopleModel> helpLostPerson(
-      AddLostPersonsDataFromAnonymousParameters parameters);
-
-  Future<BasicSuccessResponseModel> updateMyLost(
-      UpdateMyLostParameters parameters);
-
+  Future<LostPeopleModel> addLostPersonDataFromFamily(AddLostPersonFromFamilyDataParameters parameters);
+  Future<LostPeopleModel> helpLostPerson(AddLostPersonsDataFromAnonymousParameters parameters);
+  Future<BasicSuccessResponseModel> updateMyLost(UpdateMyLostParameters parameters);
   Future<GetMyLostPeopleModel> getMyLostPeople(NoParameters parameters);
-
   Future<LostPersonModel> searchForLostPersonByImage(File image);
   Future<SearchLostPeopleByNameModel> searchForLostPersonByName(String name);
   Future<GetAllLostModel> getAllLost(int pageNumber);

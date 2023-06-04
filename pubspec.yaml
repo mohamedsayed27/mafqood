@@ -44,7 +44,7 @@ dependencies:
   flutter_bloc: ^8.1.1
   flutter_svg: ^2.0.0
   shared_preferences: ^2.0.15
-  dio: ^4.0.6
+  dio: ^5.1.2
   fluttertoast: ^8.1.1
   shimmer: ^2.0.0
   pin_code_fields: ^7.4.0
@@ -64,6 +64,10 @@ dependencies:
   firebase_core: ^2.10.0
   flutter_local_notifications: ^13.0.0
   rxdart: ^0.27.5
+  mocktail: ^0.3.0
+  firebase_storage: ^11.0.6
+  cloud_firestore: ^4.1.0
+  uuid: ^3.0.7
 
 dev_dependencies:
   flutter_test:
