@@ -171,7 +171,7 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
         if(allLostPageNumber<=r.totalPages!){
           allLostLastPageNumber=r.totalPages!;
           allLostPageNumber++;
-          getAllLostDataList!.addAll(r.data!);
+          getAllLostDataList.addAll(r.data!);
           emit(GetAllLostSuccess(getAllLostEntity: r));
         }
       });

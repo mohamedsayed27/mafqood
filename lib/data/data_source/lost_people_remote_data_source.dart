@@ -57,7 +57,6 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
       );
       return LostPeopleModel.fromJson(response.data);
     } on DioError catch (error) {
-      print(error);
       throw ErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
   }
@@ -81,7 +80,6 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
       );
       return LostPeopleModel.fromJson(response.data);
     } on DioError catch (error) {
-      print(error.message);
       throw ErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
   }

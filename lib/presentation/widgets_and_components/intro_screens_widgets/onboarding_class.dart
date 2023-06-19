@@ -3,6 +3,9 @@ class OnboardingModel {
   final String title;
   final String bodyTitle;
 
-  OnboardingModel(
-      {required this.backGround, required this.title, required this.bodyTitle});
+  OnboardingModel({
+    required this.backGround,
+    required this.title,
+    required this.bodyTitle,
+  });
 }

@@ -8,9 +8,8 @@ import 'package:mafqood/core/network/dio_helper.dart';
 import 'package:mafqood/presentation/controllers/google_maps_cubit/google_maps_cubit.dart';
 import 'package:mafqood/presentation/controllers/lost_people_cubit/lost_people_cubit.dart';
 import 'package:mafqood/presentation/controllers/user_cubit/user_cubit.dart';
+import 'package:mafqood/presentation/screens/google_maps/live_location_screen.dart';
 import 'bloc_observer.dart';
-import 'core/app_router/app_router.dart';
-import 'core/app_router/screens_name.dart';
 import 'core/theme/app_colors_light_theme.dart';
 import 'core/notification/notification_services.dart';
 import 'core/services/services_locator.dart';
@@ -80,9 +79,9 @@ class MyApp extends StatelessWidget {
               primarySwatch:
                   createMaterialColor(AppColorsLightTheme.primaryColor),
             ),
-            onGenerateRoute: AppRouter.generateRoute,
-            initialRoute: ScreenName.splashscreen,
-            // home:  MainLayout(),
+            // onGenerateRoute: AppRouter.generateRoute,
+            // initialRoute: ScreenName.splashscreen,
+            home:  const LiveLocationScreen(),
           ),
         );
       },

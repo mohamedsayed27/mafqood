@@ -25,15 +25,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     OnboardingModel(
         backGround: ImagesPath.onboarding1,
         title: 'تعرف علي تطبيق مفقود',
-        bodyTitle: 'هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى من مولد النص العربى'),
+        bodyTitle:
+            'هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى من مولد النص العربى'),
     OnboardingModel(
         backGround: ImagesPath.onboarding2,
         title: 'تعرف علي تطبيق مفقود',
-        bodyTitle: 'هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى من مولد النص العربى'),
+        bodyTitle:
+            'هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى من مولد النص العربى'),
     OnboardingModel(
         backGround: ImagesPath.onboarding3,
         title: 'تعرف علي تطبيق مفقود',
-        bodyTitle: 'هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى من مولد النص العربى')
+        bodyTitle:
+            'هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى من مولد النص العربى')
   ];
 
   @override
@@ -67,35 +70,42 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               },
             ),
           ),
-          Positioned(
-            bottom: 220.h,
-            right:181.w,
-            child: SmoothPageIndicator(
-              controller: pageViewController,
-              count: boarding.length,
-              effect: ExpandingDotsEffect(
-                  dotHeight: 9.h,
-                  dotWidth: 9.w,
-                  expansionFactor: 3,
-                  spacing: 5.w,
-                  activeDotColor: AppColorsLightTheme.primaryColor,
-                  dotColor: AppColorsLightTheme.whitColor),
+          Padding(
+            padding: EdgeInsets.only(bottom: 220.h),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: SmoothPageIndicator(
+                controller: pageViewController,
+                count: boarding.length,
+                effect: ExpandingDotsEffect(
+                    dotHeight: 9.h,
+                    dotWidth: 9.w,
+                    expansionFactor: 3,
+                    spacing: 5.w,
+                    activeDotColor: AppColorsLightTheme.primaryColor,
+                    dotColor: AppColorsLightTheme.whitColor),
+              ),
             ),
           ),
-          Positioned(
-            bottom: 100.h,
-            // left: !isLast?157.w:112.w,
-            right: !isLast ? 175.w : 135.w,
-            child: CustomBoardingButton(
-              isLast: isLast,
-              isLastTap: () {
-                CacheHelper.saveData(key: CacheKeys.onboarding, value: true).then((value) {
-                  Navigator.pushNamedAndRemoveUntil(context, ScreenName.loginScreen, (route) => false);
-                });
-              },
-              isTapped: () {
-                pageViewController.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.fastOutSlowIn);
-              },
+          Padding(
+            padding: EdgeInsets.only(bottom: 100.h),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: CustomBoardingButton(
+                isLast: isLast,
+                isLastTap: () {
+                  CacheHelper.saveData(key: CacheKeys.onboarding, value: true)
+                      .then((value) {
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, ScreenName.loginScreen, (route) => false);
+                  });
+                },
+                isTapped: () {
+                  pageViewController.nextPage(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.fastOutSlowIn);
+                },
+              ),
             ),
           )
         ],

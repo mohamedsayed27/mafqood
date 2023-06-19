@@ -25,7 +25,7 @@ class DioHelper {
       if (bearerToken != null) "Authorization": "Bearer $bearerToken",
       'Accept': 'text/plain',
     };
-    return await dio.get(url, queryParameters: query);
+    return await dio.get(url, queryParameters: query,);
   }
 
    Future<Response> postData({
