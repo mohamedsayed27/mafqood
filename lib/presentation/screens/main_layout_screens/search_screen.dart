@@ -126,6 +126,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 builder: (context, state) {
                   var cubit = LostPeopleCubit.get(context);
                   return ListView.builder(
+                    physics: const BouncingScrollPhysics(),
                     itemCount: cubit.getAllLostDataList.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(

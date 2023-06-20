@@ -11,8 +11,8 @@ import '../../../core/constants/constants.dart';
 import '../../controllers/chat_cubit/chat_cubit.dart';
 import 'chat_screen.dart';
 
-class VendorMessagesScreen extends StatelessWidget {
-  const VendorMessagesScreen({Key? key}) : super(key: key);
+class MessagesScreen extends StatelessWidget {
+  const MessagesScreen({Key? key}) : super(key: key);
 
 
   @override

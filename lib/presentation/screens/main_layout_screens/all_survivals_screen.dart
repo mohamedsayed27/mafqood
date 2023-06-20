@@ -29,6 +29,7 @@ class _AllSurvivalsScreenState extends State<AllSurvivalsScreen> {
     });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,19 +64,44 @@ class _AllSurvivalsScreenState extends State<AllSurvivalsScreen> {
                 listener: (context, state) {},
                 builder: (context, state) {
                   var cubit = LostPeopleCubit.get(context);
-                  return ListView.builder(
-                    controller: scrollController,
-                    itemCount: cubit.getAllSurvivalsDataList.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        padding: EdgeInsets.symmetric(vertical: 8.h),
-                        child: SearchWidgetBuilder(
-                          textDirection: index % 2 == 0
-                              ? TextDirection.ltr
-                              : TextDirection.rtl, getAllLostDataEntity: cubit.getAllSurvivalsDataList[index],
+                  return Column(
+                    children: [
+                      Expanded(
+                        child: ListView.builder(
+                          controller: scrollController,
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: cubit.getAllSurvivalsDataList.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Padding(
+                              padding: EdgeInsets.symmetric(vertical: 8.h),
+                              child: SearchWidgetBuilder(
+                                textDirection: index % 2 == 0
+                                    ? TextDirection.ltr
+                                    : TextDirection.rtl,
+                                getAllLostDataEntity:
+                                    cubit.getAllSurvivalsDataList[index],
+                              ),
+                            );
+                          },
                         ),
-                      );
-                    },
+                      ),
+                      if (state is GetMoreOfAllSurvivalsDataLoading)
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                      if (state is GetMoreOfAllSurvivalsDataLoading)
+                        SizedBox(
+                          height: 50.h,
+                          width: double.infinity,
+                          child: const Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        ),
+                      if (state is GetMoreOfAllSurvivalsDataLoading)
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                    ],
                   );
                 },
               ),

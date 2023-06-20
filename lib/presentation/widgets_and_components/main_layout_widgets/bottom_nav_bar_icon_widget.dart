@@ -31,8 +31,8 @@ class BottomNavBarIcon extends StatelessWidget {
       style: OutlinedButton.styleFrom(
         padding: EdgeInsets.zero,
         side: const BorderSide(color: Colors.transparent),
-        foregroundColor: Colors.white60,
-        backgroundColor: AppColorsLightTheme.primaryColor,
+        foregroundColor: AppColorsLightTheme.primaryColor,
+        backgroundColor: AppColorsLightTheme.whitColor,
         shape: const CircleBorder(),
       ),
       onPressed: onTap,
@@ -41,11 +41,11 @@ class BottomNavBarIcon extends StatelessWidget {
         children: [
           SvgPicture.asset(
             iconPath,
-            width: iconWidth ?? 28.w,
-            height: iconHeight ?? 28.h,
+            width: iconWidth ?? 29.w,
+            height: iconHeight ?? 29.h,
             colorFilter: ColorFilter.mode(
               currentIndex == index
-                  ? AppColorsLightTheme.whitTextColor
+                  ? AppColorsLightTheme.primaryColor
                   : AppColorsLightTheme.bottomNavBarGreyIconColor,
               BlendMode.srcIn,
             ),
@@ -56,10 +56,10 @@ class BottomNavBarIcon extends StatelessWidget {
           Text(
             label,
             style: TextStyle(
-              fontSize: 10.sp,
+              fontSize: 11.sp,
               fontFamily: FontsPath.sukarBold,
               color: currentIndex == index
-                  ? AppColorsLightTheme.whitTextColor
+                  ? AppColorsLightTheme.primaryColor
                   : AppColorsLightTheme.bottomNavBarGreyIconColor,
             ),
           )

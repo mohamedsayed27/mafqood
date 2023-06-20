@@ -55,6 +55,7 @@ class GetAllLostError extends LostPeopleState {
 }
 
 class GetAllSurvivalsDataLoading extends LostPeopleState {}
+class GetMoreOfAllSurvivalsDataLoading extends LostPeopleState {}
 
 class GetAllSurvivalsDataSuccess extends LostPeopleState {
   final GetAllLostEntity getAllLostEntity;

@@ -10,6 +10,7 @@ import '../../../core/assets_path/fonts_path.dart';
 import '../../../core/theme/app_colors_light_theme.dart';
 import '../../controllers/user_cubit/user_cubit.dart';
 import '../../controllers/user_cubit/user_state.dart';
+import '../../widgets_and_components/shred_widgets/arrow_back_button.dart';
 import '../../widgets_and_components/shred_widgets/auth_text_button.dart';
 import '../../widgets_and_components/shred_widgets/logo_text.dart';
 import '../../widgets_and_components/shred_widgets/name_form_field.dart';
@@ -64,16 +65,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   SizedBox(
                     height: 15.h,
                   ),
-                  IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: Icon(
-                      Icons.arrow_back,
-                      color: Colors.grey,
-                      size: 35.r,
-                    ),
-                  ),
+                  const ArrowBackButton(),
                   SizedBox(
                     height: 15.h,
                   ),

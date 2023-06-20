@@ -182,6 +182,9 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
       getAllSurvivalsDataList = [];
       emit(GetAllSurvivalsDataLoading());
     }
+    if(allSurvivalPageNumber !=1){
+      emit(GetMoreOfAllSurvivalsDataLoading());
+    }
     if(allSurvivalPageNumber<=allSurvivalLastPageNumber){
       final response = await _getAllSurvivalsUsecase(allSurvivalPageNumber);
       response.fold((l) {
