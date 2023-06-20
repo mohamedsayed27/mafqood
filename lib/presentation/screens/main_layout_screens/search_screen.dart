@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mafqood/core/constants/constants.dart';
 import 'package:mafqood/presentation/controllers/lost_people_cubit/lost_people_cubit.dart';
 import 'package:mafqood/presentation/controllers/lost_people_cubit/lost_people_state.dart';
 
 import '../../../core/assets_path/fonts_path.dart';
-import '../../../core/theme/app_colors_light_theme.dart';
 import '../../widgets_and_components/search_image_alert_dialog.dart';
 import '../../widgets_and_components/search_text_field.dart';
 import '../../widgets_and_components/search_widget_builder.dart';

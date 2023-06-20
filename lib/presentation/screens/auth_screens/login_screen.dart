@@ -123,7 +123,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         showToast(
                             errorType: 0,
                             message: state.authenticationEntity.message!);
-                        print(state.authenticationEntity);
                         CacheHelper.saveData(key: CacheKeys.token, value: state.authenticationEntity.data!.token).whenComplete(() {
                           token = CacheHelper.getData(key: CacheKeys.token);
                           Navigator.pushNamedAndRemoveUntil(context,
@@ -136,11 +135,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           message:
                               state.authErrorException.authErrorModel.errors[0],
                         );
-                        print(state.authErrorException.authErrorModel);
                       }
                     },
                     builder: (context, state) {
-                      print("login");
                       var cubit = UserCubit.get(context);
                       return CustomButton(
                           buttonTitle: 'نسجيل الدخول',

@@ -43,13 +43,12 @@ class AuthenticationRepository extends AuthenticationBaseRepository {
   }
 
   @override
-  Future<Either<ErrorException, AuthenticationEntity>> verifyPhone(VerifyPhoneParameter parameter) async {
+  Future<Either<ErrorException, AuthenticationEntity>> verifyPhone(VerifyPhoneParameter parameters) async {
 
     try {
-      final response = await baseAuthenticationRemoteDataSource.verifyPhone(parameter);
+      final response = await baseAuthenticationRemoteDataSource.verifyPhone(parameters);
       return Right(response);
     } on ErrorException catch (error) {
-      print(error);
       return Left(ErrorException(
         error.authErrorModel,
       ));

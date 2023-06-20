@@ -2,8 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
+import 'package:mafqood/core/assets_path/images_path.dart';
+
+import '../../../core/services/google_maps_services.dart';
 
 class LiveLocationScreen extends StatefulWidget {
   const LiveLocationScreen({Key? key}) : super(key: key);
@@ -13,50 +16,70 @@ class LiveLocationScreen extends StatefulWidget {
 }
 
 class _LiveLocationScreenState extends State<LiveLocationScreen> {
-  final Completer<GoogleMapController> googleMapController =
+  final Completer<GoogleMapController> _googleMapController =
       Completer<GoogleMapController>();
-  static const LatLng destinationLocation = LatLng(37.33429383, -122.06600055);
+  final LatLng destinationLocation = const LatLng(30.008, 31.211);
+  late final LatLng sourceLocation;
 
+  final GoogleMapsServices googleMapsServices = GoogleMapsServices();
   List<LatLng> polyLineCoordinates = [];
 
-  void getPolyLinePoints() async {
+  void getPolyLinePoints(Position? currentLocation) async {
     print("object");
     PolylinePoints polylinePoints = PolylinePoints();
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
         "AIzaSyCAOMyuhbP1CAJ1H4WnnMSXyC_xhpu72tE",
-        PointLatLng(currentLocation!.latitude!, currentLocation!.longitude!),
+        PointLatLng(currentLocation!.latitude, currentLocation.longitude),
         PointLatLng(
             destinationLocation.latitude, destinationLocation.longitude));
     if (result.points.isNotEmpty) {
-      result.points.forEach((element) {
+      for (var element in result.points) {
         polyLineCoordinates.add(LatLng(element.latitude, element.longitude));
         print(element);
-      });
+      }
     }
+    setState(() {});
   }
 
-  LocationData? currentLocation;
+  BitmapDescriptor currentIcon = BitmapDescriptor.defaultMarker;
+  Position? currentLocation;
 
-  void getCurrentLocation() async {
-    Location location = Location();
+  void getCurrentMarker() {
+    BitmapDescriptor.fromAssetImage(
+            ImageConfiguration.empty, ImagesPath.splashLogo)
+        .then((value) {
+      currentIcon = value;
+    });
+    setState(() {});
+  }
 
-    location.getLocation().then((value) {
+  void getCurrentLocation()async{
+    googleMapsServices.getGeoLocationPosition().then((value) {
       currentLocation = value;
+      sourceLocation =
+          LatLng(currentLocation!.latitude, currentLocation!.longitude);
+      print(currentLocation);
+      getPolyLinePoints(currentLocation);
     });
-    GoogleMapController controller = await googleMapController.future;
-    location.onLocationChanged.listen((event) {
-      currentLocation = event;
-      controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
-        target: LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
-        zoom: 13,
-      )));
-      getPolyLinePoints();
-      setState(() {});
+    GoogleMapController controller = await _googleMapController.future;
+    googleMapsServices
+        .streamLocation(googleMapsServices.locationSettings)
+        .then((value) {
+      print(value);
+      value.listen((event) {
+        print(event.latitude);
+        print(event.longitude);
+        currentLocation = event;
+        controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: LatLng(currentLocation!.latitude, currentLocation!.longitude),zoom: zoomValue)));
+        setState(() {});
+      });
     });
   }
 
+  double zoomValue = 13.5;
   @override
   void initState() {
+    getCurrentMarker();
     getCurrentLocation();
     super.initState();
   }
@@ -65,18 +88,26 @@ class _LiveLocationScreenState extends State<LiveLocationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Map Tracker"),
+        title: const Text(
+          "Map Tracker",
+        ),
         centerTitle: true,
+        backgroundColor: Colors.white,
       ),
       body: currentLocation == null
           ? const Center(
               child: CircularProgressIndicator.adaptive(),
             )
           : GoogleMap(
+        onCameraMove: (CameraPosition cameraPosition){
+          setState(() {
+            zoomValue = cameraPosition.zoom;
+          });
+        },
               initialCameraPosition: CameraPosition(
                 target: LatLng(
-                    currentLocation!.latitude!, currentLocation!.longitude!),
-                zoom: 13,
+                    currentLocation!.latitude, currentLocation!.longitude),
+                zoom: zoomValue,
               ),
               polylines: {
                 Polyline(
@@ -85,14 +116,23 @@ class _LiveLocationScreenState extends State<LiveLocationScreen> {
                     color: Colors.red,
                     width: 6)
               },
+              onMapCreated: (controller) {
+                _googleMapController.complete(controller);
+              },
               markers: {
                 Marker(
-                  markerId: MarkerId("source"),
-                  position: LatLng(
-                      currentLocation!.latitude!, currentLocation!.longitude!),
+                  markerId: const MarkerId("sourceLocation"),
+                  position:
+                      LatLng(sourceLocation.latitude, sourceLocation.longitude),
                 ),
-                const Marker(
-                  markerId: MarkerId("destination"),
+                Marker(
+                  markerId: const MarkerId("currentLocation"),
+                  icon: currentIcon,
+                  position: LatLng(
+                      currentLocation!.latitude, currentLocation!.longitude),
+                ),
+                Marker(
+                  markerId: const MarkerId("destinationLocation"),
                   position: destinationLocation,
                 ),
               },

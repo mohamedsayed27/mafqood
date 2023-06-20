@@ -153,7 +153,6 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
     }, (r) {
       searchByNameLoading = false;
       searchForLostByNameLis = r.data;
-      print(searchForLostByNameLis);
       emit(SearchForLostPersonByNameDataSuccess(searchLostPeopleEntity: r));
     });
   }
@@ -183,8 +182,6 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
       getAllSurvivalsDataList = [];
       emit(GetAllSurvivalsDataLoading());
     }
-    print(allSurvivalPageNumber);
-    print(allSurvivalLastPageNumber);
     if(allSurvivalPageNumber<=allSurvivalLastPageNumber){
       final response = await _getAllSurvivalsUsecase(allSurvivalPageNumber);
       response.fold((l) {
@@ -198,9 +195,6 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
         }
       });
     }
-    print("after");
-    print(allSurvivalPageNumber);
-    print(allSurvivalLastPageNumber);
   }
 
   void getMyLostPeopleList() async {

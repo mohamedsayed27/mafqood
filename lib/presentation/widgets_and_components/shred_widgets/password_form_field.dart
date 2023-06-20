@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/constants/reg_exp.dart';
 import '../../../core/theme/app_colors_light_theme.dart';
 import '../auth_widgets/custom_text_form_field.dart';
 

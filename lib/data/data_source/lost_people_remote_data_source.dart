@@ -14,7 +14,7 @@ import '../../core/network/dio_helper.dart';
 import '../../core/network/error_message_model.dart';
 import '../../domain/usecases/lost_people_usecases/help_lost_person_usecase.dart';
 import '../../domain/usecases/lost_people_usecases/update_my_lost_usecase.dart';
-import '../models/getAllLostModel.dart';
+import '../models/get_all_lost_model.dart';
 import '../models/get_my_lost_people_model.dart';
 import '../models/lost_person_model.dart';
 import '../models/search_lost_people_by_name.dart';

@@ -153,18 +153,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ScreenName.otpVerificationNumberScreen,
                             (route) => false,
                             arguments: phoneController.text);
-                        print(state.authenticationEntity);
                       } else if (state is RegisterError) {
                         Navigator.pop(context);
                         showToast(
                             errorType: 1,
                             message: state
                                 .authErrorException.authErrorModel.errors[0]);
-                        print(state.authErrorException.authErrorModel);
                       }
                     },
                     builder: (context, state) {
-                      print("register");
                       var cubit = UserCubit.get(context);
                       return CustomButton(
                         buttonTitle: 'انشاء خساب',
