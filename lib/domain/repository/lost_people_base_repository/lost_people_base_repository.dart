@@ -16,14 +16,14 @@ import '../../entities/lost_person_data_entity.dart';
 import '../../entities/search_lost_by_name_entity.dart';
 
 abstract class LostPeopleBaseRepository{
-  Future<Either<AuthErrorException, LostPeopleEntity>> sendLostPersonsDataFromFamily(AddLostPersonFromFamilyDataParameters addLostPersonDataParameters);
-  Future<Either<AuthErrorException, LostPeopleEntity>> addLostPersonsDataFromAnonymous(AddLostPersonsDataFromAnonymousParameters helpLostPersonDataParameters);
-  Future<Either<AuthErrorException, BasicSuccessResponseEntity>> updateMyLost(UpdateMyLostParameters updateMyLostParameters);
-  Future<Either<AuthErrorException, LostPersonEntity>> searchLostPersonByItsImage(File image);
-  Future<Either<AuthErrorException, SearchLostPeopleEntity>> searchLostPeopleByName(String name);
-  Future<Either<AuthErrorException, GetMyLostPeopleEntity>> getMyLostPeople();
-  Future<Either<AuthErrorException, GetAllLostEntity>> getAllLost();
-  Future<Either<AuthErrorException, GetAllLostEntity>> getAllSurvivals();
-  Future<Either<AuthErrorException, List<CityEntity>>> getCities();
-  Future<Either<AuthErrorException, List<AreaEntity>>> getAreas(String id);
+  Future<Either<ErrorException, LostPeopleEntity>> sendLostPersonsDataFromFamily(AddLostPersonFromFamilyDataParameters addLostPersonDataParameters);
+  Future<Either<ErrorException, LostPeopleEntity>> addLostPersonsDataFromAnonymous(AddLostPersonsDataFromAnonymousParameters helpLostPersonDataParameters);
+  Future<Either<ErrorException, BasicSuccessResponseEntity>> updateMyLost(UpdateMyLostParameters updateMyLostParameters);
+  Future<Either<ErrorException, LostPersonEntity>> searchLostPersonByItsImage(File image);
+  Future<Either<ErrorException, SearchLostPeopleEntity>> searchLostPeopleByName(String name);
+  Future<Either<ErrorException, GetMyLostPeopleEntity>> getMyLostPeople();
+  Future<Either<ErrorException, GetAllLostEntity>> getAllLost(int pageNumber);
+  Future<Either<ErrorException, GetAllLostEntity>> getAllSurvivals(int pageNumber);
+  Future<Either<ErrorException, List<CityEntity>>> getCities();
+  Future<Either<ErrorException, List<AreaEntity>>> getAreas(String id);
 }

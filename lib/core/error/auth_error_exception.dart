@@ -2,10 +2,10 @@ import 'package:equatable/equatable.dart';
 
 import '../network/error_message_model.dart';
 
-class AuthErrorException extends Equatable implements Exception {
+class ErrorException extends Equatable implements Exception {
   final AuthErrorModel authErrorModel;
 
-  const AuthErrorException(this.authErrorModel);
+  const ErrorException(this.authErrorModel);
 
   @override
   // TODO: implement props

@@ -11,7 +11,7 @@ class SearchLostPeopleByNameUsecase extends BaseUsecase<SearchLostPeopleEntity, 
   SearchLostPeopleByNameUsecase({required this.lostPeopleBaseRepository});
 
   @override
-  Future<Either<AuthErrorException, SearchLostPeopleEntity>> call(String parameters) async{
+  Future<Either<ErrorException, SearchLostPeopleEntity>> call(String parameters) async{
     return await lostPeopleBaseRepository.searchLostPeopleByName(parameters);
   }
 }

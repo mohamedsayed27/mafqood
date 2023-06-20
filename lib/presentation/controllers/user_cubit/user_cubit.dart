@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mafqood/domain/usecases/auth_usecases/forget_password_usecase.dart';
 import 'package:mafqood/domain/usecases/auth_usecases/login_usecase.dart';
 import 'package:mafqood/domain/usecases/auth_usecases/reset_password_usecase.dart';
-import '../../../core/services/services_locator.dart';
 import '../../../domain/usecases/auth_usecases/register_usecase.dart';
 import '../../../domain/usecases/auth_usecases/verify_phone.dart';
 import 'user_state.dart';
@@ -24,10 +23,8 @@ class UserCubit extends Cubit<UserState> {
     emit(LoginLoading());
     final response = await loginUsecase(LoginParameter(password: password, phone: phone));
     response.fold((l) {
-      print(l);
       emit(LoginError(authErrorException: l));
     }, (r) {
-      print(r);
       emit(LoginSuccess(authenticationEntity: r));
     });
   }
@@ -36,10 +33,8 @@ class UserCubit extends Cubit<UserState> {
     emit(RegisterLoading());
     final response = await registerUsecase(registerParameter);
     response.fold((l) {
-      print(l);
       emit(RegisterError(authErrorException: l));
     }, (r) {
-      print(r);
       emit(RegisterSuccess(authenticationEntity: r));
     });
   }
@@ -51,10 +46,8 @@ class UserCubit extends Cubit<UserState> {
     emit(VerifyPhoneLoading());
     final response = await verifyPhoneUsecase(VerifyPhoneParameter(phone: phone, code: code));
     response.fold((l) {
-      print(l);
       emit(VerifyPhoneError(authErrorException: l));
     }, (r) {
-      print(r);
       emit(VerifyPhoneSuccess(authenticationEntity: r));
     });
   }
@@ -67,10 +60,8 @@ class UserCubit extends Cubit<UserState> {
     emit(ResetPasswordLoading());
     final response = await resetPasswordUsecase(ResetPasswordParameters(password: password, phone: phone, code: code));
     response.fold((l) {
-      print(l);
       emit(ResetPasswordError(authErrorException: l));
     }, (r) {
-      print(r);
       emit(ResetPasswordSuccess(authenticationEntity: r));
     });
   }
@@ -81,10 +72,8 @@ class UserCubit extends Cubit<UserState> {
     emit(ForgetPasswordLoading());
     final response = await forgetPasswordUsecase(phone);
     response.fold((l) {
-      print(l);
       emit(ForgetPasswordError(authErrorException: l));
     }, (r) {
-      print(r);
       emit(ForgetPasswordSuccess(authenticationEntity: r));
     });
   }

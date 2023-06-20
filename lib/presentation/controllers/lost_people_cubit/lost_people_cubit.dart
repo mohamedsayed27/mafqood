@@ -10,7 +10,10 @@ import 'package:mafqood/domain/usecases/lost_people_usecases/get_my_lost_people_
 
 import '../../../core/base_usecases/base_usecase.dart';
 import '../../../core/theme/app_colors_light_theme.dart';
+import '../../../domain/entities/get_all_lost_entity.dart';
 import '../../../domain/entities/search_lost_by_name_entity.dart';
+import '../../../domain/usecases/lost_people_usecases/get_all_lost.dart';
+import '../../../domain/usecases/lost_people_usecases/get_all_survivals.dart';
 import '../../../domain/usecases/lost_people_usecases/get_areas_usecase.dart';
 import '../../../domain/usecases/lost_people_usecases/get_cities_usecase.dart';
 import '../../../domain/usecases/lost_people_usecases/help_lost_person_usecase.dart';
@@ -25,7 +28,10 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
     this._getMyLostPeopleUsecase,
     this._getCitiesUsecase,
     this._getAreasUsecase,
-    this._searchForPersonByImageUsecase, this._searchLostPeopleByNameUsecase,
+    this._searchForPersonByImageUsecase,
+    this._searchLostPeopleByNameUsecase,
+    this._getAllLostUsecase,
+    this._getAllSurvivalsUsecase,
   ) : super(LostPeopleInitial());
 
   static LostPeopleCubit get(context) => BlocProvider.of(context);
@@ -37,6 +43,8 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
   final GetAreasUsecase _getAreasUsecase;
   final SearchForPersonByImageUsecase _searchForPersonByImageUsecase;
   final SearchLostPeopleByNameUsecase _searchLostPeopleByNameUsecase;
+  final GetAllLostUsecase _getAllLostUsecase;
+  final GetAllSurvivalsUsecase _getAllSurvivalsUsecase;
   File? lostPersonFromFamilyImage;
   File? lostPersonFromAnonymousImage;
   File? searchLostPersonImage;
@@ -51,9 +59,16 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
   AreaEntity? areaEntity;
   LostPersonDataEntity? lostPersonDataEntity;
   List<SearchByNameDataEntity>? searchForLostByNameLis;
+  List<GetAllLostDataEntity> getAllLostDataList = [];
+  List<GetAllLostDataEntity> getAllSurvivalsDataList = [];
   RangeValues values = const RangeValues(1, 100);
+  int allLostPageNumber = 1;
+  int allLostLastPageNumber = 1;
+  int allSurvivalPageNumber = 1;
+  int allSurvivalLastPageNumber = 1;
 
   bool searchByNameLoading = false;
+
   selectTDateTime(BuildContext context) {
     showDatePicker(
       context: context,
@@ -138,9 +153,48 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
     }, (r) {
       searchByNameLoading = false;
       searchForLostByNameLis = r.data;
-      print(searchForLostByNameLis);
       emit(SearchForLostPersonByNameDataSuccess(searchLostPeopleEntity: r));
     });
+  }
+
+  void getAllLost() async {
+    if(allLostPageNumber == 1){
+      getAllLostDataList = [];
+      emit(GetAllLostLoading());
+    }
+    if(allLostPageNumber<=allLostLastPageNumber){
+      final response = await _getAllLostUsecase(allLostPageNumber);
+      response.fold((l) {
+        emit(GetAllLostError(authErrorException: l));
+      }, (r) {
+        if(allLostPageNumber<=r.totalPages!){
+          allLostLastPageNumber=r.totalPages!;
+          allLostPageNumber++;
+          getAllLostDataList.addAll(r.data!);
+          emit(GetAllLostSuccess(getAllLostEntity: r));
+        }
+      });
+    }
+  }
+
+  void getAllSurvivals() async {
+    if(allSurvivalPageNumber == 1){
+      getAllSurvivalsDataList = [];
+      emit(GetAllSurvivalsDataLoading());
+    }
+    if(allSurvivalPageNumber<=allSurvivalLastPageNumber){
+      final response = await _getAllSurvivalsUsecase(allSurvivalPageNumber);
+      response.fold((l) {
+        emit(GetAllSurvivalsDataError(authErrorException: l));
+      }, (r) {
+        if(allSurvivalPageNumber<=r.totalPages!){
+          allSurvivalLastPageNumber=r.totalPages!;
+          allSurvivalPageNumber++;
+          getAllSurvivalsDataList.addAll(r.data!);
+          emit(GetAllSurvivalsDataSuccess(getAllLostEntity: r));
+        }
+      });
+    }
   }
 
   void getMyLostPeopleList() async {

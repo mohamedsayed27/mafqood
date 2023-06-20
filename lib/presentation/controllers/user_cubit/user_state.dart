@@ -14,7 +14,7 @@ class LoginSuccess extends UserState {
   LoginSuccess({required this.authenticationEntity});
 }
 class LoginError extends UserState {
-  final AuthErrorException authErrorException;
+  final ErrorException authErrorException;
   LoginError({required this.authErrorException});
 }
 
@@ -26,7 +26,7 @@ class RegisterSuccess extends UserState {
   RegisterSuccess({required this.authenticationEntity});
 }
 class RegisterError extends UserState {
-  final AuthErrorException authErrorException;
+  final ErrorException authErrorException;
   RegisterError({required this.authErrorException});
 }
 
@@ -38,7 +38,7 @@ class VerifyPhoneSuccess extends UserState {
   VerifyPhoneSuccess({required this.authenticationEntity});
 }
 class VerifyPhoneError extends UserState {
-  final AuthErrorException authErrorException;
+  final ErrorException authErrorException;
   VerifyPhoneError({required this.authErrorException});
 }
 
@@ -50,7 +50,7 @@ class ResetPasswordSuccess extends UserState {
   ResetPasswordSuccess({required this.authenticationEntity});
 }
 class ResetPasswordError extends UserState {
-  final AuthErrorException authErrorException;
+  final ErrorException authErrorException;
   ResetPasswordError({required this.authErrorException});
 }
 
@@ -62,6 +62,6 @@ class ForgetPasswordSuccess extends UserState {
   ForgetPasswordSuccess({required this.authenticationEntity});
 }
 class ForgetPasswordError extends UserState {
-  final AuthErrorException authErrorException;
+  final ErrorException authErrorException;
   ForgetPasswordError({required this.authErrorException});
 }

@@ -1,18 +1,23 @@
 import '../../domain/entities/lost_person_data_entity.dart';
 
 class LostPersonModel extends LostPersonEntity {
-  const LostPersonModel(
-      {required super.status,
-      required super.message,
-      required super.data,
-      required super.errors,});
-factory LostPersonModel.fromJson(Map<String, dynamic> json) {
- return LostPersonModel( status : json['status'],
-     message : json['message'],
-     data : json['data'] != null ? new LostPersonDataModel.fromJson(json['data']) : null,
-  errors : json['errors']!=null?json['errors'].cast<String>():null,);
-}
+  const LostPersonModel({
+    required super.status,
+    required super.message,
+    required super.data,
+    required super.errors,
+  });
 
+  factory LostPersonModel.fromJson(Map<String, dynamic> json) {
+    return LostPersonModel(
+      status: json['status'],
+      message: json['message'],
+      data: json['data'] != null
+          ? LostPersonDataModel.fromJson(json['data'])
+          : null,
+      errors: json['errors'] != null ? json['errors'].cast<String>() : null,
+    );
+  }
 }
 
 class LostPersonDataModel extends LostPersonDataEntity {

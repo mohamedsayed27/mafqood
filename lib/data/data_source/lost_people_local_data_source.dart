@@ -26,7 +26,7 @@ class LostPeopleLocalDataSource extends BaseLostPeopleLocalDataSource {
       });
       return cities;
     } catch (error) {
-      throw AuthErrorException(
+      throw ErrorException(
         AuthErrorModel.fromJson(
           {
             "message": "error occurred",
@@ -48,7 +48,7 @@ class LostPeopleLocalDataSource extends BaseLostPeopleLocalDataSource {
       });
       return cities;
     } catch (error) {
-      throw AuthErrorException(
+      throw ErrorException(
         AuthErrorModel.fromJson(
           {
             "message": "error occurred",

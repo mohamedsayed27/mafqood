@@ -14,24 +14,20 @@ import '../../core/network/dio_helper.dart';
 import '../../core/network/error_message_model.dart';
 import '../../domain/usecases/lost_people_usecases/help_lost_person_usecase.dart';
 import '../../domain/usecases/lost_people_usecases/update_my_lost_usecase.dart';
+import '../models/get_all_lost_model.dart';
 import '../models/get_my_lost_people_model.dart';
 import '../models/lost_person_model.dart';
 import '../models/search_lost_people_by_name.dart';
 
 abstract class BaseLostPeopleRemoteDataSource {
-  Future<LostPeopleModel> addLostPersonDataFromFamily(
-      AddLostPersonFromFamilyDataParameters parameters);
-
-  Future<LostPeopleModel> helpLostPerson(
-      AddLostPersonsDataFromAnonymousParameters parameters);
-
-  Future<BasicSuccessResponseModel> updateMyLost(
-      UpdateMyLostParameters parameters);
-
+  Future<LostPeopleModel> addLostPersonDataFromFamily(AddLostPersonFromFamilyDataParameters parameters);
+  Future<LostPeopleModel> helpLostPerson(AddLostPersonsDataFromAnonymousParameters parameters);
+  Future<BasicSuccessResponseModel> updateMyLost(UpdateMyLostParameters parameters);
   Future<GetMyLostPeopleModel> getMyLostPeople(NoParameters parameters);
-
   Future<LostPersonModel> searchForLostPersonByImage(File image);
   Future<SearchLostPeopleByNameModel> searchForLostPersonByName(String name);
+  Future<GetAllLostModel> getAllLost(int pageNumber);
+  Future<GetAllLostModel> getAllSurvivals(int pageNumber);
 }
 
 class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
@@ -61,8 +57,7 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
       );
       return LostPeopleModel.fromJson(response.data);
     } on DioError catch (error) {
-      print(error);
-      throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
+      throw ErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
   }
 
@@ -85,7 +80,7 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
       );
       return LostPeopleModel.fromJson(response.data);
     } on DioError catch (error) {
-      throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
+      throw ErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
   }
 
@@ -102,7 +97,7 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
       );
       return BasicSuccessResponseModel.fromJson(response.data);
     } on DioError catch (error) {
-      throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
+      throw ErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
   }
 
@@ -113,7 +108,7 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
           url: EndPoints.getMyLostPeople, bearerToken: token);
       return GetMyLostPeopleModel.fromJson(response.data);
     } on DioError catch (error) {
-      throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
+      throw ErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
   }
 
@@ -132,7 +127,7 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
       );
       return LostPersonModel.fromJson(response.data);
     } on DioError catch (error) {
-      throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
+      throw ErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
   }
 
@@ -148,31 +143,41 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
       );
       return SearchLostPeopleByNameModel.fromJson(response.data);
     } on DioError catch (error) {
-      throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
+      throw ErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
   }
 
-  Future<SearchLostPeopleByNameModel> getAllLost() async{
+  @override
+  Future<GetAllLostModel> getAllLost(int pageNumber) async{
     try {
       final response = await dioHelper.getData(
         bearerToken: token,
-        url: EndPoints.findByName,
+        url: EndPoints.getAllLost,
+          query: {
+            "Page":pageNumber,
+            "PageSize":10,
+          }
       );
-      return SearchLostPeopleByNameModel.fromJson(response.data);
+      return GetAllLostModel.fromJson(response.data);
     } on DioError catch (error) {
-      throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
+      throw ErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
   }
 
-  Future<SearchLostPeopleByNameModel> getAllSurvivals() async{
+  @override
+  Future<GetAllLostModel> getAllSurvivals(int pageNumber) async{
     try {
       final response = await dioHelper.getData(
         bearerToken: token,
-        url: EndPoints.findByName,
+        url: EndPoints.getAllSurvivals,
+        query: {
+          "Page":pageNumber,
+          "PageSize":10,
+        }
       );
-      return SearchLostPeopleByNameModel.fromJson(response.data);
+      return GetAllLostModel.fromJson(response.data);
     } on DioError catch (error) {
-      throw AuthErrorException(AuthErrorModel.fromJson(error.response!.data));
+      throw ErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
   }
 }

@@ -13,7 +13,7 @@ class SearchForPersonByImageUsecase extends BaseUsecase<LostPersonEntity, File>{
   SearchForPersonByImageUsecase({required this.lostPeopleBaseRepository});
 
   @override
-  Future<Either<AuthErrorException, LostPersonEntity>> call(File parameters) async{
+  Future<Either<ErrorException, LostPersonEntity>> call(File parameters) async{
     return await lostPeopleBaseRepository.searchLostPersonByItsImage(parameters);
   }
 

@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'api_end_points.dart';
 
 class DioHelper {
-   static late Dio dio;
+  static late Dio dio;
 
    static init() {
     dio = Dio(
@@ -25,7 +25,7 @@ class DioHelper {
       if (bearerToken != null) "Authorization": "Bearer $bearerToken",
       'Accept': 'text/plain',
     };
-    return await dio.get(url, queryParameters: query);
+    return await dio.get(url, queryParameters: query,);
   }
 
    Future<Response> postData({

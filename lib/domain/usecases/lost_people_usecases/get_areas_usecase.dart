@@ -11,7 +11,7 @@ class GetAreasUsecase extends BaseUsecase<List<AreaEntity>, String> {
   GetAreasUsecase({required this.lostPeopleBaseRepository});
 
   @override
-  Future<Either<AuthErrorException, List<AreaEntity>>> call(String parameters) async{
+  Future<Either<ErrorException, List<AreaEntity>>> call(String parameters) async{
     return await lostPeopleBaseRepository.getAreas(parameters);
   }
 }

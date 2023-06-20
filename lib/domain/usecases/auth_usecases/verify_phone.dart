@@ -13,7 +13,7 @@ class VerifyPhoneUsecase extends BaseUsecase<AuthenticationEntity,VerifyPhonePar
 
 
   @override
-  Future<Either<AuthErrorException, AuthenticationEntity>> call(VerifyPhoneParameter parameters) async{
+  Future<Either<ErrorException, AuthenticationEntity>> call(VerifyPhoneParameter parameters) async{
     return await authenticationBaseRepository.verifyPhone(parameters);
   }
 }

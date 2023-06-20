@@ -15,68 +15,67 @@ class AuthenticationRepository extends AuthenticationBaseRepository {
   AuthenticationRepository({required this.baseAuthenticationRemoteDataSource});
 
   @override
-  Future<Either<AuthErrorException, AuthenticationEntity>> login(LoginParameter loginParameter) async {
+  Future<Either<ErrorException, AuthenticationEntity>> login(LoginParameter loginParameter) async {
 
     try {
       final response = await baseAuthenticationRemoteDataSource.login(loginParameter);
       return Right(response);
-    } on AuthErrorException catch (error) {
-      return Left(AuthErrorException(
+    } on ErrorException catch (error) {
+      return Left(ErrorException(
         error.authErrorModel,
       ));
     }
   }
 
   @override
-  Future<Either<AuthErrorException, AuthenticationEntity>> register(RegisterParameter registerParameter) async {
+  Future<Either<ErrorException, AuthenticationEntity>> register(RegisterParameter registerParameter) async {
 
     try {
       final response = await baseAuthenticationRemoteDataSource.register(
           registerParameter
       );
       return Right(response);
-    } on AuthErrorException catch (error) {
-      return Left(AuthErrorException(
+    } on ErrorException catch (error) {
+      return Left(ErrorException(
         error.authErrorModel,
       ));
     }
   }
 
   @override
-  Future<Either<AuthErrorException, AuthenticationEntity>> verifyPhone(VerifyPhoneParameter parameter) async {
+  Future<Either<ErrorException, AuthenticationEntity>> verifyPhone(VerifyPhoneParameter parameters) async {
 
     try {
-      final response = await baseAuthenticationRemoteDataSource.verifyPhone(parameter);
+      final response = await baseAuthenticationRemoteDataSource.verifyPhone(parameters);
       return Right(response);
-    } on AuthErrorException catch (error) {
-      print(error);
-      return Left(AuthErrorException(
+    } on ErrorException catch (error) {
+      return Left(ErrorException(
         error.authErrorModel,
       ));
     }
   }
 
   @override
-  Future<Either<AuthErrorException, AuthenticationEntity>> forgetPassword({required String phone}) async{
+  Future<Either<ErrorException, AuthenticationEntity>> forgetPassword({required String phone}) async{
 
     try {
       final response = await baseAuthenticationRemoteDataSource.forgetPassword(phone: phone);
       return Right(response);
-    } on AuthErrorException catch (error) {
-      return Left(AuthErrorException(
+    } on ErrorException catch (error) {
+      return Left(ErrorException(
         error.authErrorModel,
       ));
     }
   }
 
   @override
-  Future<Either<AuthErrorException, AuthenticationEntity>> resetPassword(ResetPasswordParameters parameters) async{
+  Future<Either<ErrorException, AuthenticationEntity>> resetPassword(ResetPasswordParameters parameters) async{
 
     try {
       final response = await baseAuthenticationRemoteDataSource.resetPassword(parameters);
       return Right(response);
-    } on AuthErrorException catch (error) {
-      return Left(AuthErrorException(
+    } on ErrorException catch (error) {
+      return Left(ErrorException(
         error.authErrorModel,
       ));
     }

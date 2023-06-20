@@ -18,35 +18,39 @@ class CustomBoardingButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        shape: !isLast ? const CircleBorder() : const StadiumBorder(),
-        backgroundColor: AppColorsLightTheme.whitTextColor,
-        foregroundColor: AppColorsLightTheme.primaryColor,
-        padding: !isLast
-            ? EdgeInsets.all(16.r)
-            : EdgeInsets.symmetric(horizontal: 45.w, vertical: 16.h),
+    return SizedBox(
+      height: !isLast ?60.h:null,
+      width: !isLast ? 60.w:null,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          shape: !isLast ? const CircleBorder() : const StadiumBorder(),
+          backgroundColor: AppColorsLightTheme.whitTextColor,
+          foregroundColor: AppColorsLightTheme.primaryColor,
+          padding: !isLast
+              ? EdgeInsets.all(5.r)
+              : EdgeInsets.symmetric(horizontal: 45.w, vertical: 16.h),
+        ),
+        onPressed: () {
+          if (!isLast) isTapped();
+          if (isLast) isLastTap();
+        },
+        child: !isLast
+            ? Center(
+                child: Icon(
+                  Icons.arrow_forward,
+                  color: AppColorsLightTheme.primaryColor,
+                  size: 28.r,
+                ),
+              )
+            : Text(
+                'ابدأ الأن',
+                style: TextStyle(
+                  color: AppColorsLightTheme.blueTextColor,
+                  fontFamily: FontsPath.sukarBlack,
+                  fontSize: 15.sp,
+                ),
+              ),
       ),
-      onPressed: () {
-        if (!isLast) isTapped();
-        if (isLast) isLastTap();
-      },
-      child: !isLast
-          ? Center(
-              child: Icon(
-                Icons.arrow_forward,
-                color: AppColorsLightTheme.primaryColor,
-                size: 32.r,
-              ),
-            )
-          : Text(
-              'ابدأ الأن',
-              style: TextStyle(
-                color: AppColorsLightTheme.blueTextColor,
-                fontFamily: FontsPath.sukarBlack,
-                fontSize: 15.sp,
-              ),
-            ),
     );
   }
 }

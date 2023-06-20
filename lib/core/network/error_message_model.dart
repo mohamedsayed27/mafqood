@@ -6,7 +6,7 @@ class AuthErrorModel extends Equatable {
   final List<String> errors;
 
   const AuthErrorModel(
-      {required this.message, required this.status, required this.errors});
+      {required this.message, required this.status, required this.errors,});
 
   factory AuthErrorModel.fromJson(Map<String, dynamic> json) {
     return AuthErrorModel(
@@ -16,6 +16,13 @@ class AuthErrorModel extends Equatable {
     );
   }
 
+  Map<String, dynamic> toMap(){
+    return {
+      "message":message,
+      "status":status,
+      "errors":errors,
+    };
+  }
   @override
   // TODO: implement props
   List<Object?> get props => [

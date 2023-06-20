@@ -1,14 +1,11 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:mafqood/core/app_router/screens_name.dart';
 import 'package:mafqood/core/services/google_maps_services.dart';
 
-import '../../widgets_and_components/shred_widgets/simple_dialog_component.dart';
 import 'google_maps_state.dart';
 
 class GoogleMapsCubit extends Cubit<GoogleMapsState> {
@@ -23,7 +20,6 @@ class GoogleMapsCubit extends Cubit<GoogleMapsState> {
 
   Future<Position> getCurrentPosition() async {
     currentPosition = await _googleMapsServices.getGeoLocationPosition();
-    print(currentPosition);
     emit(GetCurrentPositionSuccess());
     return currentPosition!;
   }

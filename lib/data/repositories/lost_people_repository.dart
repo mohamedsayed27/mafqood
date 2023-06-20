@@ -26,14 +26,14 @@ class LostPeopleRepository extends LostPeopleBaseRepository {
   LostPeopleRepository({required this.baseLostPeopleLocalDataSource,required this.baseLostPeopleRemoteDataSource});
 
   @override
-  Future<Either<AuthErrorException, LostPeopleEntity>> sendLostPersonsDataFromFamily(AddLostPersonFromFamilyDataParameters addLostPersonDataParameters) async {
+  Future<Either<ErrorException, LostPeopleEntity>> sendLostPersonsDataFromFamily(AddLostPersonFromFamilyDataParameters addLostPersonDataParameters) async {
     try {
       final response = await baseLostPeopleRemoteDataSource
           .addLostPersonDataFromFamily(addLostPersonDataParameters);
       return Right(response);
-    } on AuthErrorException catch (error) {
+    } on ErrorException catch (error) {
       return Left(
-        AuthErrorException(
+        ErrorException(
           error.authErrorModel,
         ),
       );
@@ -41,13 +41,13 @@ class LostPeopleRepository extends LostPeopleBaseRepository {
   }
 
   @override
-  Future<Either<AuthErrorException, LostPeopleEntity>> addLostPersonsDataFromAnonymous(AddLostPersonsDataFromAnonymousParameters helpLostPersonDataParameters) async{
+  Future<Either<ErrorException, LostPeopleEntity>> addLostPersonsDataFromAnonymous(AddLostPersonsDataFromAnonymousParameters helpLostPersonDataParameters) async{
     try {
       final response = await baseLostPeopleRemoteDataSource.helpLostPerson(helpLostPersonDataParameters);
       return Right(response);
-    } on AuthErrorException catch (error) {
+    } on ErrorException catch (error) {
       return Left(
-        AuthErrorException(
+        ErrorException(
           error.authErrorModel,
         ),
       );
@@ -55,13 +55,13 @@ class LostPeopleRepository extends LostPeopleBaseRepository {
   }
 
   @override
-  Future<Either<AuthErrorException, BasicSuccessResponseEntity>> updateMyLost(UpdateMyLostParameters updateMyLostParameters) async{
+  Future<Either<ErrorException, BasicSuccessResponseEntity>> updateMyLost(UpdateMyLostParameters updateMyLostParameters) async{
     try {
       final response = await baseLostPeopleRemoteDataSource.updateMyLost(updateMyLostParameters);
       return Right(response);
-    } on AuthErrorException catch (error) {
+    } on ErrorException catch (error) {
       return Left(
-        AuthErrorException(
+        ErrorException(
           error.authErrorModel,
         ),
       );
@@ -69,13 +69,13 @@ class LostPeopleRepository extends LostPeopleBaseRepository {
   }
 
   @override
-  Future<Either<AuthErrorException, GetMyLostPeopleEntity>> getMyLostPeople() async{
+  Future<Either<ErrorException, GetMyLostPeopleEntity>> getMyLostPeople() async{
     try {
       final response = await baseLostPeopleRemoteDataSource.getMyLostPeople(const NoParameters());
       return Right(response);
-    } on AuthErrorException catch (error) {
+    } on ErrorException catch (error) {
       return Left(
-        AuthErrorException(
+        ErrorException(
           error.authErrorModel,
         ),
       );
@@ -83,13 +83,13 @@ class LostPeopleRepository extends LostPeopleBaseRepository {
   }
 
   @override
-  Future<Either<AuthErrorException, List<AreaEntity>>> getAreas(String id) async{
+  Future<Either<ErrorException, List<AreaEntity>>> getAreas(String id) async{
     try {
       final response = await baseLostPeopleLocalDataSource.getArea(id);
       return Right(response);
-    } on AuthErrorException catch (error) {
+    } on ErrorException catch (error) {
       return Left(
-        AuthErrorException(
+        ErrorException(
           error.authErrorModel,
         ),
       );
@@ -97,13 +97,13 @@ class LostPeopleRepository extends LostPeopleBaseRepository {
   }
 
   @override
-  Future<Either<AuthErrorException, List<CityEntity>>> getCities() async{
+  Future<Either<ErrorException, List<CityEntity>>> getCities() async{
     try {
       final response = await baseLostPeopleLocalDataSource.getCities(const NoParameters());
       return Right(response);
-    } on AuthErrorException catch (error) {
+    } on ErrorException catch (error) {
       return Left(
-        AuthErrorException(
+        ErrorException(
           error.authErrorModel,
         ),
       );
@@ -111,13 +111,13 @@ class LostPeopleRepository extends LostPeopleBaseRepository {
   }
 
   @override
-  Future<Either<AuthErrorException, LostPersonEntity>> searchLostPersonByItsImage(File image) async{
+  Future<Either<ErrorException, LostPersonEntity>> searchLostPersonByItsImage(File image) async{
     try {
       final response = await baseLostPeopleRemoteDataSource.searchForLostPersonByImage(image);
       return Right(response);
-    } on AuthErrorException catch (error) {
+    } on ErrorException catch (error) {
       return Left(
-        AuthErrorException(
+        ErrorException(
           error.authErrorModel,
         ),
       );
@@ -125,13 +125,13 @@ class LostPeopleRepository extends LostPeopleBaseRepository {
   }
 
   @override
-  Future<Either<AuthErrorException, SearchLostPeopleEntity>> searchLostPeopleByName(String name) async{
+  Future<Either<ErrorException, SearchLostPeopleEntity>> searchLostPeopleByName(String name) async{
     try {
       final response = await baseLostPeopleRemoteDataSource.searchForLostPersonByName(name);
       return Right(response);
-    } on AuthErrorException catch (error) {
+    } on ErrorException catch (error) {
       return Left(
-        AuthErrorException(
+        ErrorException(
           error.authErrorModel,
         ),
       );
@@ -139,14 +139,30 @@ class LostPeopleRepository extends LostPeopleBaseRepository {
   }
 
   @override
-  Future<Either<AuthErrorException, GetAllLostEntity>> getAllLost() {
-    // TODO: implement getAllLost
-    throw UnimplementedError();
+  Future<Either<ErrorException, GetAllLostEntity>> getAllLost(int pageNumber) async{
+    try {
+      final response = await baseLostPeopleRemoteDataSource.getAllLost(pageNumber);
+      return Right(response);
+    } on ErrorException catch (error) {
+      return Left(
+        ErrorException(
+          error.authErrorModel,
+        ),
+      );
+    }
   }
 
   @override
-  Future<Either<AuthErrorException, GetAllLostEntity>> getAllSurvivals() {
-    // TODO: implement getAllSurvivals
-    throw UnimplementedError();
+  Future<Either<ErrorException, GetAllLostEntity>> getAllSurvivals(int pageNumber) async{
+    try {
+      final response = await baseLostPeopleRemoteDataSource.getAllSurvivals(pageNumber);
+      return Right(response);
+    } on ErrorException catch (error) {
+      return Left(
+        ErrorException(
+          error.authErrorModel,
+        ),
+      );
+    }
   }
 }

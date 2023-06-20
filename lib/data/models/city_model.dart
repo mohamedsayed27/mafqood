@@ -1,5 +1,3 @@
-import 'package:mafqood/domain/entities/area_entity.dart';
-
 import '../../domain/entities/city_entity.dart';
 
 class CityModel extends CityEntity {

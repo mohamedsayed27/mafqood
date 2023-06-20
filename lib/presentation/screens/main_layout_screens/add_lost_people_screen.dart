@@ -82,7 +82,7 @@ class AddLostPeopleScreen extends StatelessWidget {
                     child: TabBarView(
                       children: [
                         ListView(
-                          children: [
+                          children: const [
                             AddLostPersonFromFamily(),
                           ],
                         ),

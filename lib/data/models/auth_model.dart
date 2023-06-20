@@ -16,6 +16,14 @@ class AuthenticationModel extends AuthenticationEntity {
       errors: json['errors']?.cast<String>(),
     );
   }
+  Map<String, dynamic> toMap() {
+    return {
+      "status": status,
+      "message": message,
+      "data": DataModel(token: data!.token, expireOn: data!.expireOn).toMap(),
+      "errors": errors,
+    };
+  }
 }
 
 class DataModel extends Data {
@@ -29,5 +37,11 @@ class DataModel extends Data {
       token: json['token'],
       expireOn: json['expireOn'],
     );
+  }
+  Map<String, dynamic> toMap() {
+    return {
+      "token": token,
+      "expireOn": expireOn,
+    };
   }
 }

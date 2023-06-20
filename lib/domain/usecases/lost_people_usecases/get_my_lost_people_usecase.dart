@@ -10,7 +10,7 @@ class GetMyLostPeopleUsecase extends BaseUsecase<GetMyLostPeopleEntity, NoParame
 
   GetMyLostPeopleUsecase({required this.lostPeopleBaseRepository});
   @override
-  Future<Either<AuthErrorException, GetMyLostPeopleEntity>> call(NoParameters parameters) async{
+  Future<Either<ErrorException, GetMyLostPeopleEntity>> call(NoParameters parameters) async{
     return await lostPeopleBaseRepository.getMyLostPeople();
   }
 }
