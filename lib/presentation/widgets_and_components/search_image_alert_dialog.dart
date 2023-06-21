@@ -18,7 +18,7 @@ class SearchImageAlertDialog extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(25.r))),
       content: SizedBox(
         width: 301.w,
-        height: 230.h,
+        height: 250.h,
         child: BlocConsumer<LostPeopleCubit, LostPeopleState>(
           listener: (context, state) {
             var cubit = LostPeopleCubit.get(context);
@@ -34,7 +34,7 @@ class SearchImageAlertDialog extends StatelessWidget {
               Navigator.pop(context);
               Navigator.pop(context);
               Navigator.push(context, MaterialPageRoute(builder: (context)=>PersonDataScreen(lostPersonDataEntity: cubit.lostPersonDataEntity!,)));
-              showToast(errorType: 0, message: state.lostPersonEntity.message!);
+              showToast(errorType: 0, message: state.mainResponseEntity.message!);
             }
           },
           builder: (context, state) {

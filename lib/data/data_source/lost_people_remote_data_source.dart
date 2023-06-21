@@ -17,17 +17,20 @@ import '../../domain/usecases/lost_people_usecases/update_my_lost_usecase.dart';
 import '../models/get_all_lost_model.dart';
 import '../models/get_my_lost_people_model.dart';
 import '../models/lost_person_model.dart';
+import '../models/main_response_model.dart';
+import '../models/paginated_response_model.dart';
+import '../models/search_by_name_model.dart';
 import '../models/search_lost_people_by_name.dart';
 
 abstract class BaseLostPeopleRemoteDataSource {
-  Future<LostPeopleModel> addLostPersonDataFromFamily(AddLostPersonFromFamilyDataParameters parameters);
-  Future<LostPeopleModel> helpLostPerson(AddLostPersonsDataFromAnonymousParameters parameters);
+  Future<MainResponseModel> addLostPersonDataFromFamily(AddLostPersonFromFamilyDataParameters parameters);
+  Future<MainResponseModel> helpLostPerson(AddLostPersonsDataFromAnonymousParameters parameters);
   Future<BasicSuccessResponseModel> updateMyLost(UpdateMyLostParameters parameters);
-  Future<GetMyLostPeopleModel> getMyLostPeople(NoParameters parameters);
-  Future<LostPersonModel> searchForLostPersonByImage(File image);
-  Future<SearchLostPeopleByNameModel> searchForLostPersonByName(String name);
-  Future<GetAllLostModel> getAllLost(int pageNumber);
-  Future<GetAllLostModel> getAllSurvivals(int pageNumber);
+  Future<SearchByNameModel> getMyLostPeople(NoParameters parameters);
+  Future<MainResponseModel> searchForLostPersonByImage(File image);
+  Future<SearchByNameModel> searchForLostPersonByName(String name);
+  Future<PaginatedResponsePeopleModel> getAllLost(int pageNumber);
+  Future<PaginatedResponsePeopleModel> getAllSurvivals(int pageNumber);
 }
 
 class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
@@ -36,7 +39,7 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
   LostPeopleRemoteDataSource(this.dioHelper);
 
   @override
-  Future<LostPeopleModel> addLostPersonDataFromFamily(
+  Future<MainResponseModel> addLostPersonDataFromFamily(
       AddLostPersonFromFamilyDataParameters parameters) async {
     try {
       final response = await dioHelper.postData(
@@ -55,14 +58,14 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
           'Lat': parameters.lat,
         }),
       );
-      return LostPeopleModel.fromJson(response.data);
+      return MainResponseModel.fromJson(response.data);
     } on DioError catch (error) {
       throw ErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
   }
 
   @override
-  Future<LostPeopleModel> helpLostPerson(
+  Future<MainResponseModel> helpLostPerson(
       AddLostPersonsDataFromAnonymousParameters parameters) async {
     try {
       final response = await dioHelper.postData(
@@ -78,7 +81,7 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
           'MinAge': parameters.minEdge,
         }),
       );
-      return LostPeopleModel.fromJson(response.data);
+      return MainResponseModel.fromJson(response.data);
     } on DioError catch (error) {
       throw ErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
@@ -102,18 +105,18 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
   }
 
   @override
-  Future<GetMyLostPeopleModel> getMyLostPeople(NoParameters parameters) async {
+  Future<SearchByNameModel> getMyLostPeople(NoParameters parameters) async {
     try {
       final response = await dioHelper.getData(
           url: EndPoints.getMyLostPeople, bearerToken: token);
-      return GetMyLostPeopleModel.fromJson(response.data);
+      return SearchByNameModel.fromJson(response.data);
     } on DioError catch (error) {
       throw ErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
   }
 
   @override
-  Future<LostPersonModel> searchForLostPersonByImage(File image) async {
+  Future<MainResponseModel> searchForLostPersonByImage(File image) async {
     try {
       final response = await dioHelper.postData(
         token: token,
@@ -125,14 +128,14 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
           ),
         }),
       );
-      return LostPersonModel.fromJson(response.data);
+      return MainResponseModel.fromJson(response.data);
     } on DioError catch (error) {
       throw ErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
   }
 
   @override
-  Future<SearchLostPeopleByNameModel> searchForLostPersonByName(String name) async{
+  Future<SearchByNameModel> searchForLostPersonByName(String name) async{
     try {
       final response = await dioHelper.getData(
         bearerToken: token,
@@ -141,14 +144,14 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
           "Trim":name,
         },
       );
-      return SearchLostPeopleByNameModel.fromJson(response.data);
+      return SearchByNameModel.fromJson(response.data);
     } on DioError catch (error) {
       throw ErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
   }
 
   @override
-  Future<GetAllLostModel> getAllLost(int pageNumber) async{
+  Future<PaginatedResponsePeopleModel> getAllLost(int pageNumber) async{
     try {
       final response = await dioHelper.getData(
         bearerToken: token,
@@ -158,14 +161,14 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
             "PageSize":10,
           }
       );
-      return GetAllLostModel.fromJson(response.data);
+      return PaginatedResponsePeopleModel.fromJson(response.data);
     } on DioError catch (error) {
       throw ErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
   }
 
   @override
-  Future<GetAllLostModel> getAllSurvivals(int pageNumber) async{
+  Future<PaginatedResponsePeopleModel> getAllSurvivals(int pageNumber) async{
     try {
       final response = await dioHelper.getData(
         bearerToken: token,
@@ -175,7 +178,7 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
           "PageSize":10,
         }
       );
-      return GetAllLostModel.fromJson(response.data);
+      return PaginatedResponsePeopleModel.fromJson(response.data);
     } on DioError catch (error) {
       throw ErrorException(AuthErrorModel.fromJson(error.response!.data));
     }

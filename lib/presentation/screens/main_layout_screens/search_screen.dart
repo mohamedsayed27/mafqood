@@ -56,10 +56,16 @@ class _SearchScreenState extends State<SearchScreen> {
               listener: (context, state) {
                 var cubit = LostPeopleCubit.get(context);
                 if (state is GetPickedImageSuccessState) {
-                  cubit.searchLostPersonImage = state.image;
-                  showDialog(
-                      context: context,
-                      builder: (context) => const SearchImageAlertDialog());
+                  state.isSearchScreen = true;
+                  if(state.isSearchScreen == true){
+                    cubit.searchLostPersonImage = state.image;
+                    showDialog(
+                        context: context,
+                        builder: (context) => const SearchImageAlertDialog()).then((value) {
+                      state.isSearchScreen = false;
+                    }).catchError((onError){state.isSearchScreen = false;});
+                  }
+
                 }
               },
               builder: (context, state) {

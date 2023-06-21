@@ -5,6 +5,7 @@ import 'package:mafqood/core/app_router/screens_name.dart';
 import 'package:mafqood/core/assets_path/images_path.dart';
 import 'package:mafqood/presentation/controllers/lost_people_cubit/lost_people_cubit.dart';
 import 'package:mafqood/presentation/controllers/lost_people_cubit/lost_people_state.dart';
+import 'package:mafqood/presentation/screens/main_layout_screens/person_data_screen.dart';
 
 import '../../../core/assets_path/fonts_path.dart';
 import '../../../core/theme/app_colors_light_theme.dart';
@@ -157,24 +158,36 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: CircularProgressIndicator.adaptive(),
                           )
                         : ListView.builder(
-                      physics: const BouncingScrollPhysics(),
+                            physics: const BouncingScrollPhysics(),
                             itemCount: cubit.getAllSurvivalsDataList.length > 5
                                 ? 5
                                 : cubit.getAllSurvivalsDataList.length,
                             itemBuilder: (BuildContext context, int index) {
-                              if (index == 5 - 1) {
                                 return Padding(
                                   padding: EdgeInsets.symmetric(
                                     vertical: 10.h,
                                   ),
                                   child: Column(
                                     children: [
-                                      SearchWidgetBuilder(
-                                        textDirection: index % 2 == 0
-                                            ? TextDirection.ltr
-                                            : TextDirection.rtl,
-                                        getAllLostDataEntity: cubit
-                                            .getAllSurvivalsDataList[index],
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      PersonDataScreen(
+                                                        lostPersonDataEntity:
+                                                        cubit.getAllSurvivalsDataList[
+                                                        index],
+                                                      )));
+                                        },
+                                        child: SearchWidgetBuilder(
+                                          textDirection: index % 2 == 0
+                                              ? TextDirection.ltr
+                                              : TextDirection.rtl,
+                                          getAllLostDataEntity: cubit
+                                              .getAllSurvivalsDataList[index],
+                                        ),
                                       ),
                                       SizedBox(
                                         height: 30.h,
@@ -182,20 +195,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ],
                                   ),
                                 );
-                              } else {
-                                return Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    vertical: 10.h,
-                                  ),
-                                  child: SearchWidgetBuilder(
-                                    textDirection: index % 2 == 0
-                                        ? TextDirection.ltr
-                                        : TextDirection.rtl,
-                                    getAllLostDataEntity:
-                                        cubit.getAllSurvivalsDataList[index],
-                                  ),
-                                );
-                              }
+
                             },
                           );
                   },

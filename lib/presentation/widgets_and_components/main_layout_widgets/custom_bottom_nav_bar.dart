@@ -32,12 +32,13 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
     return BottomAppBar(
       shape: const CircularNotchedRectangle(),
       notchMargin: 10.r,
+      elevation: 25,
       color: AppColorsLightTheme.whitColor,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       surfaceTintColor: Colors.transparent,
-      height: 70.h,
+      height: 75.h,
       child: Container(
-        height: 70.h,
+        height: 75.h,
         width: double.infinity,
         color: Colors.transparent,
         child: Row(
@@ -45,6 +46,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 BottomNavBarIcon(
                   label: "الرئيسية",
@@ -70,6 +72,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 BottomNavBarIcon(
                   label: "الرسائل",

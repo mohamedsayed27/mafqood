@@ -52,15 +52,16 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
   double? lng;
   int? minAge;
   int? maxAge;
+  bool isInSearchScreen = false;
   final _picker = ImagePicker();
   List<CityEntity>? citiesList;
   List<AreaEntity>? areaList;
   CityEntity? cityEntity;
   AreaEntity? areaEntity;
   LostPersonDataEntity? lostPersonDataEntity;
-  List<SearchByNameDataEntity>? searchForLostByNameLis;
-  List<GetAllLostDataEntity> getAllLostDataList = [];
-  List<GetAllLostDataEntity> getAllSurvivalsDataList = [];
+  List<LostPersonDataEntity>? searchForLostByNameLis;
+  List<LostPersonDataEntity> getAllLostDataList = [];
+  List<LostPersonDataEntity> getAllSurvivalsDataList = [];
   RangeValues values = const RangeValues(1, 100);
   int allLostPageNumber = 1;
   int allLostLastPageNumber = 1;
@@ -113,7 +114,7 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
     response.fold((l) {
       emit(AddLostPersonDataFromFamilyError(authErrorException: l));
     }, (r) {
-      emit(AddLostPersonDataFromFamilySuccess(lostPeopleEntity: r));
+      emit(AddLostPersonDataFromFamilySuccess(lostPeopleEntity: r.data!));
     });
   }
 
@@ -126,7 +127,7 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
     response.fold((l) {
       emit(SendLostPersonDataError(authErrorException: l));
     }, (r) {
-      emit(SendLostPersonDataSuccess(lostPeopleEntity: r));
+      emit(SendLostPersonDataSuccess(lostPeopleEntity: r.data!));
     });
   }
 
@@ -138,7 +139,7 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
       emit(SearchForLostPersonByImageDataError(authErrorException: l));
     }, (r) {
       lostPersonDataEntity = r.data!;
-      emit(SearchForLostPersonByImageDataSuccess(lostPersonEntity: r));
+      emit(SearchForLostPersonByImageDataSuccess(mainResponseEntity: r));
     });
   }
 
@@ -153,7 +154,7 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
     }, (r) {
       searchByNameLoading = false;
       searchForLostByNameLis = r.data;
-      emit(SearchForLostPersonByNameDataSuccess(searchLostPeopleEntity: r));
+      emit(SearchForLostPersonByNameDataSuccess(searchLostPersonDataEntity: r.data!));
     });
   }
 
@@ -206,7 +207,7 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
     response.fold((l) {
       emit(GetMyLostDataError(authErrorException: l));
     }, (r) {
-      emit(GetMyLostDataSuccess(getMyLostPeopleEntity: r));
+      emit(GetMyLostDataSuccess(getMyLostPersonDataEntity: r.data!));
     });
   }
 
