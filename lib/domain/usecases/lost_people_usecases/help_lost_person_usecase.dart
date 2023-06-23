@@ -7,15 +7,16 @@ import 'package:mafqood/domain/repository/lost_people_base_repository/lost_peopl
 
 import '../../../core/base_usecases/base_usecase.dart';
 import '../../entities/lost_people_entity.dart';
+import '../../entities/main_response_entity.dart';
 
 class AddLostPersonsDataFromAnonymousUsecase
-    extends BaseUsecase<LostPeopleEntity, AddLostPersonsDataFromAnonymousParameters> {
+    extends BaseUsecase<MainResponseEntity, AddLostPersonsDataFromAnonymousParameters> {
   final LostPeopleBaseRepository lostPeopleBaseRepository;
 
   AddLostPersonsDataFromAnonymousUsecase({required this.lostPeopleBaseRepository});
 
   @override
-  Future<Either<ErrorException, LostPeopleEntity>> call(
+  Future<Either<ErrorException, MainResponseEntity>> call(
       AddLostPersonsDataFromAnonymousParameters parameters) async {
     return await lostPeopleBaseRepository.addLostPersonsDataFromAnonymous(parameters);
   }

@@ -13,7 +13,7 @@ class LogoText extends StatelessWidget {
       child: Text(
         'مفقود',
         style: TextStyle(
-          color: AppColorsLightTheme.blueTextColor,
+          color: AppColors.blueTextColor,
           fontFamily: FontsPath.sukarBold,
           fontSize: 64.sp,
         ),

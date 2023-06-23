@@ -6,7 +6,7 @@ import 'package:mafqood/presentation/controllers/lost_people_cubit/lost_people_c
 import 'package:mafqood/presentation/controllers/lost_people_cubit/lost_people_state.dart';
 import 'package:mafqood/presentation/widgets_and_components/shred_widgets/custom_button.dart';
 
-import '../screens/main_layout_screens/person_data_screen.dart';
+import '../screens/main_layout_screens/lost_person_data_screen.dart';
 
 class SearchImageAlertDialog extends StatelessWidget {
   const SearchImageAlertDialog({Key? key}) : super(key: key);
@@ -18,7 +18,7 @@ class SearchImageAlertDialog extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(25.r))),
       content: SizedBox(
         width: 301.w,
-        height: 230.h,
+        height: 250.h,
         child: BlocConsumer<LostPeopleCubit, LostPeopleState>(
           listener: (context, state) {
             var cubit = LostPeopleCubit.get(context);
@@ -33,8 +33,8 @@ class SearchImageAlertDialog extends StatelessWidget {
             } else if (state is SearchForLostPersonByImageDataSuccess) {
               Navigator.pop(context);
               Navigator.pop(context);
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>PersonDataScreen(lostPersonDataEntity: cubit.lostPersonDataEntity!,)));
-              showToast(errorType: 0, message: state.lostPersonEntity.message!);
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>LostPersonDataScreen(lostPersonDataEntity: cubit.lostPersonDataEntity!,)));
+              showToast(errorType: 0, message: state.mainResponseEntity.message!);
             }
           },
           builder: (context, state) {

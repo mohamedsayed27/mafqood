@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mafqood/core/app_router/screens_name.dart';
+import 'package:mafqood/presentation/screens/main_layout_screens/profile_screen.dart';
 import 'package:mafqood/presentation/screens/main_layout_screens/search_screen.dart';
 
 import '../../../core/constants/constants.dart';
-import '../../widgets_and_components/main_layout_widgets/bottom_nav_bar_widget.dart';
+import '../../widgets_and_components/main_layout_widgets/custom_bottom_nav_bar.dart';
+import '../chat_screens/messages_screen.dart';
 import 'add_lost_people_screen.dart';
 import 'home_screen.dart';
 
@@ -18,7 +20,8 @@ class _MainLayoutState extends State<MainLayout> {
   List<Widget> screens = [
     const HomeScreen(),
     const SearchScreen(),
-    const AddLostPeopleScreen(),
+    const MessagesScreen(),
+    const ProfileScreen(),
   ];
   int currentScreenIndex = 0;
 
@@ -27,19 +30,23 @@ class _MainLayoutState extends State<MainLayout> {
     return SafeArea(
       child: Scaffold(
         body: screens[currentScreenIndex],
-        bottomNavigationBar: Padding(
-          padding: EdgeInsets.only(left: 43.w, right: 43.w, bottom: 24.h),
-          child: BottomNavBarWidget(
-            selectedIndex: currentScreenIndex,
-            onChanged: (int index) {
-              if(currentScreenIndex!=index){
-                print(token);
-                setState(() {
-                  currentScreenIndex = index;
-                });
-              }
-            },
-          ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.pushNamed(context, ScreenName.addLostScreen);
+          },
+          child: const Icon(Icons.add),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: CustomBottomNavigationBar(
+          selectedIndex: currentScreenIndex,
+          onChanged: (int index) {
+            if (currentScreenIndex != index) {
+              print(token);
+              setState(() {
+                currentScreenIndex = index;
+              });
+            }
+          },
         ),
       ),
     );

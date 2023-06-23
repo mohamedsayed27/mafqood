@@ -22,7 +22,7 @@ class AnotherPersonMessageItem extends StatelessWidget {
         height: 70.h,
         margin: EdgeInsets.only(right: 10.w),
         decoration: BoxDecoration(
-            color: AppColorsLightTheme.greyColorContainers,
+            color: AppColors.greyColorContainers,
             borderRadius: BorderRadius.only(
                 topRight: Radius.circular(10.r),
                 bottomLeft: Radius.circular(10.r),

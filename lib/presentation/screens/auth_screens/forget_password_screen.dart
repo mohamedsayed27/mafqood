@@ -27,7 +27,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColorsLightTheme.whitColor,
+        backgroundColor: AppColors.whitColor,
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
 
@@ -47,7 +47,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 Text(
                   'استرجاع كلمة المرور',
                   style: TextStyle(
-                    color: AppColorsLightTheme.blueTextColor,
+                    color: AppColors.blueTextColor,
                     fontFamily: FontsPath.sukarBlack,
                     fontSize: 24.sp,
                   ),
@@ -62,7 +62,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                       TextSpan(
                         text: 'SMS',
                         style: TextStyle(
-                          color: AppColorsLightTheme.blueTextColor,
+                          color: AppColors.blueTextColor,
                           fontFamily: FontsPath.sukarBold,
                           fontSize: 18.sp,
                         ),
@@ -70,14 +70,14 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                       TextSpan(
                         text: '  لاسترجاع الحساب',
                         style: TextStyle(
-                          color: AppColorsLightTheme.greyTextColor,
+                          color: AppColors.greyTextColor,
                           fontFamily: FontsPath.sukarBlack,
                           fontSize: 12.sp,
                         ),
                       ),
                     ],
                     style: TextStyle(
-                      color: AppColorsLightTheme.greyTextColor,
+                      color: AppColors.greyTextColor,
                       fontFamily: FontsPath.sukarBlack,
                       fontSize: 12.sp,
                     ),
@@ -100,7 +100,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   },
                   prefix: const Icon(
                     Icons.phone,
-                    color: AppColorsLightTheme.primaryColor,
+                    color: AppColors.primaryColor,
                   ),
                 ),
                 SizedBox(

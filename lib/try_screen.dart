@@ -12,18 +12,13 @@ class TryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocConsumer<LostPeopleCubit, LostPeopleState>(
-        listener: (context, state) {
-          // TODO: implement listener
-        },
-        builder: (context, state) {
-          return Center(
-            child: TextButton(
-              onPressed: () {},
-              child: Image.asset(GifPath.threeDotsLoading),
-            ),
-          );
-        },
+      body: Center(
+        child: TextButton(
+          onPressed: () {
+            print(Navigator.of(context).widget.pages);
+          },
+          child: Image.asset(GifPath.threeDotsLoading),
+        ),
       ),
     );
   }

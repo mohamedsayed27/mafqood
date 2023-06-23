@@ -42,7 +42,7 @@ class ChooseLocationWidget extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 2.h),
             width: double.infinity,
             decoration: BoxDecoration(
-              color: AppColorsLightTheme.authTextFieldFillColor,
+              color: AppColors.authTextFieldFillColor,
               borderRadius: BorderRadius.circular(25.r),
             ),
             child: Row(
@@ -50,7 +50,7 @@ class ChooseLocationWidget extends StatelessWidget {
               children: [
                 const Icon(
                   Icons.my_location,
-                  color: AppColorsLightTheme.primaryColor,
+                  color: AppColors.primaryColor,
                 ),
                 SizedBox(
                   width: 10.w,

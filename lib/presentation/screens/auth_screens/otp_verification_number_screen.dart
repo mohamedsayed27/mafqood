@@ -36,7 +36,7 @@ class _OtpVerificationNumberScreenState
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColorsLightTheme.whitColor,
+        backgroundColor: AppColors.whitColor,
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Padding(
@@ -55,7 +55,7 @@ class _OtpVerificationNumberScreenState
                 Text(
                   'تفعيل رقم الهاتف',
                   style: TextStyle(
-                    color: AppColorsLightTheme.blueTextColor,
+                    color: AppColors.blueTextColor,
                     fontFamily: FontsPath.sukarBlack,
                     fontSize: 24.sp,
                   ),
@@ -70,7 +70,7 @@ class _OtpVerificationNumberScreenState
                       TextSpan(
                         text: 'SMS',
                         style: TextStyle(
-                          color: AppColorsLightTheme.blueTextColor,
+                          color: AppColors.blueTextColor,
                           fontFamily: FontsPath.sukarBold,
                           fontSize: 18.sp,
                         ),
@@ -78,14 +78,14 @@ class _OtpVerificationNumberScreenState
                       TextSpan(
                         text: '  لتأكيد الحساب',
                         style: TextStyle(
-                          color: AppColorsLightTheme.greyTextColor,
+                          color: AppColors.greyTextColor,
                           fontFamily: FontsPath.sukarBlack,
                           fontSize: 12.sp,
                         ),
                       ),
                     ],
                     style: TextStyle(
-                      color: AppColorsLightTheme.greyTextColor,
+                      color: AppColors.greyTextColor,
                       fontFamily: FontsPath.sukarBlack,
                       fontSize: 12.sp,
                     ),
@@ -117,14 +117,14 @@ class _OtpVerificationNumberScreenState
                         TextSpan(
                           text: 'SMS',
                           style: TextStyle(
-                            color: AppColorsLightTheme.blueTextColor,
+                            color: AppColors.blueTextColor,
                             fontFamily: FontsPath.sukarBold,
                             fontSize: 16.sp,
                           ),
                         )
                       ],
                       style: TextStyle(
-                        color: AppColorsLightTheme.greyTextColor,
+                        color: AppColors.greyTextColor,
                         fontFamily: FontsPath.sukarBlack,
                         fontSize: 12.sp,
                       ),

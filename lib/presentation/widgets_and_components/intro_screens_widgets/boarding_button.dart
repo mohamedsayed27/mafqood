@@ -24,8 +24,8 @@ class CustomBoardingButton extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           shape: !isLast ? const CircleBorder() : const StadiumBorder(),
-          backgroundColor: AppColorsLightTheme.whitTextColor,
-          foregroundColor: AppColorsLightTheme.primaryColor,
+          backgroundColor: AppColors.whitTextColor,
+          foregroundColor: AppColors.primaryColor,
           padding: !isLast
               ? EdgeInsets.all(5.r)
               : EdgeInsets.symmetric(horizontal: 45.w, vertical: 16.h),
@@ -38,14 +38,14 @@ class CustomBoardingButton extends StatelessWidget {
             ? Center(
                 child: Icon(
                   Icons.arrow_forward,
-                  color: AppColorsLightTheme.primaryColor,
+                  color: AppColors.primaryColor,
                   size: 28.r,
                 ),
               )
             : Text(
                 'ابدأ الأن',
                 style: TextStyle(
-                  color: AppColorsLightTheme.blueTextColor,
+                  color: AppColors.blueTextColor,
                   fontFamily: FontsPath.sukarBlack,
                   fontSize: 15.sp,
                 ),

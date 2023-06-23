@@ -38,7 +38,7 @@ class CustomButton extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           elevation: 0,
-          foregroundColor: AppColorsLightTheme.whitTextColor,
+          foregroundColor: AppColors.whitTextColor,
           backgroundColor: buttonColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30.r), // <-- Radius

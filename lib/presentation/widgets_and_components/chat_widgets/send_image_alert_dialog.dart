@@ -43,7 +43,7 @@ class AddImageAlertDialog extends StatelessWidget {
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   decoration: BoxDecoration(
                       border:
-                      Border.all(color: AppColorsLightTheme.primaryColor),
+                      Border.all(color: AppColors.primaryColor),
                       borderRadius: BorderRadius.circular(2.r),
                       boxShadow: [
                         BoxShadow(

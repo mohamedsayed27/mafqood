@@ -21,14 +21,14 @@ class AuthTextButton extends StatelessWidget {
             TextSpan(
               text: secondTitle,
               style: TextStyle(
-                color: AppColorsLightTheme.blueTextColor,
+                color: AppColors.blueTextColor,
                 fontFamily: FontsPath.sukarBold,
                 fontSize: 16.sp,
               ),
             )
           ],
           style: TextStyle(
-            color: AppColorsLightTheme.greyTextColor,
+            color: AppColors.greyTextColor,
             fontFamily: FontsPath.sukarBlack,
             fontSize: 12.sp,
           ),

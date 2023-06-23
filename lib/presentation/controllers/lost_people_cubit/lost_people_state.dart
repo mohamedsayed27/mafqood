@@ -1,11 +1,13 @@
 import 'dart:io';
 
 import 'package:mafqood/domain/entities/get_my_lost_peoples_entity.dart';
+import 'package:mafqood/domain/entities/main_response_entity.dart';
 
 import '../../../core/error/auth_error_exception.dart';
 import '../../../domain/entities/get_all_lost_entity.dart';
 import '../../../domain/entities/lost_people_entity.dart';
 import '../../../domain/entities/lost_person_data_entity.dart';
+import '../../../domain/entities/paginated_response_entity.dart';
 import '../../../domain/entities/search_lost_by_name_entity.dart';
 
 abstract class LostPeopleState {}
@@ -15,7 +17,7 @@ class LostPeopleInitial extends LostPeopleState {}
 class AddLostPersonDataFromFamilyLoading extends LostPeopleState {}
 
 class AddLostPersonDataFromFamilySuccess extends LostPeopleState {
-  final LostPeopleEntity lostPeopleEntity;
+  final LostPersonDataEntity lostPeopleEntity;
 
   AddLostPersonDataFromFamilySuccess({required this.lostPeopleEntity});
 }
@@ -29,7 +31,7 @@ class AddLostPersonDataFromFamilyError extends LostPeopleState {
 class SendLostPersonDataLoading extends LostPeopleState {}
 
 class SendLostPersonDataSuccess extends LostPeopleState {
-  final LostPeopleEntity lostPeopleEntity;
+  final LostPersonDataEntity lostPeopleEntity;
 
   SendLostPersonDataSuccess({required this.lostPeopleEntity});
 }
@@ -43,7 +45,7 @@ class SendLostPersonDataError extends LostPeopleState {
 class GetAllLostLoading extends LostPeopleState {}
 
 class GetAllLostSuccess extends LostPeopleState {
-  final GetAllLostEntity getAllLostEntity;
+  final PaginatedLostPeopleResponseEntityEntity getAllLostEntity;
 
   GetAllLostSuccess({required this.getAllLostEntity});
 }
@@ -55,9 +57,10 @@ class GetAllLostError extends LostPeopleState {
 }
 
 class GetAllSurvivalsDataLoading extends LostPeopleState {}
+class GetMoreOfAllSurvivalsDataLoading extends LostPeopleState {}
 
 class GetAllSurvivalsDataSuccess extends LostPeopleState {
-  final GetAllLostEntity getAllLostEntity;
+  final PaginatedLostPeopleResponseEntityEntity getAllLostEntity;
 
   GetAllSurvivalsDataSuccess({required this.getAllLostEntity});
 }
@@ -71,9 +74,9 @@ class GetAllSurvivalsDataError extends LostPeopleState {
 class SearchForLostPersonByImageDataLoading extends LostPeopleState {}
 
 class SearchForLostPersonByImageDataSuccess extends LostPeopleState {
-  final LostPersonEntity lostPersonEntity;
+  final MainResponseEntity mainResponseEntity;
 
-  SearchForLostPersonByImageDataSuccess({required this.lostPersonEntity});
+  SearchForLostPersonByImageDataSuccess({required this.mainResponseEntity});
 }
 
 class SearchForLostPersonByImageDataError extends LostPeopleState {
@@ -85,9 +88,9 @@ class SearchForLostPersonByImageDataError extends LostPeopleState {
 class SearchForLostPersonByNameDataLoading extends LostPeopleState {}
 
 class SearchForLostPersonByNameDataSuccess extends LostPeopleState {
-  final SearchLostPeopleEntity searchLostPeopleEntity;
+  final List<LostPersonDataEntity> searchLostPersonDataEntity;
 
-  SearchForLostPersonByNameDataSuccess({required this.searchLostPeopleEntity});
+  SearchForLostPersonByNameDataSuccess({required this.searchLostPersonDataEntity});
 }
 
 class SearchForLostPersonByNameDataError extends LostPeopleState {
@@ -99,9 +102,9 @@ class SearchForLostPersonByNameDataError extends LostPeopleState {
 class GetMyLostDataLoading extends LostPeopleState {}
 
 class GetMyLostDataSuccess extends LostPeopleState {
-  final GetMyLostPeopleEntity getMyLostPeopleEntity;
+  final List<LostPersonDataEntity> getMyLostPersonDataEntity;
 
-  GetMyLostDataSuccess({required this.getMyLostPeopleEntity});
+  GetMyLostDataSuccess({required this.getMyLostPersonDataEntity});
 }
 
 class GetMyLostDataError extends LostPeopleState {
@@ -132,8 +135,8 @@ class GetAreasError extends LostPeopleState {
 
 class GetPickedImageSuccessState extends LostPeopleState {
   final File? image;
-
-  GetPickedImageSuccessState({required this.image});
+   bool isSearchScreen;
+  GetPickedImageSuccessState({required this.image, this.isSearchScreen  = false});
 }
 
 class GetPickedImageErrorState extends LostPeopleState {}

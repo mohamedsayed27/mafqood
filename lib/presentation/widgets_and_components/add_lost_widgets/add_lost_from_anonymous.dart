@@ -39,7 +39,7 @@ class _AddLostPersonFromAnonymousState
       padding: EdgeInsets.symmetric(horizontal: 20.w),
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColorsLightTheme.greyColorContainers,
+        color: AppColors.greyColorContainers,
         borderRadius: BorderRadius.circular(20.r),
       ),
       child: Column(
@@ -124,7 +124,7 @@ class _AddLostPersonFromAnonymousState
             keyboardType: TextInputType.text,
             prefix: const Icon(
               Icons.person,
-              color: AppColorsLightTheme.primaryColor,
+              color: AppColors.primaryColor,
             ),
           ),
           SizedBox(
@@ -153,7 +153,7 @@ class _AddLostPersonFromAnonymousState
                 keyboardType: TextInputType.text,
                 prefix: const Icon(
                   Icons.calendar_month,
-                  color: AppColorsLightTheme.primaryColor,
+                  color: AppColors.primaryColor,
                 ),
               );
             },
@@ -171,7 +171,7 @@ class _AddLostPersonFromAnonymousState
               "اختر الفئة العمرية",
               style: TextStyle(
                 fontSize: 18.sp,
-                color: AppColorsLightTheme.primaryColor,
+                color: AppColors.primaryColor,
                 fontFamily: FontsPath.sukarBold,
               ),
             ),

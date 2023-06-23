@@ -11,6 +11,7 @@ import '../../presentation/screens/chat_screens/chat_screen.dart';
 import '../../presentation/screens/intro_screens/onboarding_screen.dart';
 import '../../presentation/screens/intro_screens/splash_screen.dart';
 import '../../presentation/screens/google_maps/google_mas_screen.dart';
+import '../../presentation/screens/main_layout_screens/add_lost_people_screen.dart';
 import '../../presentation/screens/main_layout_screens/all_survivals_screen.dart';
 
 
@@ -27,6 +28,8 @@ class AppRouter {
           return MaterialPageRoute(builder: (BuildContext context) { return const LoginScreen(); });
         case ScreenName.registerScreen:
           return _animateRouteBuilder(const RegisterScreen());
+        case ScreenName.addLostScreen:
+          return _animateRouteBuilder(const AddLostPeopleScreen());
         case ScreenName.googleMapsScreen:
           return _animateRouteBuilder(const GoogleMapsScreen());
         case ScreenName.otpVerificationNumberScreen:

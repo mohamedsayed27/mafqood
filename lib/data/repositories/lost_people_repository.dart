@@ -11,12 +11,15 @@ import 'package:mafqood/domain/entities/get_all_lost_entity.dart';
 import 'package:mafqood/domain/entities/get_my_lost_peoples_entity.dart';
 import 'package:mafqood/domain/entities/lost_people_entity.dart';
 import 'package:mafqood/domain/entities/lost_person_data_entity.dart';
+import 'package:mafqood/domain/entities/main_response_entity.dart';
 import 'package:mafqood/domain/entities/search_lost_by_name_entity.dart';
 import 'package:mafqood/domain/repository/lost_people_base_repository/lost_people_base_repository.dart';
 import 'package:mafqood/domain/usecases/lost_people_usecases/add_lost_person_usecase.dart';
 import 'package:mafqood/domain/usecases/lost_people_usecases/help_lost_person_usecase.dart';
 import 'package:mafqood/domain/usecases/lost_people_usecases/update_my_lost_usecase.dart';
 
+import '../../domain/entities/paginated_response_entity.dart';
+import '../../domain/entities/search_by_name_entity.dart';
 import '../data_source/lost_people_local_data_source.dart';
 
 class LostPeopleRepository extends LostPeopleBaseRepository {
@@ -26,7 +29,7 @@ class LostPeopleRepository extends LostPeopleBaseRepository {
   LostPeopleRepository({required this.baseLostPeopleLocalDataSource,required this.baseLostPeopleRemoteDataSource});
 
   @override
-  Future<Either<ErrorException, LostPeopleEntity>> sendLostPersonsDataFromFamily(AddLostPersonFromFamilyDataParameters addLostPersonDataParameters) async {
+  Future<Either<ErrorException, MainResponseEntity>> sendLostPersonsDataFromFamily(AddLostPersonFromFamilyDataParameters addLostPersonDataParameters) async {
     try {
       final response = await baseLostPeopleRemoteDataSource
           .addLostPersonDataFromFamily(addLostPersonDataParameters);
@@ -41,7 +44,7 @@ class LostPeopleRepository extends LostPeopleBaseRepository {
   }
 
   @override
-  Future<Either<ErrorException, LostPeopleEntity>> addLostPersonsDataFromAnonymous(AddLostPersonsDataFromAnonymousParameters helpLostPersonDataParameters) async{
+  Future<Either<ErrorException, MainResponseEntity>> addLostPersonsDataFromAnonymous(AddLostPersonsDataFromAnonymousParameters helpLostPersonDataParameters) async{
     try {
       final response = await baseLostPeopleRemoteDataSource.helpLostPerson(helpLostPersonDataParameters);
       return Right(response);
@@ -69,7 +72,7 @@ class LostPeopleRepository extends LostPeopleBaseRepository {
   }
 
   @override
-  Future<Either<ErrorException, GetMyLostPeopleEntity>> getMyLostPeople() async{
+  Future<Either<ErrorException, SearchByNameEntity>> getMyLostPeople() async{
     try {
       final response = await baseLostPeopleRemoteDataSource.getMyLostPeople(const NoParameters());
       return Right(response);
@@ -111,7 +114,7 @@ class LostPeopleRepository extends LostPeopleBaseRepository {
   }
 
   @override
-  Future<Either<ErrorException, LostPersonEntity>> searchLostPersonByItsImage(File image) async{
+  Future<Either<ErrorException, MainResponseEntity>> searchLostPersonByItsImage(File image) async{
     try {
       final response = await baseLostPeopleRemoteDataSource.searchForLostPersonByImage(image);
       return Right(response);
@@ -125,7 +128,7 @@ class LostPeopleRepository extends LostPeopleBaseRepository {
   }
 
   @override
-  Future<Either<ErrorException, SearchLostPeopleEntity>> searchLostPeopleByName(String name) async{
+  Future<Either<ErrorException, SearchByNameEntity>> searchLostPeopleByName(String name) async{
     try {
       final response = await baseLostPeopleRemoteDataSource.searchForLostPersonByName(name);
       return Right(response);
@@ -139,7 +142,7 @@ class LostPeopleRepository extends LostPeopleBaseRepository {
   }
 
   @override
-  Future<Either<ErrorException, GetAllLostEntity>> getAllLost(int pageNumber) async{
+  Future<Either<ErrorException, PaginatedLostPeopleResponseEntityEntity>> getAllLost(int pageNumber) async{
     try {
       final response = await baseLostPeopleRemoteDataSource.getAllLost(pageNumber);
       return Right(response);
@@ -153,7 +156,7 @@ class LostPeopleRepository extends LostPeopleBaseRepository {
   }
 
   @override
-  Future<Either<ErrorException, GetAllLostEntity>> getAllSurvivals(int pageNumber) async{
+  Future<Either<ErrorException, PaginatedLostPeopleResponseEntityEntity>> getAllSurvivals(int pageNumber) async{
     try {
       final response = await baseLostPeopleRemoteDataSource.getAllSurvivals(pageNumber);
       return Right(response);

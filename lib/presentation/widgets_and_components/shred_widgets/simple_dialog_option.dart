@@ -14,7 +14,7 @@ class CustomSimpleDialogOption extends StatelessWidget {
     return SimpleDialogOption(
       padding: const EdgeInsets.all(20),
       onPressed: onPressed,
-      child: Text(title,style: TextStyle(fontSize: 14.sp,color: AppColorsLightTheme.greyTextColor,fontFamily: FontsPath.sukarBlack)),
+      child: Text(title,style: TextStyle(fontSize: 14.sp,color: AppColors.greyTextColor,fontFamily: FontsPath.sukarBlack)),
     );
   }
 }

@@ -39,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColorsLightTheme.whitColor,
+        backgroundColor: AppColors.whitColor,
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Padding(
@@ -60,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Text(
                     'تسجيل دخول',
                     style: TextStyle(
-                      color: AppColorsLightTheme.blueTextColor,
+                      color: AppColors.blueTextColor,
                       fontFamily: FontsPath.sukarBlack,
                       fontSize: 24.sp,
                     ),
@@ -94,14 +94,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           TextSpan(
                             text: 'استرجاع',
                             style: TextStyle(
-                              color: AppColorsLightTheme.blueTextColor,
+                              color: AppColors.blueTextColor,
                               fontFamily: FontsPath.sukarBold,
                               fontSize: 16.sp,
                             ),
                           )
                         ],
                         style: TextStyle(
-                          color: AppColorsLightTheme.greyTextColor,
+                          color: AppColors.greyTextColor,
                           fontFamily: FontsPath.sukarBlack,
                           fontSize: 12.sp,
                         ),
@@ -121,9 +121,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       } else if (state is LoginSuccess) {
                         Navigator.pop(context);
                         showToast(
-                            errorType: 0,
-                            message: state.authenticationEntity.message!);
-                        CacheHelper.saveData(key: CacheKeys.token, value: state.authenticationEntity.data!.token).whenComplete(() {
+                          errorType: 0,
+                          message: state.authenticationEntity.message!,
+                        );
+                        CacheHelper.saveData(
+                                key: CacheKeys.token,
+                                value: state.authenticationEntity.data!.token,)
+                            .whenComplete(() {
                           token = CacheHelper.getData(key: CacheKeys.token);
                           Navigator.pushNamedAndRemoveUntil(context,
                               ScreenName.mainLayoutScreen, (route) => false);
@@ -162,7 +166,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       secondTitle: 'انشاء حساب',
                       onPressed: () {
                         Navigator.pushNamed(
-                            context, ScreenName.registerScreen,);
+                          context,
+                          ScreenName.registerScreen,
+                        );
                       },
                     ),
                   ),

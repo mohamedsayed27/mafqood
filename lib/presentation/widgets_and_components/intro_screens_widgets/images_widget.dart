@@ -35,7 +35,7 @@ class ImagesWidget extends StatelessWidget {
                 model.title,
                 style: TextStyle(
                     fontSize: 24.sp,
-                    color: AppColorsLightTheme.whitTextColor,
+                    color: AppColors.whitTextColor,
                     fontFamily: FontsPath.sukarBlack,),
               ),
               SizedBox(
@@ -46,7 +46,7 @@ class ImagesWidget extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 16.sp,
-                    color: AppColorsLightTheme.whitTextColor,
+                    color: AppColors.whitTextColor,
                     height: 1.5.h,
                     fontFamily: FontsPath.sukarBold,),
               ),

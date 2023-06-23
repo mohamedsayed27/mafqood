@@ -26,7 +26,7 @@ class ImagePickerContainer extends StatelessWidget {
             height: 190.h,
             clipBehavior: Clip.antiAliasWithSaveLayer,
             decoration: BoxDecoration(
-              color: AppColorsLightTheme.authTextFieldFillColor,
+              color: AppColors.authTextFieldFillColor,
               borderRadius: BorderRadius.circular(20.r),
               boxShadow: [
                 BoxShadow(
@@ -48,7 +48,7 @@ class ImagePickerContainer extends StatelessWidget {
                             children: [
                               Icon(
                                 Icons.camera_alt,
-                                color: AppColorsLightTheme.bottomNavBarGreyIconColor,
+                                color: AppColors.bottomNavBarGreyIconColor,
                                 size: 55.r,
                               ),
                               Text(
@@ -56,7 +56,7 @@ class ImagePickerContainer extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 16.sp,
                                   fontFamily: FontsPath.sukarBold,
-                                  color: AppColorsLightTheme.bottomNavBarGreyIconColor,
+                                  color: AppColors.bottomNavBarGreyIconColor,
                                 ),
                               ),
                             ],
@@ -69,7 +69,7 @@ class ImagePickerContainer extends StatelessWidget {
                           height: 50.h,
                           width: 214.w,
                           decoration: BoxDecoration(
-                            color: AppColorsLightTheme.bottomNavBarGreyIconColor,
+                            color: AppColors.bottomNavBarGreyIconColor,
                             borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(20.r),
                               bottomRight: Radius.circular(20.r),
@@ -81,7 +81,7 @@ class ImagePickerContainer extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 16.sp,
                                 fontFamily: FontsPath.sukarBold,
-                                color: AppColorsLightTheme.whitTextColor,
+                                color: AppColors.whitTextColor,
                               ),
                             ),
                           ),

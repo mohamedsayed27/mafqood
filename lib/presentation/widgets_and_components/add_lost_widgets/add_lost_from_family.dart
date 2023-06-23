@@ -41,7 +41,7 @@ class _AddLostPersonFromFamilyState extends State<AddLostPersonFromFamily> {
       padding: EdgeInsets.symmetric(horizontal: 20.w),
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColorsLightTheme.greyColorContainers,
+        color: AppColors.greyColorContainers,
         borderRadius: BorderRadius.circular(20.r),
       ),
       child: Column(
@@ -127,7 +127,7 @@ class _AddLostPersonFromFamilyState extends State<AddLostPersonFromFamily> {
             keyboardType: TextInputType.text,
             prefix: const Icon(
               Icons.person,
-              color: AppColorsLightTheme.primaryColor,
+              color: AppColors.primaryColor,
             ),
           ),
           SizedBox(
@@ -157,7 +157,7 @@ class _AddLostPersonFromFamilyState extends State<AddLostPersonFromFamily> {
                 keyboardType: TextInputType.text,
                 prefix: const Icon(
                   Icons.calendar_month,
-                  color: AppColorsLightTheme.primaryColor,
+                  color: AppColors.primaryColor,
                 ),
               );
             },
@@ -184,7 +184,7 @@ class _AddLostPersonFromFamilyState extends State<AddLostPersonFromFamily> {
             keyboardType: TextInputType.text,
             prefix: const Icon(
               Icons.add_road,
-              color: AppColorsLightTheme.primaryColor,
+              color: AppColors.primaryColor,
             ),
           ),
           SizedBox(

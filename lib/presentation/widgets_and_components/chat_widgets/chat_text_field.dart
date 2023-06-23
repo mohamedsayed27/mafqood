@@ -24,7 +24,7 @@ class _ChatTextFieldState extends State<ChatTextField> {
       width: double.infinity,
       decoration: BoxDecoration(
         border: Border.all(
-          color: AppColorsLightTheme.greyColorContainers,
+          color: AppColors.greyColorContainers,
         ),
         borderRadius: BorderRadius.circular(30.r)
       ),
@@ -57,7 +57,7 @@ class _ChatTextFieldState extends State<ChatTextField> {
               onTap: widget.pickImageFunction,
               child: CircleAvatar(
                 radius: 16.r,
-                backgroundColor: AppColorsLightTheme.greyColorContainers,
+                backgroundColor: AppColors.greyColorContainers,
                 child: Icon(Icons.add_a_photo_outlined,size: 20.r,color: Colors.grey,),
               ),
             ),

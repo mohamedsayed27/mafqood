@@ -1,19 +1,17 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jiffy/jiffy.dart';
-import 'package:shimmer/shimmer.dart';
 import '../../../core/assets_path/fonts_path.dart';
 import '../../../core/assets_path/svg_path.dart';
 import '../../../core/constants/constants.dart';
-import '../../../core/theme/app_colors_light_theme.dart';
 import '../../controllers/chat_cubit/chat_cubit.dart';
 import '../../controllers/chat_cubit/chat_state.dart';
 import '../../widgets_and_components/chat_widgets/build_another_person_message_item.dart';
 import '../../widgets_and_components/chat_widgets/build_my_message_item.dart';
 import '../../widgets_and_components/chat_widgets/chat_text_field.dart';
+import '../../widgets_and_components/chat_widgets/image_container.dart';
 
 class ChatScreenArgs {
   final String? receiverId;
@@ -95,16 +93,25 @@ class _ChatScreenState extends State<ChatScreen> {
                                 message: cubit.messagesList[index].messageText!,
                                 time: Jiffy(cubit.messagesList[index].dateTime)
                                     .Hm,
+                                isSeen:
+                                    cubit.messagesList[index].isMessageRead!,
                               ),
                             )
                           : Padding(
                               padding: EdgeInsets.symmetric(vertical: 20.h),
-                              child: imageContainer(
+                              child: ImageContainer(
                                 alignment: Alignment.centerRight,
                                 imagePath: cubit.messagesList[index].image!,
                               ),
                             );
                     } else {
+                      if (cubit.messagesList[index].isMessageRead! == false) {
+                        cubit.updateMessageSeenIcon(
+                          receiverId: widget.chatScreenArgs.receiverId,
+                          senderId: userId,
+                          messageId: cubit.messagesList[index].messageId!,
+                        );
+                      }
                       return cubit.messagesList[index].messageType == 'text'
                           ? Padding(
                               padding: EdgeInsets.symmetric(vertical: 20.h),
@@ -116,7 +123,7 @@ class _ChatScreenState extends State<ChatScreen> {
                             )
                           : Padding(
                               padding: EdgeInsets.symmetric(vertical: 20.h),
-                              child: imageContainer(
+                              child: ImageContainer(
                                 alignment: Alignment.centerLeft,
                                 imagePath: cubit.messagesList[index].image!,
                               ),
@@ -138,6 +145,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         height: 50.h,
                         child: ElevatedButton(
                           onPressed: () {
+                            // cubit.sendMessage(receiverId: widget.chatScreenArgs.receiverId, senderId: userId, receiverName: widget.chatScreenArgs.receiverName, senderName: senderName, receiverImg: widget.chatScreenArgs.receiverId, senderImg: , text: chatController.text, dateTime: DateTime.now().toIso8601String(), image: null, messageType: "text", isMessageRead: false);
                             chatController.clear();
                             isTapped = false;
                           },
@@ -158,13 +166,14 @@ class _ChatScreenState extends State<ChatScreen> {
                         width: 10.w,
                       ),
                       Expanded(
-                          child: ChatTextField(
-                        pickImageFunction: () {
-                          cubit.getImagePick();
-                        },
-                        controller: chatController,
-                        isTapped: isTapped,
-                      ))
+                        child: ChatTextField(
+                          pickImageFunction: () {
+                            cubit.getImagePick();
+                          },
+                          controller: chatController,
+                          isTapped: isTapped,
+                        ),
+                      )
                     ],
                   ),
                 ),
@@ -172,41 +181,6 @@ class _ChatScreenState extends State<ChatScreen> {
             ],
           );
         },
-      ),
-    );
-  }
-
-  Widget imageContainer({
-    required Alignment alignment,
-    required String imagePath,
-  }) {
-    return Align(
-      alignment: alignment,
-      child: Container(
-        height: 300.h,
-        width: 200.w,
-        padding: EdgeInsets.all(7.r),
-        decoration: BoxDecoration(
-            color: AppColorsLightTheme.primaryColor,
-            borderRadius: BorderRadius.circular(5.r)),
-        child: CachedNetworkImage(
-          fit: BoxFit.cover,
-          imageUrl: imagePath,
-          placeholder: (context, url) => Shimmer.fromColors(
-            baseColor: Colors.grey[400]!,
-            highlightColor: Colors.grey[300]!,
-            child: Container(
-              height: double.infinity,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(8.0.r),
-              ),
-            ),
-          ),
-          errorWidget: (context, url, error) => const Icon(Icons.error),
-        ),
-        // Image.network(imagePath,fit: BoxFit.cover,),
       ),
     );
   }

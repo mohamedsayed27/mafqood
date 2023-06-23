@@ -10,6 +10,7 @@ class ScreenName{
   static const otpVerificationNumberScreen = 'otp_verification_number_screen.dart';
   static const allSurvivalsScreen = 'all_survivals_screen.dart';
   static const chatScreen = 'chat_screen.dart';
+  static const addLostScreen = 'add_lost_screen.dart';
 
 
 }

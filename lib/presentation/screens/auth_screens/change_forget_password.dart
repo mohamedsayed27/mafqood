@@ -38,7 +38,7 @@ class _ChangeForgottenPasswordState extends State<ChangeForgottenPassword> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColorsLightTheme.whitColor,
+        backgroundColor: AppColors.whitColor,
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Padding(
@@ -57,7 +57,7 @@ class _ChangeForgottenPasswordState extends State<ChangeForgottenPassword> {
                 Text(
                   'تغيير كلمة المرور',
                   style: TextStyle(
-                    color: AppColorsLightTheme.blueTextColor,
+                    color: AppColors.blueTextColor,
                     fontFamily: FontsPath.sukarBlack,
                     fontSize: 24.sp,
                   ),
@@ -72,7 +72,7 @@ class _ChangeForgottenPasswordState extends State<ChangeForgottenPassword> {
                       TextSpan(
                         text: 'SMS',
                         style: TextStyle(
-                          color: AppColorsLightTheme.blueTextColor,
+                          color: AppColors.blueTextColor,
                           fontFamily: FontsPath.sukarBold,
                           fontSize: 18.sp,
                         ),
@@ -80,14 +80,14 @@ class _ChangeForgottenPasswordState extends State<ChangeForgottenPassword> {
                       TextSpan(
                         text: '  لتغيير كلمة المرور',
                         style: TextStyle(
-                          color: AppColorsLightTheme.greyTextColor,
+                          color: AppColors.greyTextColor,
                           fontFamily: FontsPath.sukarBlack,
                           fontSize: 12.sp,
                         ),
                       ),
                     ],
                     style: TextStyle(
-                      color: AppColorsLightTheme.greyTextColor,
+                      color: AppColors.greyTextColor,
                       fontFamily: FontsPath.sukarBlack,
                       fontSize: 12.sp,
                     ),

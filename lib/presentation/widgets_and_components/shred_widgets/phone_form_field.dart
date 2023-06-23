@@ -19,7 +19,7 @@ class PhoneFormField extends StatelessWidget {
       keyboardType: TextInputType.phone,
       prefix: const Icon(
         Icons.phone,
-        color: AppColorsLightTheme.primaryColor,
+        color: AppColors.primaryColor,
       ),
       validate: (value) {
         if (value!.isEmpty) {
