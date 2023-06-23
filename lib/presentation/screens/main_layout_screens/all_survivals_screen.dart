@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mafqood/presentation/controllers/lost_people_cubit/lost_people_cubit.dart';
 import 'package:mafqood/presentation/controllers/lost_people_cubit/lost_people_state.dart';
 
-import '../../widgets_and_components/search_widget_builder.dart';
+import '../../widgets_and_components/shred_widgets/lost_people_widget_builder.dart';
 import '../../widgets_and_components/shred_widgets/logo_text.dart';
 
 class AllSurvivalsScreen extends StatefulWidget {
@@ -74,11 +74,11 @@ class _AllSurvivalsScreenState extends State<AllSurvivalsScreen> {
                           itemBuilder: (BuildContext context, int index) {
                             return Padding(
                               padding: EdgeInsets.symmetric(vertical: 8.h),
-                              child: SearchWidgetBuilder(
+                              child: LostPeopleWidgetBuilder(
                                 textDirection: index % 2 == 0
                                     ? TextDirection.ltr
                                     : TextDirection.rtl,
-                                getAllLostDataEntity:
+                                lostPersonDataEntity:
                                     cubit.getAllSurvivalsDataList[index],
                               ),
                             );

@@ -45,26 +45,26 @@ class CustomTextFormField extends StatelessWidget {
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(25.r),
           borderSide: const BorderSide(
-            color: AppColorsLightTheme.authTextFieldFillColor,
+            color: AppColors.authTextFieldFillColor,
           ),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(25.r),
           borderSide: const BorderSide(
-            color: AppColorsLightTheme.authTextFieldFillColor,
+            color: AppColors.authTextFieldFillColor,
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(25.r),
           borderSide: const BorderSide(
-            color: AppColorsLightTheme.authTextFieldFillColor,
+            color: AppColors.authTextFieldFillColor,
           ),
         ),
         filled: true,
-        fillColor: AppColorsLightTheme.authTextFieldFillColor,
+        fillColor: AppColors.authTextFieldFillColor,
         hintText: hintText,
         hintStyle: TextStyle(
-            color: AppColorsLightTheme.bottomNavBarGreyIconColor,
+            color: AppColors.bottomNavBarGreyIconColor,
             fontSize: 14.sp,
             fontFamily: FontsPath.sukarRegular),
         suffixIcon: suffix,

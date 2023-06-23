@@ -33,7 +33,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
       shape: const CircularNotchedRectangle(),
       notchMargin: 10.r,
       elevation: 25,
-      color: AppColorsLightTheme.whitColor,
+      color: AppColors.whitColor,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       surfaceTintColor: Colors.transparent,
       height: 75.h,

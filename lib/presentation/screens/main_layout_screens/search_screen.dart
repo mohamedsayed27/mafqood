@@ -7,7 +7,7 @@ import 'package:mafqood/presentation/controllers/lost_people_cubit/lost_people_s
 import '../../../core/assets_path/fonts_path.dart';
 import '../../widgets_and_components/search_image_alert_dialog.dart';
 import '../../widgets_and_components/search_text_field.dart';
-import '../../widgets_and_components/search_widget_builder.dart';
+import '../../widgets_and_components/shred_widgets/lost_people_widget_builder.dart';
 import '../../widgets_and_components/shred_widgets/logo_text.dart';
 import '../../widgets_and_components/shred_widgets/simple_dialog_option.dart';
 
@@ -137,10 +137,10 @@ class _SearchScreenState extends State<SearchScreen> {
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(
                         padding: EdgeInsets.symmetric(vertical: 8.h),
-                        child: SearchWidgetBuilder(
+                        child: LostPeopleWidgetBuilder(
                           textDirection: index % 2 == 0
                               ? TextDirection.ltr
-                              : TextDirection.rtl, getAllLostDataEntity: cubit.getAllLostDataList[index],
+                              : TextDirection.rtl, lostPersonDataEntity: cubit.getAllLostDataList[index],
                         ),
                       );
                     },

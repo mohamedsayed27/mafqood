@@ -10,7 +10,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'chat_state.dart';
 
-
 class ChatCubit extends Cubit<ChatState> {
   ChatCubit() : super(ChatInitial());
 
@@ -31,6 +30,7 @@ class ChatCubit extends Cubit<ChatState> {
   }
 
   final instance = FirebaseFirestore.instance;
+
   DocumentReference<Map<String, dynamic>> firebaseSendMessageInstanceForSender({
     required dynamic senderId,
     required dynamic receiverId,
@@ -198,6 +198,23 @@ class ChatCubit extends Cubit<ChatState> {
     //receiver chats
   }
 
+  void updateMessageSeenIcon({
+    required dynamic senderId,
+    required dynamic receiverId,
+    required String messageId,
+  }) {
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc("$receiverId")
+        .collection("chats")
+        .doc("$senderId")
+        .collection('messages')
+        .doc(messageId)
+        .update({
+      "isMessageRead": true,
+    });
+  }
+
   Future getMessages({
     required dynamic receiverId,
     required dynamic senderId,
@@ -208,7 +225,7 @@ class ChatCubit extends Cubit<ChatState> {
     ).collection('messages').orderBy('dateTime').snapshots().listen((event) {
       messagesList = [];
       for (var element in event.docs.reversed) {
-        messagesList.add(MessageModel.fromJson(element.data()));
+        messagesList.add(MessageModel.fromJson(element.data(), element.id));
       }
       emit(GetMessageSuccess());
     });

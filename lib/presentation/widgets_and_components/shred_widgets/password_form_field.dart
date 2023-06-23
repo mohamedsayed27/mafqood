@@ -19,7 +19,7 @@ class PasswordFormField extends StatelessWidget {
       isPassword: true,
       prefix: const Icon(
         Icons.lock,
-        color: AppColorsLightTheme.primaryColor,
+        color: AppColors.primaryColor,
       ),
       validate: (value) {
         if(isConfirmPassword){

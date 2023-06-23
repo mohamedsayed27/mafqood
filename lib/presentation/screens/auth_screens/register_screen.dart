@@ -47,7 +47,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColorsLightTheme.whitColor,
+        backgroundColor: AppColors.whitColor,
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Padding(
@@ -72,7 +72,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Text(
                     'إنشاء حساب',
                     style: TextStyle(
-                      color: AppColorsLightTheme.blueTextColor,
+                      color: AppColors.blueTextColor,
                       fontFamily: FontsPath.sukarBlack,
                       fontSize: 24.sp,
                     ),
@@ -111,7 +111,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Text(
                     'يجب ان تتكون كلمة المرور من رموز واحرف صغيرة وكبيرة وارقام',
                     style: TextStyle(
-                      color: AppColorsLightTheme.blueTextColor,
+                      color: AppColors.blueTextColor,
                       fontFamily: FontsPath.sukarBlack,
                       fontSize: 14.sp,
                     ),

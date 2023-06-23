@@ -30,7 +30,7 @@ class CityDropDown extends StatelessWidget {
           width: double.infinity,
           padding: EdgeInsets.symmetric(horizontal: 10.w),
           decoration: BoxDecoration(
-            color: AppColorsLightTheme.authTextFieldFillColor,
+            color: AppColors.authTextFieldFillColor,
             borderRadius: BorderRadius.circular(25.r),
           ),
           child: cubit.citiesList != null
@@ -51,7 +51,7 @@ class CityDropDown extends StatelessWidget {
                       color: Colors.grey,
                       fontSize: 14.sp,
                       fontFamily: FontsPath.sukarRegular),
-                  dropdownColor: AppColorsLightTheme.authTextFieldFillColor,
+                  dropdownColor: AppColors.authTextFieldFillColor,
                   underline: const SizedBox.shrink(),
                 )
               : const Center(

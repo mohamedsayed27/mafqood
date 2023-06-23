@@ -19,7 +19,7 @@ MaterialColor createMaterialColor(Color color) {
   return MaterialColor(color.value, swatch);
 }
 
-class AppColorsLightTheme{
+class AppColors{
   static const primaryColor = Color(0xff003F79);
   static const whitColor = Color(0xffFFFFFF);
   static const whitTextColor = Color(0xffFFFFFF);

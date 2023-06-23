@@ -15,7 +15,7 @@ class NameFormField extends StatelessWidget {
       controller: controller,
       prefix: const Icon(
         Icons.person,
-        color: AppColorsLightTheme.primaryColor,
+        color: AppColors.primaryColor,
       ),
       validate: (value) {
         if (value!.isEmpty) {

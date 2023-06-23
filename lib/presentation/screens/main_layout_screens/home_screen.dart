@@ -5,11 +5,11 @@ import 'package:mafqood/core/app_router/screens_name.dart';
 import 'package:mafqood/core/assets_path/images_path.dart';
 import 'package:mafqood/presentation/controllers/lost_people_cubit/lost_people_cubit.dart';
 import 'package:mafqood/presentation/controllers/lost_people_cubit/lost_people_state.dart';
-import 'package:mafqood/presentation/screens/main_layout_screens/person_data_screen.dart';
+import 'package:mafqood/presentation/screens/main_layout_screens/lost_person_data_screen.dart';
 
 import '../../../core/assets_path/fonts_path.dart';
 import '../../../core/theme/app_colors_light_theme.dart';
-import '../../widgets_and_components/search_widget_builder.dart';
+import '../../widgets_and_components/shred_widgets/lost_people_widget_builder.dart';
 import '../../widgets_and_components/shred_widgets/logo_text.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Text(
                     'مرحباً . . .',
                     style: TextStyle(
-                      color: AppColorsLightTheme.blueTextColor,
+                      color: AppColors.blueTextColor,
                       fontFamily: FontsPath.sukarBlack,
                       fontSize: 20.sp,
                     ),
@@ -61,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Text(
                     'هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى',
                     style: TextStyle(
-                      color: AppColorsLightTheme.bottomNavBarGreyIconColor,
+                      color: AppColors.bottomNavBarGreyIconColor,
                       fontFamily: FontsPath.sukarBold,
                       fontSize: 16.sp,
                     ),
@@ -72,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Text(
                     'تتفاصيل التطبيق',
                     style: TextStyle(
-                      color: AppColorsLightTheme.blueTextColor,
+                      color: AppColors.blueTextColor,
                       fontFamily: FontsPath.sukarBlack,
                       fontSize: 20.sp,
                     ),
@@ -86,8 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Text(
                           'هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى',
                           style: TextStyle(
-                            color:
-                                AppColorsLightTheme.bottomNavBarGreyIconColor,
+                            color: AppColors.bottomNavBarGreyIconColor,
                             fontFamily: FontsPath.sukarBold,
                             fontSize: 16.sp,
                           ),
@@ -124,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Text(
                     'المفقودين الناجيين',
                     style: TextStyle(
-                      color: AppColorsLightTheme.blueTextColor,
+                      color: AppColors.blueTextColor,
                       fontFamily: FontsPath.sukarBlack,
                       fontSize: 20.sp,
                     ),
@@ -137,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Text(
                       'مشاهدة الكل',
                       style: TextStyle(
-                        color: AppColorsLightTheme.blueTextColor,
+                        color: AppColors.blueTextColor,
                         fontFamily: FontsPath.sukarBlack,
                         fontSize: 14.sp,
                       ),
@@ -163,39 +162,40 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ? 5
                                 : cubit.getAllSurvivalsDataList.length,
                             itemBuilder: (BuildContext context, int index) {
-                                return Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    vertical: 10.h,
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      InkWell(
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      PersonDataScreen(
-                                                        lostPersonDataEntity:
-                                                        cubit.getAllSurvivalsDataList[
-                                                        index],
-                                                      )));
-                                        },
-                                        child: SearchWidgetBuilder(
-                                          textDirection: index % 2 == 0
-                                              ? TextDirection.ltr
-                                              : TextDirection.rtl,
-                                          getAllLostDataEntity: cubit
-                                              .getAllSurvivalsDataList[index],
-                                        ),
+                              return Padding(
+                                padding: EdgeInsets.symmetric(
+                                  vertical: 10.h,
+                                ),
+                                child: Column(
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                LostPersonDataScreen(
+                                              lostPersonDataEntity:
+                                                  cubit.getAllSurvivalsDataList[
+                                                      index],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: LostPeopleWidgetBuilder(
+                                        textDirection: index % 2 == 0
+                                            ? TextDirection.ltr
+                                            : TextDirection.rtl,
+                                        lostPersonDataEntity: cubit
+                                            .getAllSurvivalsDataList[index],
                                       ),
-                                      SizedBox(
-                                        height: 30.h,
-                                      ),
-                                    ],
-                                  ),
-                                );
-
+                                    ),
+                                    SizedBox(
+                                      height: 30.h,
+                                    ),
+                                  ],
+                                ),
+                              );
                             },
                           );
                   },

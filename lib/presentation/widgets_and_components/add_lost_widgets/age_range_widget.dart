@@ -21,7 +21,7 @@ class AgeRangeWidget extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 2.h),
           width: 286.w,
           decoration: BoxDecoration(
-            color: AppColorsLightTheme.authTextFieldFillColor,
+            color: AppColors.authTextFieldFillColor,
             borderRadius: BorderRadius.circular(25.r),
           ),
           child: Column(
@@ -31,7 +31,7 @@ class AgeRangeWidget extends StatelessWidget {
                   max: 100,
                   min: 1,
                   inactiveColor: Colors.grey.withOpacity(0.5),
-                  activeColor: AppColorsLightTheme.primaryColor,
+                  activeColor: AppColors.primaryColor,
                   values: cubit.values,
                   onChanged: cubit.changeAgeRangeValueValue,
                 ),
@@ -43,7 +43,7 @@ class AgeRangeWidget extends StatelessWidget {
                     "${cubit.values.start.round()} سنه",
                     style: TextStyle(
                       fontSize: 14.sp,
-                      color: AppColorsLightTheme.bottomNavBarGreyIconColor,
+                      color: AppColors.bottomNavBarGreyIconColor,
                       fontFamily: FontsPath.sukarBold,
                     ),
                   ),
@@ -51,7 +51,7 @@ class AgeRangeWidget extends StatelessWidget {
                     "${cubit.values.end.round()} سنه",
                     style: TextStyle(
                       fontSize: 14.sp,
-                      color: AppColorsLightTheme.bottomNavBarGreyIconColor,
+                      color: AppColors.bottomNavBarGreyIconColor,
                       fontFamily: FontsPath.sukarBold,
                     ),
                   ),

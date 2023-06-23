@@ -9,9 +9,9 @@ import '../../../core/theme/app_colors_light_theme.dart';
 import '../../widgets_and_components/shred_widgets/arrow_back_button.dart';
 import '../../widgets_and_components/shred_widgets/logo_text.dart';
 
-class PersonDataScreen extends StatelessWidget {
+class LostPersonDataScreen extends StatelessWidget {
   final LostPersonDataEntity lostPersonDataEntity;
-  const PersonDataScreen({Key? key, required this.lostPersonDataEntity}) : super(key: key);
+  const LostPersonDataScreen({Key? key, required this.lostPersonDataEntity}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +71,7 @@ class PersonDataScreen extends StatelessWidget {
           Text(
             'اسم التائه',
             style: TextStyle(
-              color: AppColorsLightTheme.blueTextColor,
+              color: AppColors.blueTextColor,
               fontFamily: FontsPath.sukarBlack,
               fontSize: 20.sp,
             ),
@@ -83,7 +83,7 @@ class PersonDataScreen extends StatelessWidget {
             lostPersonDataEntity.name!,
             style: TextStyle(
               color:
-              AppColorsLightTheme.bottomNavBarGreyIconColor,
+              AppColors.bottomNavBarGreyIconColor,
               fontFamily: FontsPath.sukarBold,
               fontSize: 16.sp,
             ),
@@ -94,7 +94,7 @@ class PersonDataScreen extends StatelessWidget {
           Text(
             'موقع التائه',
             style: TextStyle(
-              color: AppColorsLightTheme.blueTextColor,
+              color: AppColors.blueTextColor,
               fontFamily: FontsPath.sukarBlack,
               fontSize: 20.sp,
             ),
@@ -106,7 +106,7 @@ class PersonDataScreen extends StatelessWidget {
             "${lostPersonDataEntity.city!} : ${lostPersonDataEntity.area!}",
             style: TextStyle(
               color:
-              AppColorsLightTheme.bottomNavBarGreyIconColor,
+              AppColors.bottomNavBarGreyIconColor,
               fontFamily: FontsPath.sukarBold,
               fontSize: 16.sp,
             ),

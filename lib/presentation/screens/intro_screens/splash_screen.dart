@@ -67,7 +67,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColorsLightTheme.primaryColor,
+      backgroundColor: AppColors.primaryColor,
       body: Center(
         child: SizedBox(
           height: 400.h,
@@ -92,7 +92,7 @@ class _SplashScreenState extends State<SplashScreen>
                   Text(
                     'مفقود',
                     style: TextStyle(
-                      color: AppColorsLightTheme.whitTextColor,
+                      color: AppColors.whitTextColor,
                       fontFamily: FontsPath.sukarBold,
                       fontSize: 42.sp,
                     ),

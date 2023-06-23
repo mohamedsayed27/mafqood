@@ -34,7 +34,7 @@ class UploadDataWidget extends StatelessWidget {
         Text(
           fieldTitle,
           style: TextStyle(
-            color: AppColorsLightTheme.blueTextColor,
+            color: AppColors.blueTextColor,
             fontFamily: FontsPath.sukarRegular,
             fontSize: 16.sp,
           ),
@@ -55,7 +55,7 @@ class UploadDataWidget extends StatelessWidget {
                 keyboardType: TextInputType.text,
                 prefix: Icon(
                   iconPath,
-                  color: AppColorsLightTheme.primaryColor,
+                  color: AppColors.primaryColor,
                 ),
               ),
       ],

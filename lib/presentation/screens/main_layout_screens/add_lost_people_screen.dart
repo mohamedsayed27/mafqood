@@ -38,7 +38,7 @@ class AddLostPeopleScreen extends StatelessWidget {
                         Text(
                           'إضافة شخص تائه',
                           style: TextStyle(
-                            color: AppColorsLightTheme.blueTextColor,
+                            color: AppColors.blueTextColor,
                             fontFamily: FontsPath.sukarBlack,
                             fontSize: 24.sp,
                           ),
@@ -55,9 +55,9 @@ class AddLostPeopleScreen extends StatelessWidget {
                     SizedBox(
                       height: 70.h,
                       child: const TabBar(
-                        labelColor: AppColorsLightTheme.primaryColor,
+                        labelColor: AppColors.primaryColor,
                         unselectedLabelColor:
-                            AppColorsLightTheme.bottomNavBarGreyIconColor,
+                            AppColors.bottomNavBarGreyIconColor,
                         labelStyle: TextStyle(
                           fontFamily: FontsPath.sukarBold,
                         ),

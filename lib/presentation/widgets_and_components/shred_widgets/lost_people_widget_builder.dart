@@ -4,19 +4,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../../core/assets_path/fonts_path.dart';
-import '../../core/theme/app_colors_light_theme.dart';
-import '../../domain/entities/get_all_lost_entity.dart';
-import '../../domain/entities/lost_person_data_entity.dart';
+import '../../../core/assets_path/fonts_path.dart';
+import '../../../core/theme/app_colors_light_theme.dart';
+import '../../../domain/entities/lost_person_data_entity.dart';
 
-class SearchWidgetBuilder extends StatelessWidget {
+class LostPeopleWidgetBuilder extends StatelessWidget {
   final TextDirection textDirection;
-  final LostPersonDataEntity getAllLostDataEntity;
+  final LostPersonDataEntity lostPersonDataEntity;
 
-  const SearchWidgetBuilder(
+  const LostPeopleWidgetBuilder(
       {Key? key,
       required this.textDirection,
-      required this.getAllLostDataEntity})
+      required this.lostPersonDataEntity})
       : super(key: key);
 
   @override
@@ -26,7 +25,7 @@ class SearchWidgetBuilder extends StatelessWidget {
       child: Row(
         children: [
           Hero(
-            tag: getAllLostDataEntity.id!,
+            tag: lostPersonDataEntity.id!,
             child: Container(
               width: 182.w,
               height: 162.h,
@@ -43,7 +42,7 @@ class SearchWidgetBuilder extends StatelessWidget {
               ),
               child: CachedNetworkImage(
                 fit: BoxFit.cover,
-                imageUrl: getAllLostDataEntity.url!,
+                imageUrl: lostPersonDataEntity.url!,
                 placeholder: (context, url) => Shimmer.fromColors(
                   baseColor: Colors.grey[400]!,
                   highlightColor: Colors.grey[300]!,
@@ -69,9 +68,9 @@ class SearchWidgetBuilder extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  getAllLostDataEntity.name!,
+                  lostPersonDataEntity.name!,
                   style: TextStyle(
-                    color: AppColorsLightTheme.blueTextColor,
+                    color: AppColors.blueTextColor,
                     fontFamily: FontsPath.sukarBlack,
                     fontSize: 16.sp,
                   ),
@@ -80,9 +79,9 @@ class SearchWidgetBuilder extends StatelessWidget {
                   height: 20.h,
                 ),
                 Text(
-                  getAllLostDataEntity.city!,
+                  lostPersonDataEntity.city!,
                   style: TextStyle(
-                    color: AppColorsLightTheme.blueTextColor,
+                    color: AppColors.blueTextColor,
                     fontFamily: FontsPath.sukarBlack,
                     fontSize: 16.sp,
                   ),
@@ -93,9 +92,9 @@ class SearchWidgetBuilder extends StatelessWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: Text(
-              Jiffy(getAllLostDataEntity.dateAdded!).yMMMd,
+              Jiffy(lostPersonDataEntity.dateAdded!).yMMMd,
               style: TextStyle(
-                color: AppColorsLightTheme.blueTextColor,
+                color: AppColors.blueTextColor,
                 fontFamily: FontsPath.sukarBlack,
                 fontSize: 12.sp,
               ),

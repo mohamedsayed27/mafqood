@@ -80,7 +80,7 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
         return Theme(
           data: ThemeData().copyWith(
             colorScheme: const ColorScheme.light(
-                primary: AppColorsLightTheme.primaryColor,
+                primary: AppColors.primaryColor,
                 secondary: Colors.white),
             dialogBackgroundColor: Colors.white,
           ),

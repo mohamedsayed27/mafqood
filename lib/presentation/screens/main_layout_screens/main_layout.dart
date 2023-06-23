@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mafqood/core/app_router/screens_name.dart';
+import 'package:mafqood/presentation/screens/main_layout_screens/profile_screen.dart';
 import 'package:mafqood/presentation/screens/main_layout_screens/search_screen.dart';
 
 import '../../../core/constants/constants.dart';
@@ -20,6 +21,7 @@ class _MainLayoutState extends State<MainLayout> {
     const HomeScreen(),
     const SearchScreen(),
     const MessagesScreen(),
+    const ProfileScreen(),
   ];
   int currentScreenIndex = 0;
 
