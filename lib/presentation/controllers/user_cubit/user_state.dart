@@ -2,6 +2,8 @@
 import 'package:mafqood/core/error/auth_error_exception.dart';
 import 'package:mafqood/domain/entities/auth_entity.dart';
 
+import '../../../data/models/user_data_model.dart';
+
 abstract class UserState {}
 
 class UserInitial extends UserState {}
@@ -64,4 +66,17 @@ class ForgetPasswordSuccess extends UserState {
 class ForgetPasswordError extends UserState {
   final ErrorException authErrorException;
   ForgetPasswordError({required this.authErrorException});
+}
+
+
+class GetUserDataLoading extends UserState {}
+class GetUserDataSuccess extends UserState {
+  final UserDataModel userDataModel;
+
+  GetUserDataSuccess({required this.userDataModel});
+}
+class GetUserDataError extends UserState {
+  final String error;
+
+  GetUserDataError({required this.error});
 }

@@ -113,13 +113,14 @@ class UserEntity extends Equatable {
   final String? id;
   final String? fullName;
   final String? phoneNumber;
+  final String? photo;
 
-  const UserEntity({required this.id, required this.fullName, required this.phoneNumber});
+  const UserEntity({required this.id, required this.fullName,required this.photo, required this.phoneNumber});
 
   @override
   // TODO: implement props
   List<Object?> get props => [
-    id, fullName, phoneNumber,
+    id, fullName, phoneNumber,photo,
   ];
 
 // User.fromJson(Map<String, dynamic> json) {

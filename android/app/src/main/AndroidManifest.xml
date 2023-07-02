@@ -2,6 +2,7 @@
     package="com.example.mafqood">
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.NFC" />
    <application
         android:label="mafqood"
         android:name="${applicationName}"

@@ -1,28 +1,45 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:jiffy/jiffy.dart';
+import 'package:mafqood/core/app_router/screens_name.dart';
+import 'package:mafqood/core/assets_path/svg_path.dart';
+import 'package:mafqood/core/constants/constants.dart';
 import 'package:mafqood/domain/entities/lost_person_data_entity.dart';
+import 'package:mafqood/presentation/controllers/chat_cubit/chat_cubit.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../core/assets_path/fonts_path.dart';
 import '../../../core/theme/app_colors_light_theme.dart';
+import '../../controllers/user_cubit/user_cubit.dart';
 import '../../widgets_and_components/shred_widgets/arrow_back_button.dart';
 import '../../widgets_and_components/shred_widgets/logo_text.dart';
+import '../chat_screens/chat_screen.dart';
+import '../google_maps/live_location_screen.dart';
 
 class LostPersonDataScreen extends StatelessWidget {
   final LostPersonDataEntity lostPersonDataEntity;
-  const LostPersonDataScreen({Key? key, required this.lostPersonDataEntity}) : super(key: key);
+
+  const LostPersonDataScreen({Key? key, required this.lostPersonDataEntity})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    print(lostPersonDataEntity);
     return Scaffold(
+      backgroundColor:  Colors.white,
       body: ListView(
+        padding: EdgeInsets.symmetric(horizontal: 18.w),
         children: [
           SizedBox(
             height: 50.h,
           ),
           const LogoText(),
-          const ArrowBackButton(),
+          const Align(
+              alignment: Alignment.centerRight, child: ArrowBackButton()),
           SizedBox(
             height: 15.h,
           ),
@@ -32,8 +49,7 @@ class LostPersonDataScreen extends StatelessWidget {
               tag: lostPersonDataEntity.id!,
               child: Container(
                 width: double.infinity,
-                height:
-                279.97.h,
+                height: 279.97.h,
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.r),
@@ -66,51 +82,206 @@ class LostPersonDataScreen extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 15.h,
+            height: 20.h,
+          ),
+          Row(
+            mainAxisAlignment: lostPersonDataEntity.lat != null
+                ? MainAxisAlignment.spaceEvenly
+                : MainAxisAlignment.start,
+            children: [
+              Column(
+                children: [
+                  Text(
+                    'اسم التائه',
+                    style: TextStyle(
+                      color: AppColors.blueTextColor,
+                      fontFamily: FontsPath.sukarBlack,
+                      fontSize: 20.sp,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5.h,
+                  ),
+                  Hero(
+                    tag: "${lostPersonDataEntity.id!}name",
+                    child: Material(
+                      type: MaterialType.transparency,
+                      child: Text(
+                        lostPersonDataEntity.name!,
+                        style: TextStyle(
+                          color: AppColors.bottomNavBarGreyIconColor,
+                          fontFamily: FontsPath.sukarBold,
+                          fontSize: 16.sp,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Visibility(
+                visible: lostPersonDataEntity.lat != null,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'رقم الاهل',
+                      style: TextStyle(
+                        color: AppColors.blueTextColor,
+                        fontFamily: FontsPath.sukarBlack,
+                        fontSize: 20.sp,
+                      ),
+                    ),
+                    Text(
+                      lostPersonDataEntity.phoneNumber!,
+                      style: TextStyle(
+                        color: AppColors.bottomNavBarGreyIconColor,
+                        fontFamily: FontsPath.sukarBlack,
+                        fontSize: 12.sp,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20.h,
+          ),
+          Row(
+            mainAxisAlignment: lostPersonDataEntity.lat != null
+                ? MainAxisAlignment.spaceEvenly
+                : MainAxisAlignment.start,
+            children: [
+              Column(
+                children: [
+                  Text(
+                    'موقع التائه',
+                    style: TextStyle(
+                      color: AppColors.blueTextColor,
+                      fontFamily: FontsPath.sukarBlack,
+                      fontSize: 20.sp,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5.h,
+                  ),
+                  Hero(
+                    tag: "${lostPersonDataEntity.id}city",
+                    child: Material(
+                      type: MaterialType.transparency,
+                      child: Text(
+                        "${lostPersonDataEntity.city!} : ${lostPersonDataEntity.area!}",
+                        style: TextStyle(
+                          color: AppColors.bottomNavBarGreyIconColor,
+                          fontFamily: FontsPath.sukarBold,
+                          fontSize: 16.sp,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Visibility(
+                visible: lostPersonDataEntity.lat != null&&userId!=lostPersonDataEntity.user!.id,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'تاريخ الميلاد',
+                      style: TextStyle(
+                        color: AppColors.blueTextColor,
+                        fontFamily: FontsPath.sukarBlack,
+                        fontSize: 20.sp,
+                      ),
+                    ),
+                    Text(
+                      Jiffy(lostPersonDataEntity.birthDate!).yMMMd,
+                      style: TextStyle(
+                        color: AppColors.bottomNavBarGreyIconColor,
+                        fontFamily: FontsPath.sukarBlack,
+                        fontSize: 12.sp,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 40.h,
           ),
           Text(
-            'اسم التائه',
+            'توقيت النشر',
+            textAlign: TextAlign.center,
             style: TextStyle(
               color: AppColors.blueTextColor,
               fontFamily: FontsPath.sukarBlack,
               fontSize: 20.sp,
             ),
           ),
-          SizedBox(
-            height: 5.h,
-          ),
           Text(
-            lostPersonDataEntity.name!,
+            Jiffy(lostPersonDataEntity.dateAdded!).yMMMd,
+            textAlign: TextAlign.center,
             style: TextStyle(
-              color:
-              AppColors.bottomNavBarGreyIconColor,
-              fontFamily: FontsPath.sukarBold,
-              fontSize: 16.sp,
-            ),
-          ),
-          SizedBox(
-            height: 15.h,
-          ),
-          Text(
-            'موقع التائه',
-            style: TextStyle(
-              color: AppColors.blueTextColor,
+              color: AppColors.bottomNavBarGreyIconColor,
               fontFamily: FontsPath.sukarBlack,
-              fontSize: 20.sp,
+              fontSize: 12.sp,
             ),
           ),
-          SizedBox(
-            height: 5.h,
-          ),
-          Text(
-            "${lostPersonDataEntity.city!} : ${lostPersonDataEntity.area!}",
-            style: TextStyle(
-              color:
-              AppColors.bottomNavBarGreyIconColor,
-              fontFamily: FontsPath.sukarBold,
-              fontSize: 16.sp,
+          Visibility(
+            visible: lostPersonDataEntity.lat != null&&userId!=lostPersonDataEntity.user!.id,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'اضغط علي الزر لرؤية كيفية مساعدة التائه',
+                  style: TextStyle(
+                    color: AppColors.blueTextColor,
+                    fontFamily: FontsPath.sukarBlack,
+                    fontSize: 20.sp,
+                  ),
+                ),
+                SizedBox(
+                  height: 15.h,
+                ),
+                SpeedDial(
+                  children: [
+                    SpeedDialChild(
+                      backgroundColor: Colors.pink,
+                      onTap: (){
+                        if(UserCubit.get(context).userDataModel==null){
+                          UserCubit.get(context).getUserData(token: token);
+                        }
+                        ChatCubit.get(context).getMessages(receiverId: lostPersonDataEntity.user!.id, senderId: userId).whenComplete(() {
+                          Navigator.pushNamed(context, ScreenName.chatScreen,arguments: ChatScreenArgs(receiverId: lostPersonDataEntity.user!.id, receiverName: lostPersonDataEntity.user!.fullName, receiverImg: lostPersonDataEntity.user!.photo));
+                        });
+                      },
+                      child: SvgPicture.asset(
+                        SvgPath.messageIcon,
+                        colorFilter: const ColorFilter.mode(
+                            Colors.white, BlendMode.srcIn),
+                      ),
+                    ),
+                    SpeedDialChild(
+                      backgroundColor: Colors.purple,
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>LiveLocationScreen(destinationLocation: LatLng(lostPersonDataEntity.lat!,lostPersonDataEntity.long!))));
+                      },
+                      child: const Icon(
+                        Icons.location_on_outlined,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                  child: SvgPicture.asset(
+                    SvgPath.addIcon,
+                    colorFilter:
+                        const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                  ),
+                ),
+              ],
             ),
-          )
+          ),
         ],
       ),
     );

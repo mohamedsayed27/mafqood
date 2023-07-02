@@ -1,3 +1,5 @@
+import 'package:mafqood/data/models/get_all_lost_model.dart';
+
 import '../../domain/entities/lost_person_data_entity.dart';
 
 class LostPersonDataModel extends LostPersonDataEntity {
@@ -16,15 +18,18 @@ class LostPersonDataModel extends LostPersonDataEntity {
     required super.url,
     required super.status,
     required super.dateAdded,
+    required super.user,
   });
 
-  factory LostPersonDataModel.fromJson(Map<String, dynamic> json) {
+  factory LostPersonDataModel.fromJson(Map<String, dynamic> json,
+      {bool isAdd = false}) {
     return LostPersonDataModel(
       id: json['id'],
       name: json['name'],
       birthDate: json['birthDate'],
       city: json['city'],
       area: json['area'],
+      user: isAdd?null:UserModel.fromJson(json['user']),
       street: json['street'],
       phoneNumber: json['phoneNumber'],
       long: json['long'],

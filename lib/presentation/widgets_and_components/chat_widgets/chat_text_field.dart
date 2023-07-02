@@ -20,7 +20,6 @@ class _ChatTextFieldState extends State<ChatTextField> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.w),
-      height: 45.h,
       width: double.infinity,
       decoration: BoxDecoration(
         border: Border.all(

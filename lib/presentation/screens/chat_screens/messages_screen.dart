@@ -6,6 +6,7 @@ import '../../../core/app_router/screens_name.dart';
 import '../../../core/assets_path/fonts_path.dart';
 import '../../../core/constants/constants.dart';
 import '../../controllers/chat_cubit/chat_cubit.dart';
+import '../../controllers/user_cubit/user_cubit.dart';
 import '../../widgets_and_components/chat_widgets/build_chat_item.dart';
 import 'chat_screen.dart';
 
@@ -51,6 +52,9 @@ class MessagesScreen extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               return InkWell(
                 onTap: () {
+                  if(UserCubit.get(context).userDataModel==null){
+                    UserCubit.get(context).getUserData(token: token);
+                  }
                   ChatCubit.get(context)
                       .getMessages(
                     receiverId: chatItemsList[index]['id'],

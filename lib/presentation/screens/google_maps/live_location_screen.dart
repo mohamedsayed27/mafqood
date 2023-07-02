@@ -9,7 +9,8 @@ import 'package:mafqood/core/assets_path/images_path.dart';
 import '../../../core/services/google_maps_services.dart';
 
 class LiveLocationScreen extends StatefulWidget {
-  const LiveLocationScreen({Key? key}) : super(key: key);
+  final LatLng destinationLocation;
+  const LiveLocationScreen({Key? key, required this.destinationLocation}) : super(key: key);
 
   @override
   State<LiveLocationScreen> createState() => _LiveLocationScreenState();
@@ -18,7 +19,6 @@ class LiveLocationScreen extends StatefulWidget {
 class _LiveLocationScreenState extends State<LiveLocationScreen> {
   final Completer<GoogleMapController> _googleMapController =
       Completer<GoogleMapController>();
-  final LatLng destinationLocation = const LatLng(30.008, 31.211);
   late final LatLng sourceLocation;
 
   final GoogleMapsServices googleMapsServices = GoogleMapsServices();
@@ -30,8 +30,7 @@ class _LiveLocationScreenState extends State<LiveLocationScreen> {
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
         "AIzaSyCAOMyuhbP1CAJ1H4WnnMSXyC_xhpu72tE",
         PointLatLng(currentLocation!.latitude, currentLocation.longitude),
-        PointLatLng(
-            destinationLocation.latitude, destinationLocation.longitude));
+        PointLatLng(widget.destinationLocation.latitude, widget.destinationLocation.longitude));
     if (result.points.isNotEmpty) {
       for (var element in result.points) {
         polyLineCoordinates.add(LatLng(element.latitude, element.longitude));
@@ -133,7 +132,7 @@ class _LiveLocationScreenState extends State<LiveLocationScreen> {
                 ),
                 Marker(
                   markerId: const MarkerId("destinationLocation"),
-                  position: destinationLocation,
+                  position: widget.destinationLocation,
                 ),
               },
             ),

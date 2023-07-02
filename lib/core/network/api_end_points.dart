@@ -1,5 +1,5 @@
 class EndPoints{
-static const baseUrl ='http://www.mafqood.somee.com/api';
+static const baseUrl ='http://mafqood-001-site1.itempurl.com/api';
 static const login ='/Auth/Login';
 static const register ='/Auth/Register';
 static const verifyPhone ='/Auth/VerfiyPhone';

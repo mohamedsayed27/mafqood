@@ -10,8 +10,6 @@ import 'package:mafqood/domain/usecases/lost_people_usecases/get_my_lost_people_
 
 import '../../../core/base_usecases/base_usecase.dart';
 import '../../../core/theme/app_colors_light_theme.dart';
-import '../../../domain/entities/get_all_lost_entity.dart';
-import '../../../domain/entities/search_lost_by_name_entity.dart';
 import '../../../domain/usecases/lost_people_usecases/get_all_lost.dart';
 import '../../../domain/usecases/lost_people_usecases/get_all_survivals.dart';
 import '../../../domain/usecases/lost_people_usecases/get_areas_usecase.dart';
@@ -62,6 +60,7 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
   List<LostPersonDataEntity>? searchForLostByNameLis;
   List<LostPersonDataEntity> getAllLostDataList = [];
   List<LostPersonDataEntity> getAllSurvivalsDataList = [];
+  List<LostPersonDataEntity> myUploadedLostPeoplesList = [];
   RangeValues values = const RangeValues(1, 100);
   int allLostPageNumber = 1;
   int allLostLastPageNumber = 1;
@@ -187,18 +186,23 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
       emit(GetMoreOfAllSurvivalsDataLoading());
     }
     if(allSurvivalPageNumber<=allSurvivalLastPageNumber){
+      print("entered");
       final response = await _getAllSurvivalsUsecase(allSurvivalPageNumber);
       response.fold((l) {
         emit(GetAllSurvivalsDataError(authErrorException: l));
       }, (r) {
-        if(allSurvivalPageNumber<=r.totalPages!){
+        print(r.totalPages!);
+        if(allSurvivalPageNumber<=r.totalPages!&&r.data!=null){
           allSurvivalLastPageNumber=r.totalPages!;
           allSurvivalPageNumber++;
           getAllSurvivalsDataList.addAll(r.data!);
           emit(GetAllSurvivalsDataSuccess(getAllLostEntity: r));
+        }else{
+          emit(GetAllSurvivalsDataSuccess(getAllLostEntity: r));
         }
       });
     }
+    print("exit");
   }
 
   void getMyLostPeopleList() async {
@@ -207,7 +211,9 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
     response.fold((l) {
       emit(GetMyLostDataError(authErrorException: l));
     }, (r) {
-      emit(GetMyLostDataSuccess(getMyLostPersonDataEntity: r.data!));
+      print(r);
+        myUploadedLostPeoplesList = r.data??[];
+      emit(GetMyLostDataSuccess(getMyLostPersonDataEntity: r.data??[]));
     });
   }
 

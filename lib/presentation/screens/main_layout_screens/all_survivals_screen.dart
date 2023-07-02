@@ -75,11 +75,13 @@ class _AllSurvivalsScreenState extends State<AllSurvivalsScreen> {
                             return Padding(
                               padding: EdgeInsets.symmetric(vertical: 8.h),
                               child: LostPeopleWidgetBuilder(
-                                textDirection: index % 2 == 0
+                                containerDirection: index % 2 == 0
                                     ? TextDirection.ltr
                                     : TextDirection.rtl,
                                 lostPersonDataEntity:
-                                    cubit.getAllSurvivalsDataList[index],
+                                    cubit.getAllSurvivalsDataList[index], dateDirection: index % 2 == 0
+                                  ? Alignment.centerRight
+                                  : Alignment.centerLeft,
                               ),
                             );
                           },
