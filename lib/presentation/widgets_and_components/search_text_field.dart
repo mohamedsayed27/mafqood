@@ -10,7 +10,17 @@ class SearchTextField extends StatelessWidget {
   final void Function()? onCameraClicked;
   final void Function()? onSearchPressed;
   final TextEditingController? controller;
-  const SearchTextField({Key? key, this.onCameraClicked, this.onSearchPressed, this.controller}) : super(key: key);
+  final void Function(String)? onSubmitted;
+  final void Function(String?)? onChanged;
+
+  const SearchTextField({
+    Key? key,
+    this.onCameraClicked,
+    this.onSearchPressed,
+    this.controller,
+    this.onSubmitted,
+    this.onChanged,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +46,8 @@ class SearchTextField extends StatelessWidget {
                 fontSize: 14.sp,
                 fontFamily: FontsPath.sukarRegular,
               ),
+              onSubmitted: onSubmitted,
+              onChanged: onChanged,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.zero,
                 hintText: "بحث بالأسم",
@@ -50,7 +62,7 @@ class SearchTextField extends StatelessWidget {
                   fontFamily: FontsPath.sukarRegular,
                 ),
                 prefixIcon: Padding(
-                  padding:  const EdgeInsets.all(9.0),
+                  padding: const EdgeInsets.all(9.0),
                   child: InkWell(
                     onTap: onSearchPressed,
                     child: SvgPicture.asset(

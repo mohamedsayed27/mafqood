@@ -1,4 +1,3 @@
-import '../../domain/entities/lost_person_data_entity.dart';
 import '../../domain/entities/main_response_entity.dart';
 import 'lost_person_model.dart';
 
@@ -17,7 +16,7 @@ class MainResponseModel extends MainResponseEntity {
       data: json['data'] != null
           ? LostPersonDataModel.fromJson(json['data'])
           : null,
-      errors: json['errors'] != null ? json['errors'].cast<String>() : null,
+      errors: json['errors']?.cast<String>(),
     );
   }
 }

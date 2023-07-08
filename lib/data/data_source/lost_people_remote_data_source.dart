@@ -122,7 +122,7 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
         bearerToken: token,
       );
       print(response);
-      return SearchByNameModel.fromJson(response.data);
+      return SearchByNameModel.fromJson(response.data,isAdd: true);
     } on DioError catch (error) {
       throw ErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
@@ -157,7 +157,8 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
           "Trim": name,
         },
       );
-      return SearchByNameModel.fromJson(response.data);
+      print(response);
+      return SearchByNameModel.fromJson(response.data,isAdd: true);
     } on DioError catch (error) {
       throw ErrorException(AuthErrorModel.fromJson(error.response!.data));
     }

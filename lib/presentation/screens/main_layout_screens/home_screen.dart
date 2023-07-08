@@ -154,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   listener: (context, state) {},
                   builder: (context, state) {
                     var cubit = LostPeopleCubit.get(context);
-                    return state is GetAllSurvivalsDataLoading
+                    return cubit.getAllSurvivalsLoading==true
                         ? const LoadingLostPersonListWidget()
                         : ListView.builder(
                             physics: const BouncingScrollPhysics(),

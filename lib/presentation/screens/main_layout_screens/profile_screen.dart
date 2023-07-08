@@ -8,7 +8,6 @@ import 'package:mafqood/presentation/widgets_and_components/shred_widgets/lost_p
 import '../../../core/assets_path/fonts_path.dart';
 import '../../../core/constants/constants.dart';
 import '../../../core/theme/app_colors_light_theme.dart';
-import '../../../domain/entities/lost_person_data_entity.dart';
 import '../../controllers/lost_people_cubit/lost_people_state.dart';
 import '../../widgets_and_components/profile_screen_widgets/family_card_widget.dart';
 import '../../widgets_and_components/profile_screen_widgets/profile_data_widget.dart';
@@ -110,14 +109,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             var cubit = LostPeopleCubit.get(context);
                             return ListView.builder(
                               itemBuilder: (BuildContext context, int index) {
-                                return LostPeopleWidgetBuilder(
-                                  containerDirection: index % 2 == 0
-                                      ? TextDirection.rtl
-                                      : TextDirection.ltr,
-                                  dateDirection: index % 2 == 0
-                                      ? Alignment.centerRight
-                                      : Alignment.centerLeft,
-                                  lostPersonDataEntity: cubit.myUploadedLostPeoplesList[index],
+                                return Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 10.h),
+                                  child: LostPeopleWidgetBuilder(
+                                    containerDirection: index % 2 != 0
+                                        ? TextDirection.rtl
+                                        : TextDirection.ltr,
+                                    dateDirection: index % 2 == 0
+                                        ? Alignment.centerRight
+                                        : Alignment.centerLeft,
+                                    lostPersonDataEntity: cubit.myUploadedLostPeoplesList[index],
+                                  ),
                                 );
                               },
                               itemCount: cubit.myUploadedLostPeoplesList.length,

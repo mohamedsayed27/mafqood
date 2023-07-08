@@ -88,7 +88,7 @@ class SearchForLostPersonByImageDataError extends LostPeopleState {
 class SearchForLostPersonByNameDataLoading extends LostPeopleState {}
 
 class SearchForLostPersonByNameDataSuccess extends LostPeopleState {
-  final List<LostPersonDataEntity> searchLostPersonDataEntity;
+  final List<LostPersonDataEntity>? searchLostPersonDataEntity;
 
   SearchForLostPersonByNameDataSuccess({required this.searchLostPersonDataEntity});
 }

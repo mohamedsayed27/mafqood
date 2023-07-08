@@ -51,13 +51,14 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
   int? minAge;
   int? maxAge;
   bool isInSearchScreen = false;
+  bool getAllSurvivalsLoading = false;
   final _picker = ImagePicker();
   List<CityEntity>? citiesList;
   List<AreaEntity>? areaList;
   CityEntity? cityEntity;
   AreaEntity? areaEntity;
   LostPersonDataEntity? lostPersonDataEntity;
-  List<LostPersonDataEntity>? searchForLostByNameLis;
+  List<LostPersonDataEntity> searchForLostByNameLis = [];
   List<LostPersonDataEntity> getAllLostDataList = [];
   List<LostPersonDataEntity> getAllSurvivalsDataList = [];
   List<LostPersonDataEntity> myUploadedLostPeoplesList = [];
@@ -66,7 +67,7 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
   int allLostLastPageNumber = 1;
   int allSurvivalPageNumber = 1;
   int allSurvivalLastPageNumber = 1;
-
+  bool searchScreenLoading = false;
   bool searchByNameLoading = false;
 
   selectTDateTime(BuildContext context) {
@@ -144,30 +145,36 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
 
   void searchForLostPersonByName({required String name}) async {
     searchForLostByNameLis = [];
-    searchByNameLoading = true;
+    searchScreenLoading = true;
     emit(SearchForLostPersonByNameDataLoading());
     final response = await _searchLostPeopleByNameUsecase(name);
     response.fold((l) {
-      searchByNameLoading = false;
+      searchScreenLoading = false;
       emit(SearchForLostPersonByNameDataError(authErrorException: l));
     }, (r) {
-      searchByNameLoading = false;
-      searchForLostByNameLis = r.data;
-      emit(SearchForLostPersonByNameDataSuccess(searchLostPersonDataEntity: r.data!));
+      searchScreenLoading = false;
+      if(r.data!=null){
+        searchForLostByNameLis = r.data!;
+      }
+      print(r.data);
+      emit(SearchForLostPersonByNameDataSuccess(searchLostPersonDataEntity: r.data));
     });
   }
 
   void getAllLost() async {
     if(allLostPageNumber == 1){
+      searchScreenLoading = true;
       getAllLostDataList = [];
       emit(GetAllLostLoading());
     }
     if(allLostPageNumber<=allLostLastPageNumber){
       final response = await _getAllLostUsecase(allLostPageNumber);
       response.fold((l) {
+        searchScreenLoading = false;
         emit(GetAllLostError(authErrorException: l));
       }, (r) {
         if(allLostPageNumber<=r.totalPages!){
+          searchScreenLoading = false;
           allLostLastPageNumber=r.totalPages!;
           allLostPageNumber++;
           getAllLostDataList.addAll(r.data!);
@@ -179,6 +186,8 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
 
   void getAllSurvivals() async {
     if(allSurvivalPageNumber == 1){
+      getAllSurvivalsLoading = true;
+      print("enter first loading");
       getAllSurvivalsDataList = [];
       emit(GetAllSurvivalsDataLoading());
     }
@@ -189,15 +198,18 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
       print("entered");
       final response = await _getAllSurvivalsUsecase(allSurvivalPageNumber);
       response.fold((l) {
+        getAllSurvivalsLoading = false;
         emit(GetAllSurvivalsDataError(authErrorException: l));
       }, (r) {
-        print(r.totalPages!);
+        print(r);
         if(allSurvivalPageNumber<=r.totalPages!&&r.data!=null){
           allSurvivalLastPageNumber=r.totalPages!;
           allSurvivalPageNumber++;
           getAllSurvivalsDataList.addAll(r.data!);
+          getAllSurvivalsLoading = false;
           emit(GetAllSurvivalsDataSuccess(getAllLostEntity: r));
         }else{
+          getAllSurvivalsLoading = false;
           emit(GetAllSurvivalsDataSuccess(getAllLostEntity: r));
         }
       });

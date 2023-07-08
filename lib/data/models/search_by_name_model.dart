@@ -9,10 +9,10 @@ class SearchByNameModel extends SearchByNameEntity {
     required super.errors,
   });
 
-  factory SearchByNameModel.fromJson(Map<String, dynamic> json) {
+  factory SearchByNameModel.fromJson(Map<String, dynamic> json,{bool isAdd = false}) {
     List<LostPersonDataModel> list = [];
-    json['data'].forEach((element){
-      list.add(LostPersonDataModel.fromJson(element));
+    json['data']?.forEach((element){
+      list.add(LostPersonDataModel.fromJson(element,isAdd: isAdd));
     });
     return SearchByNameModel(
       status: json['status'],

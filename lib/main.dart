@@ -9,6 +9,7 @@ import 'package:mafqood/presentation/controllers/chat_cubit/chat_cubit.dart';
 import 'package:mafqood/presentation/controllers/google_maps_cubit/google_maps_cubit.dart';
 import 'package:mafqood/presentation/controllers/lost_people_cubit/lost_people_cubit.dart';
 import 'package:mafqood/presentation/controllers/user_cubit/user_cubit.dart';
+import 'package:mafqood/try_screen.dart';
 import 'bloc_observer.dart';
 import 'core/theme/app_colors_light_theme.dart';
 import 'core/notification/notification_services.dart';
@@ -20,7 +21,6 @@ import 'core/app_router/screens_name.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
-
   await DioHelper.init();
   ServicesLocator().init();
   Bloc.observer = MyBlocObserver();
@@ -88,9 +88,9 @@ class MyApp extends StatelessWidget {
                 AppColors.primaryColor,
               ),
             ),
-            onGenerateRoute: AppRouter.generateRoute,
-            initialRoute: ScreenName.splashscreen,
-            // home:  ProfileScreen(),
+            // onGenerateRoute: AppRouter.generateRoute,
+            // initialRoute: ScreenName.splashscreen,
+            home:  TryScreen(),
           ),
         );
       },
