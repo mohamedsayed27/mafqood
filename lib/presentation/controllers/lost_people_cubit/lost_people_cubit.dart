@@ -7,6 +7,7 @@ import 'package:mafqood/domain/entities/lost_person_data_entity.dart';
 import 'package:mafqood/domain/usecases/lost_people_usecases/add_lost_person_usecase.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mafqood/domain/usecases/lost_people_usecases/get_my_lost_people_usecase.dart';
+import 'package:nfc_manager/nfc_manager.dart';
 
 import '../../../core/base_usecases/base_usecase.dart';
 import '../../../core/theme/app_colors_light_theme.dart';
@@ -80,8 +81,7 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
         return Theme(
           data: ThemeData().copyWith(
             colorScheme: const ColorScheme.light(
-                primary: AppColors.primaryColor,
-                secondary: Colors.white),
+                primary: AppColors.primaryColor, secondary: Colors.white),
             dialogBackgroundColor: Colors.white,
           ),
           child: child!,
@@ -153,29 +153,30 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
       emit(SearchForLostPersonByNameDataError(authErrorException: l));
     }, (r) {
       searchScreenLoading = false;
-      if(r.data!=null){
+      if (r.data != null) {
         searchForLostByNameLis = r.data!;
       }
       print(r.data);
-      emit(SearchForLostPersonByNameDataSuccess(searchLostPersonDataEntity: r.data));
+      emit(SearchForLostPersonByNameDataSuccess(
+          searchLostPersonDataEntity: r.data));
     });
   }
 
   void getAllLost() async {
-    if(allLostPageNumber == 1){
+    if (allLostPageNumber == 1) {
       searchScreenLoading = true;
       getAllLostDataList = [];
       emit(GetAllLostLoading());
     }
-    if(allLostPageNumber<=allLostLastPageNumber){
+    if (allLostPageNumber <= allLostLastPageNumber) {
       final response = await _getAllLostUsecase(allLostPageNumber);
       response.fold((l) {
         searchScreenLoading = false;
         emit(GetAllLostError(authErrorException: l));
       }, (r) {
-        if(allLostPageNumber<=r.totalPages!){
+        if (allLostPageNumber <= r.totalPages!) {
           searchScreenLoading = false;
-          allLostLastPageNumber=r.totalPages!;
+          allLostLastPageNumber = r.totalPages!;
           allLostPageNumber++;
           getAllLostDataList.addAll(r.data!);
           emit(GetAllLostSuccess(getAllLostEntity: r));
@@ -185,16 +186,16 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
   }
 
   void getAllSurvivals() async {
-    if(allSurvivalPageNumber == 1){
+    if (allSurvivalPageNumber == 1) {
       getAllSurvivalsLoading = true;
       print("enter first loading");
       getAllSurvivalsDataList = [];
       emit(GetAllSurvivalsDataLoading());
     }
-    if(allSurvivalPageNumber !=1){
+    if (allSurvivalPageNumber != 1) {
       emit(GetMoreOfAllSurvivalsDataLoading());
     }
-    if(allSurvivalPageNumber<=allSurvivalLastPageNumber){
+    if (allSurvivalPageNumber <= allSurvivalLastPageNumber) {
       print("entered");
       final response = await _getAllSurvivalsUsecase(allSurvivalPageNumber);
       response.fold((l) {
@@ -202,13 +203,13 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
         emit(GetAllSurvivalsDataError(authErrorException: l));
       }, (r) {
         print(r);
-        if(allSurvivalPageNumber<=r.totalPages!&&r.data!=null){
-          allSurvivalLastPageNumber=r.totalPages!;
+        if (allSurvivalPageNumber <= r.totalPages! && r.data != null) {
+          allSurvivalLastPageNumber = r.totalPages!;
           allSurvivalPageNumber++;
           getAllSurvivalsDataList.addAll(r.data!);
           getAllSurvivalsLoading = false;
           emit(GetAllSurvivalsDataSuccess(getAllLostEntity: r));
-        }else{
+        } else {
           getAllSurvivalsLoading = false;
           emit(GetAllSurvivalsDataSuccess(getAllLostEntity: r));
         }
@@ -224,8 +225,8 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
       emit(GetMyLostDataError(authErrorException: l));
     }, (r) {
       print(r);
-        myUploadedLostPeoplesList = r.data??[];
-      emit(GetMyLostDataSuccess(getMyLostPersonDataEntity: r.data??[]));
+      myUploadedLostPeoplesList = r.data ?? [];
+      emit(GetMyLostDataSuccess(getMyLostPersonDataEntity: r.data ?? []));
     });
   }
 
@@ -268,4 +269,47 @@ class LostPeopleCubit extends Cubit<LostPeopleState> {
     values = rangeValues;
     emit(ChangeAgeValueSuccess());
   }
+
+  String? result;
+
+  void ndefWrite() {
+    emit(WriteInNFCLoading());
+    NfcManager.instance.startSession(onDiscovered: (NfcTag tag) async {
+      print(tag);
+      var ndef = Ndef.from(tag);
+      if (ndef == null || !ndef.isWritable) {
+        print('Tag is not ndef writable');
+        NfcManager.instance.stopSession(errorMessage: result);
+        return;
+      }
+
+      NdefMessage message = NdefMessage([
+        NdefRecord.createText('Hello World!'),
+      ]);
+
+      try {
+        await ndef.write(message);
+        print('Success to "Ndef Write"');
+        print(result);
+        NfcManager.instance.stopSession();
+        emit(WriteInNFCSuccess());
+      } catch (e) {
+        print(e);
+        NfcManager.instance.stopSession(errorMessage: result);
+        emit(WriteInNFCError(cityId: e.toString()));
+        return;
+      }
+    });
+  }
+ Map<String, dynamic> readResult ={};
+  void _tagRead() {
+    NfcManager.instance.startSession(onDiscovered: (NfcTag tag) async {
+      readResult = tag.data;
+      print(result);
+      NfcManager.instance.stopSession();
+    });
+  }
+
 }
+
+

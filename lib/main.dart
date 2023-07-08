@@ -10,6 +10,7 @@ import 'package:mafqood/presentation/controllers/google_maps_cubit/google_maps_c
 import 'package:mafqood/presentation/controllers/lost_people_cubit/lost_people_cubit.dart';
 import 'package:mafqood/presentation/controllers/user_cubit/user_cubit.dart';
 import 'package:mafqood/try_screen.dart';
+import 'package:nfc_manager/nfc_manager.dart';
 import 'bloc_observer.dart';
 import 'core/theme/app_colors_light_theme.dart';
 import 'core/notification/notification_services.dart';
@@ -31,8 +32,12 @@ void main() async {
     onDidReceiveNotificationResponse,
   );
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+  isNfcAvalible = await NfcManager.instance.isAvailable();
+
   runApp(const MyApp());
 }
+
+bool isNfcAvalible = false;
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -90,7 +95,7 @@ class MyApp extends StatelessWidget {
             ),
             // onGenerateRoute: AppRouter.generateRoute,
             // initialRoute: ScreenName.splashscreen,
-            home:  TryScreen(),
+            home:  TryScreen(title: 'Test NFC',),
           ),
         );
       },

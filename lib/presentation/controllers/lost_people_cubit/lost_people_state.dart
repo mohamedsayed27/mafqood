@@ -162,3 +162,13 @@ class ChangeCityDropdownValueSuccess extends LostPeopleState {
 
   ChangeCityDropdownValueSuccess({required this.cityId});
 }
+
+class WriteInNFCLoading extends LostPeopleState {}
+
+class WriteInNFCSuccess extends LostPeopleState {}
+
+class WriteInNFCError extends LostPeopleState {
+  final String cityId;
+
+  WriteInNFCError({required this.cityId});
+}
