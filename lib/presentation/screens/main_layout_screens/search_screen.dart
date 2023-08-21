@@ -7,6 +7,7 @@ import 'package:mafqood/presentation/controllers/lost_people_cubit/lost_people_s
 import '../../../core/assets_path/fonts_path.dart';
 import '../../widgets_and_components/search_image_alert_dialog.dart';
 import '../../widgets_and_components/search_text_field.dart';
+import '../../widgets_and_components/shred_widgets/loading_lost_person_list_widget.dart';
 import '../../widgets_and_components/shred_widgets/lost_people_widget_builder.dart';
 import '../../widgets_and_components/shred_widgets/logo_text.dart';
 import '../../widgets_and_components/shred_widgets/simple_dialog_option.dart';
@@ -25,9 +26,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void initState() {
     var cubit = LostPeopleCubit.get(context);
-    if (cubit
-        .getAllLostDataList
-        .isEmpty) {
+    if (cubit.getAllLostDataList.isEmpty) {
       cubit.getAllLost();
     }
     scrollController.addListener(() {
@@ -38,9 +37,11 @@ class _SearchScreenState extends State<SearchScreen> {
     });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: Column(
@@ -57,23 +58,37 @@ class _SearchScreenState extends State<SearchScreen> {
                 var cubit = LostPeopleCubit.get(context);
                 if (state is GetPickedImageSuccessState) {
                   state.isSearchScreen = true;
-                  if(state.isSearchScreen == true){
+                  if (state.isSearchScreen == true) {
                     cubit.searchLostPersonImage = state.image;
                     showDialog(
                         context: context,
-                        builder: (context) => const SearchImageAlertDialog()).then((value) {
+                        builder: (context) =>
+                            const SearchImageAlertDialog()).then((value) {
                       state.isSearchScreen = false;
-                    }).catchError((onError){state.isSearchScreen = false;});
+                    }).catchError((onError) {
+                      state.isSearchScreen = false;
+                    });
                   }
-
                 }
               },
               builder: (context, state) {
                 var cubit = LostPeopleCubit.get(context);
                 return SearchTextField(
                   controller: searchController,
-                  onSearchPressed: (){
-                    cubit.searchForLostPersonByName(name: searchController.text);
+                  onSearchPressed: () {
+                    cubit.searchForLostPersonByName(
+                      name: searchController.text,
+                    );
+                  },
+                  onSubmitted: (value) {
+                    cubit.searchForLostPersonByName(
+                      name: value,
+                    );
+                  },
+                  onChanged: (value) {
+                    if (searchController.text.isEmpty) {
+                      setState(() {});
+                    }
                   },
                   onCameraClicked: () {
                     showDialog(
@@ -131,20 +146,54 @@ class _SearchScreenState extends State<SearchScreen> {
                 listener: (context, state) {},
                 builder: (context, state) {
                   var cubit = LostPeopleCubit.get(context);
-                  return ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: cubit.getAllLostDataList.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        padding: EdgeInsets.symmetric(vertical: 8.h),
-                        child: LostPeopleWidgetBuilder(
-                          textDirection: index % 2 == 0
-                              ? TextDirection.ltr
-                              : TextDirection.rtl, lostPersonDataEntity: cubit.getAllLostDataList[index],
-                        ),
-                      );
-                    },
-                  );
+                  return cubit.searchScreenLoading == true
+                      ? const LoadingLostPersonListWidget()
+                      : searchController.text.isEmpty
+                          ? ListView.builder(
+                              physics: const BouncingScrollPhysics(),
+                              itemCount: cubit.getAllLostDataList.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 8.h),
+                                  child: LostPeopleWidgetBuilder(
+                                    containerDirection: index % 2 == 0
+                                        ? TextDirection.ltr
+                                        : TextDirection.rtl,
+                                    lostPersonDataEntity:
+                                        cubit.getAllLostDataList[index],
+                                    dateDirection: index % 2 == 0
+                                        ? Alignment.centerRight
+                                        : Alignment.centerLeft,
+                                  ),
+                                );
+                              },
+                            )
+                          : cubit.searchForLostByNameLis.isNotEmpty && searchController.text.isNotEmpty
+                              ? ListView.builder(
+                                  physics: const BouncingScrollPhysics(),
+                                  itemCount:
+                                      cubit.searchForLostByNameLis.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 8.h),
+                                      child: LostPeopleWidgetBuilder(
+                                        containerDirection: index % 2 == 0
+                                            ? TextDirection.ltr
+                                            : TextDirection.rtl,
+                                        lostPersonDataEntity: cubit
+                                            .searchForLostByNameLis[index],
+                                        dateDirection: index % 2 == 0
+                                            ? Alignment.centerRight
+                                            : Alignment.centerLeft,
+                                      ),
+                                    );
+                                  },
+                                )
+                              : const Center(
+                                  child: Text("لا تتوفر نتائج البحث"),
+                                );
                 },
               ),
             ),

@@ -1,4 +1,6 @@
 import 'package:equatable/equatable.dart';
+
+import 'get_all_lost_entity.dart';
 class LostPersonDataEntity extends Equatable {
   final int? id;
   final String? name;
@@ -14,6 +16,7 @@ class LostPersonDataEntity extends Equatable {
   final String? url;
   final String? dateAdded;
   final bool? status;
+  final UserEntity? user;
 
 
   const LostPersonDataEntity({
@@ -27,6 +30,7 @@ class LostPersonDataEntity extends Equatable {
     this.phoneNumber,
     this.long,
     this.lat,
+    this.user,
     this.longFind,
     this.latFind,
     this.url,
@@ -40,6 +44,7 @@ class LostPersonDataEntity extends Equatable {
         name,
         birthDate,
         city,
+    user,
         area,
         street,
         phoneNumber,

@@ -5,21 +5,23 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mafqood/core/cache_manager/shared_preferences.dart';
 import 'package:mafqood/core/network/dio_helper.dart';
+import 'package:mafqood/presentation/controllers/chat_cubit/chat_cubit.dart';
 import 'package:mafqood/presentation/controllers/google_maps_cubit/google_maps_cubit.dart';
 import 'package:mafqood/presentation/controllers/lost_people_cubit/lost_people_cubit.dart';
 import 'package:mafqood/presentation/controllers/user_cubit/user_cubit.dart';
-import 'package:mafqood/presentation/screens/main_layout_screens/profile_screen.dart';
+import 'package:mafqood/try_screen.dart';
+import 'package:nfc_manager/nfc_manager.dart';
 import 'bloc_observer.dart';
 import 'core/theme/app_colors_light_theme.dart';
 import 'core/notification/notification_services.dart';
 import 'core/services/services_locator.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-
+import 'core/app_router/app_router.dart';
+import 'core/app_router/screens_name.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
-
   await DioHelper.init();
   ServicesLocator().init();
   Bloc.observer = MyBlocObserver();
@@ -30,8 +32,12 @@ void main() async {
     onDidReceiveNotificationResponse,
   );
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+  isNfcAvalible = await NfcManager.instance.isAvailable();
+
   runApp(const MyApp());
 }
+
+bool isNfcAvalible = false;
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -68,6 +74,9 @@ class MyApp extends StatelessWidget {
             BlocProvider(
               create: (context) => GoogleMapsCubit()..getCurrentPosition(),
             ),
+            BlocProvider(
+              create: (context) => ChatCubit(),
+            ),
           ],
           child: MaterialApp(
             title: 'مفقود',
@@ -86,7 +95,7 @@ class MyApp extends StatelessWidget {
             ),
             // onGenerateRoute: AppRouter.generateRoute,
             // initialRoute: ScreenName.splashscreen,
-            home:  ProfileScreen(),
+            home:  TryScreen(title: 'Test NFC',),
           ),
         );
       },

@@ -23,13 +23,23 @@ import '../models/search_by_name_model.dart';
 import '../models/search_lost_people_by_name.dart';
 
 abstract class BaseLostPeopleRemoteDataSource {
-  Future<MainResponseModel> addLostPersonDataFromFamily(AddLostPersonFromFamilyDataParameters parameters);
-  Future<MainResponseModel> helpLostPerson(AddLostPersonsDataFromAnonymousParameters parameters);
-  Future<BasicSuccessResponseModel> updateMyLost(UpdateMyLostParameters parameters);
+  Future<MainResponseModel> addLostPersonDataFromFamily(
+      AddLostPersonFromFamilyDataParameters parameters);
+
+  Future<MainResponseModel> helpLostPerson(
+      AddLostPersonsDataFromAnonymousParameters parameters);
+
+  Future<BasicSuccessResponseModel> updateMyLost(
+      UpdateMyLostParameters parameters);
+
   Future<SearchByNameModel> getMyLostPeople(NoParameters parameters);
+
   Future<MainResponseModel> searchForLostPersonByImage(File image);
+
   Future<SearchByNameModel> searchForLostPersonByName(String name);
+
   Future<PaginatedResponsePeopleModel> getAllLost(int pageNumber);
+
   Future<PaginatedResponsePeopleModel> getAllSurvivals(int pageNumber);
 }
 
@@ -108,8 +118,11 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
   Future<SearchByNameModel> getMyLostPeople(NoParameters parameters) async {
     try {
       final response = await dioHelper.getData(
-          url: EndPoints.getMyLostPeople, bearerToken: token);
-      return SearchByNameModel.fromJson(response.data);
+        url: EndPoints.getMyLostPeople,
+        bearerToken: token,
+      );
+      print(response);
+      return SearchByNameModel.fromJson(response.data,isAdd: true);
     } on DioError catch (error) {
       throw ErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
@@ -135,32 +148,30 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
   }
 
   @override
-  Future<SearchByNameModel> searchForLostPersonByName(String name) async{
+  Future<SearchByNameModel> searchForLostPersonByName(String name) async {
     try {
       final response = await dioHelper.getData(
         bearerToken: token,
         url: EndPoints.findByName,
         query: {
-          "Trim":name,
+          "Trim": name,
         },
       );
-      return SearchByNameModel.fromJson(response.data);
+      print(response);
+      return SearchByNameModel.fromJson(response.data,isAdd: true);
     } on DioError catch (error) {
       throw ErrorException(AuthErrorModel.fromJson(error.response!.data));
     }
   }
 
   @override
-  Future<PaginatedResponsePeopleModel> getAllLost(int pageNumber) async{
+  Future<PaginatedResponsePeopleModel> getAllLost(int pageNumber) async {
     try {
-      final response = await dioHelper.getData(
-        bearerToken: token,
-        url: EndPoints.getAllLost,
-          query: {
-            "Page":pageNumber,
-            "PageSize":10,
-          }
-      );
+      final response = await dioHelper
+          .getData(bearerToken: token, url: EndPoints.getAllLost, query: {
+        "Page": pageNumber,
+        "PageSize": 10,
+      });
       return PaginatedResponsePeopleModel.fromJson(response.data);
     } on DioError catch (error) {
       throw ErrorException(AuthErrorModel.fromJson(error.response!.data));
@@ -168,16 +179,13 @@ class LostPeopleRemoteDataSource extends BaseLostPeopleRemoteDataSource {
   }
 
   @override
-  Future<PaginatedResponsePeopleModel> getAllSurvivals(int pageNumber) async{
+  Future<PaginatedResponsePeopleModel> getAllSurvivals(int pageNumber) async {
     try {
-      final response = await dioHelper.getData(
-        bearerToken: token,
-        url: EndPoints.getAllSurvivals,
-        query: {
-          "Page":pageNumber,
-          "PageSize":10,
-        }
-      );
+      final response = await dioHelper
+          .getData(bearerToken: token, url: EndPoints.getAllSurvivals, query: {
+        "Page": pageNumber,
+        "PageSize": 10,
+      });
       return PaginatedResponsePeopleModel.fromJson(response.data);
     } on DioError catch (error) {
       throw ErrorException(AuthErrorModel.fromJson(error.response!.data));

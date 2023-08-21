@@ -88,7 +88,7 @@ class SearchForLostPersonByImageDataError extends LostPeopleState {
 class SearchForLostPersonByNameDataLoading extends LostPeopleState {}
 
 class SearchForLostPersonByNameDataSuccess extends LostPeopleState {
-  final List<LostPersonDataEntity> searchLostPersonDataEntity;
+  final List<LostPersonDataEntity>? searchLostPersonDataEntity;
 
   SearchForLostPersonByNameDataSuccess({required this.searchLostPersonDataEntity});
 }
@@ -161,4 +161,14 @@ class ChangeCityDropdownValueSuccess extends LostPeopleState {
   final String cityId;
 
   ChangeCityDropdownValueSuccess({required this.cityId});
+}
+
+class WriteInNFCLoading extends LostPeopleState {}
+
+class WriteInNFCSuccess extends LostPeopleState {}
+
+class WriteInNFCError extends LostPeopleState {
+  final String cityId;
+
+  WriteInNFCError({required this.cityId});
 }

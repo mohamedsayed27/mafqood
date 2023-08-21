@@ -9,6 +9,7 @@ import 'package:mafqood/presentation/screens/main_layout_screens/lost_person_dat
 
 import '../../../core/assets_path/fonts_path.dart';
 import '../../../core/theme/app_colors_light_theme.dart';
+import '../../widgets_and_components/shred_widgets/loading_lost_person_list_widget.dart';
 import '../../widgets_and_components/shred_widgets/lost_people_widget_builder.dart';
 import '../../widgets_and_components/shred_widgets/logo_text.dart';
 
@@ -25,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
     var cubit = LostPeopleCubit.get(context);
     if (cubit.getAllSurvivalsDataList.isEmpty) {
       cubit.allSurvivalPageNumber = 1;
+      cubit.allSurvivalLastPageNumber = 1;
       cubit.getAllSurvivals();
     }
     super.initState();
@@ -152,10 +154,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   listener: (context, state) {},
                   builder: (context, state) {
                     var cubit = LostPeopleCubit.get(context);
-                    return state is GetAllSurvivalsDataLoading
-                        ? const Center(
-                            child: CircularProgressIndicator.adaptive(),
-                          )
+                    return cubit.getAllSurvivalsLoading==true
+                        ? const LoadingLostPersonListWidget()
                         : ListView.builder(
                             physics: const BouncingScrollPhysics(),
                             itemCount: cubit.getAllSurvivalsDataList.length > 5
@@ -183,11 +183,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                         );
                                       },
                                       child: LostPeopleWidgetBuilder(
-                                        textDirection: index % 2 == 0
+                                        containerDirection: index % 2 == 0
                                             ? TextDirection.ltr
                                             : TextDirection.rtl,
                                         lostPersonDataEntity: cubit
-                                            .getAllSurvivalsDataList[index],
+                                            .getAllSurvivalsDataList[index],dateDirection: index % 2 == 0
+                                          ? Alignment.centerRight
+                                          : Alignment.centerLeft,
                                       ),
                                     ),
                                     SizedBox(

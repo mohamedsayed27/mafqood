@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:mafqood/presentation/controllers/user_cubit/user_cubit.dart';
 import '../../../core/assets_path/fonts_path.dart';
 import '../../../core/assets_path/svg_path.dart';
 import '../../../core/constants/constants.dart';
@@ -145,7 +146,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         height: 50.h,
                         child: ElevatedButton(
                           onPressed: () {
-                            // cubit.sendMessage(receiverId: widget.chatScreenArgs.receiverId, senderId: userId, receiverName: widget.chatScreenArgs.receiverName, senderName: senderName, receiverImg: widget.chatScreenArgs.receiverId, senderImg: , text: chatController.text, dateTime: DateTime.now().toIso8601String(), image: null, messageType: "text", isMessageRead: false);
+                            cubit.sendMessage(receiverId: widget.chatScreenArgs.receiverId, senderId: userId, receiverName: widget.chatScreenArgs.receiverName, senderName: UserCubit.get(context).userDataModel!.userName, receiverImg: widget.chatScreenArgs.receiverImg, senderImg: UserCubit.get(context).userDataModel!.photo, text: chatController.text, dateTime: DateTime.now().toIso8601String(), image: null, messageType: "text", isMessageRead: false);
                             chatController.clear();
                             isTapped = false;
                           },

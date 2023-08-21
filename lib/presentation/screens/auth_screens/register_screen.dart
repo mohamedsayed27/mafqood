@@ -136,6 +136,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       if (state is RegisterLoading) {
                         showProgressIndicator(context);
                       } else if (state is RegisterSuccess) {
+
                         Navigator.pop(context);
                         showToast(
                             errorType: 0,
